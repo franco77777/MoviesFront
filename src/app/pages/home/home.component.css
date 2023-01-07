@@ -17,10 +17,54 @@ svg {
 }
 
 input {
-  transition: 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   background-color: rgb(18, 20, 39);
 }
 
 input:focus {
   width: 250px;
+  transition: all 0.3s;
+}
+
+.carousel-img {
+  background-image: url("../../img/adam.png");
+  background-position: center center;
+  background-size: cover;
+}
+
+.carousel-img2 {
+  background-image: url("../../img/avatar.png");
+  background-position: center center;
+  background-size: cover;
+}
+.carousel-img3 {
+  background-image: url("../../img/galaxia.png");
+  background-position: center center;
+  background-size: cover;
+}
+
+.carousel-img4 {
+  background-image: url("../../img/gato.png");
+  background-position: center center;
+  background-size: cover;
+}
+
+.carousel-img5 {
+  background-image: url("../../img/megan.jpg");
+  background-position: center center;
+  background-size: cover;
+}
+
+@media (min-width: 768px) {
+}
+
+@media screen and (min-width: 1024px) {
+}
+
+@media screen and (max-width: 1200px) {
+  input:focus {
+    width: 190px;
+    position: relative;
+    left: -5px;
+  }
 }
