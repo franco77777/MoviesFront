@@ -15,10 +15,7 @@ import {
 export class HomeComponent implements AfterViewInit {
   public active: boolean = false;
   @ViewChild('toggle') toggle: ElementRef;
-  @ViewChild('asTitle') title: ElementRef;
-  @ViewChild('asTitle1') title1: ElementRef;
-  @ViewChild('asTitle2') title2: ElementRef;
-  @ViewChild('asTitle3') title3: ElementRef;
+  @ViewChild('sidebar') sidebar: ElementRef;
 
   constructor(private renderer2: Renderer2) {}
 
@@ -30,20 +27,14 @@ export class HomeComponent implements AfterViewInit {
 
   change(): void {
     const togle = this.toggle.nativeElement;
-    const asTitle1 = this.title1.nativeElement;
-    const asTitle2 = this.title2.nativeElement;
-    const asTitle3 = this.title3.nativeElement;
     if (!this.active) {
-      this.renderer2.addClass(asTitle1, 'activeline1__bars-menu');
-      this.renderer2.addClass(asTitle2, 'activeline2__bars-menu');
-      this.renderer2.addClass(asTitle3, 'activeline3__bars-menu');
       this.renderer2.addClass(togle, 'active');
+      this.renderer2.addClass(this.sidebar.nativeElement, 'sidebar');
+
       this.active = true;
     } else {
-      this.renderer2.removeClass(asTitle1, 'activeline1__bars-menu');
-      this.renderer2.removeClass(asTitle2, 'activeline2__bars-menu');
-      this.renderer2.removeClass(asTitle3, 'activeline3__bars-menu');
       this.renderer2.removeClass(togle, 'active');
+      this.renderer2.removeClass(this.sidebar.nativeElement, 'sidebar');
       this.active = false;
     }
 
