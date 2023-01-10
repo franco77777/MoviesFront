@@ -1,138 +1,177 @@
-<div class="navbar">
-  <nav
-    class="px-2 bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700"
-  >
-    <div class="container flex flex-wrap items-center justify-between mx-auto">
-      <a href="#" class="flex items-center">
+<div class="navbar flex z-10">
+  <nav class="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+    <div class="flex items-center justify-around mx-auto h-24">
+      <a href="#" class="flex items-center pb-1">
         <img
           src="https://flowbite.com/docs/images/logo.svg"
-          class="h-6 mr-3 sm:h-10"
+          class="h-3 mr-3 sm:h-10"
           alt="Flowbite Logo"
         />
-        <span
-          class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
-          >Flowbite</span
+        <span class="text-xl font-semibold whitespace-nowrap text-white"
+          >Cinecalidad</span
         >
       </a>
-      <button
-        data-collapse-toggle="navbar-dropdown"
-        type="button"
-        class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-        aria-controls="navbar-dropdown"
-        aria-expanded="false"
-      >
-        <span class="sr-only">Open main menu</span>
-        <svg
-          class="w-6 h-6"
-          aria-hidden="true"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-            clip-rule="evenodd"
-          ></path>
-        </svg>
-      </button>
+
       <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
         <ul
-          class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+          class="flex flex-col justify-center mt-4 rounded-lg bg-transparent md:flex-row md:space-x-8 md:mt-0 md:text-base md:border-0 md:bg-transparent"
         >
           <li>
-            <a
-              href="#"
-              class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent"
-              aria-current="page"
-              >Inicio</a
-            >
-          </li>
-          <li>
-            <button
-              id="dropdownNavbarLink"
-              data-dropdown-toggle="dropdownNavbar"
-              class="flex items-center justify-between w-full py-2 pl-3 pr-4 font-medium text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-gray-400 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
-            >
-              Generos
-              <svg
-                class="w-5 h-5 ml-1"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </button>
-            <!-- Dropdown menu -->
-            <div
-              id="dropdownNavbar"
-              class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
-            >
-              <ul
-                class="py-1 text-sm text-gray-700 dark:text-gray-400"
-                aria-labelledby="dropdownLargeButton"
-              >
-                <li>
-                  <a
-                    href="#"
-                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >Dashboard</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >Settings</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >Earnings</a
-                  >
-                </li>
-              </ul>
-              <div class="py-1">
-                <a
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-                  >Sign out</a
+            <div class="">
+              <div class="group relative">
+                <button
+                  class="bg-transparent text-white font-normal py-2 rounded inline-flex items-center transition duration-300 ease-in-out opacity-100"
                 >
+                  <span class="mr-1 sm:hover:text-blue-700">Inicio</span>
+                </button>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div class="">
+              <div class="group relative">
+                <button
+                  class="bg-transparent text-white font-normal py-2 rounded inline-flex items-center transition duration-300 ease-in-out opacity-100"
+                >
+                  <span class="mr-1 sm:hover:text-blue-700">Géneros</span>
+                  <svg
+                    class="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                    />
+                  </svg>
+                </button>
+                <ul
+                  class="absolute hidden text-gray-700 pt-1 group-hover:block transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 listitas rounded text-sm"
+                >
+                  <li class="">
+                    <a
+                      class="rounded-t fondito text-white hover:text-blue-700 py-2 px-5 block whitespace-no-wrap"
+                      href="#"
+                      >One</a
+                    >
+                  </li>
+                  <li class="">
+                    <a
+                      class="fondito py-2 text-white px-4 hover:text-blue-700 block whitespace-no-wrap"
+                      href="#"
+                      >Two</a
+                    >
+                  </li>
+                  <li class="">
+                    <a
+                      class="rounded-b fondito text-white py-2 hover:text-blue-700 px-4 block whitespace-no-wrap"
+                      href="#"
+                      >Three is the magic number</a
+                    >
+                  </li>
+                </ul>
               </div>
             </div>
           </li>
           <li>
-            <a
-              href="#"
-              class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              >Peliculas</a
-            >
+            <div class="">
+              <div class="group relative">
+                <button
+                  class="bg-transparent text-white font-normal py-2 rounded inline-flex items-center transition duration-300 ease-in-out opacity-100"
+                >
+                  <span class="mr-1 sm:hover:text-blue-700">Películas</span>
+                  <svg
+                    class="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                    />
+                  </svg>
+                </button>
+                <ul
+                  class="absolute hidden text-gray-700 pt-1 group-hover:block transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 listitas rounded text-sm"
+                >
+                  <li class="">
+                    <a
+                      class="rounded-t fondito text-white hover:text-blue-700 py-2 px-4 block whitespace-no-wrap"
+                      href="#"
+                      >One</a
+                    >
+                  </li>
+                  <li class="">
+                    <a
+                      class="fondito py-2 text-white px-4 hover:text-blue-700 block whitespace-no-wrap"
+                      href="#"
+                      >Two</a
+                    >
+                  </li>
+                  <li class="">
+                    <a
+                      class="rounded-b fondito text-white py-2 hover:text-blue-700 px-4 block whitespace-no-wrap"
+                      href="#"
+                      >Three is the magic number</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
           </li>
+
           <li>
-            <a
-              href="#"
-              class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              >Series</a
-            >
+            <div class="">
+              <div class="group relative">
+                <button
+                  class="bg-transparent text-white font-normal py-2 rounded inline-flex items-center transition duration-300 ease-in-out opacity-100"
+                >
+                  <span class="mr-1 sm:hover:text-blue-700">Series</span>
+                  <svg
+                    class="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                    />
+                  </svg>
+                </button>
+                <ul
+                  class="absolute hidden text-gray-700 pt-1 group-hover:block transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 listitas rounded text-sm"
+                >
+                  <li class="">
+                    <a
+                      class="rounded-t fondito text-white hover:text-blue-700 py-2 px-4 block whitespace-no-wrap"
+                      href="#"
+                      >One</a
+                    >
+                  </li>
+                  <li class="">
+                    <a
+                      class="fondito py-2 text-white px-4 hover:text-blue-700 block whitespace-no-wrap"
+                      href="#"
+                      >Two</a
+                    >
+                  </li>
+                  <li class="">
+                    <a
+                      class="rounded-b fondito text-white py-2 hover:text-blue-700 px-4 block whitespace-no-wrap"
+                      href="#"
+                      >Three is the magic number</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
           </li>
         </ul>
       </div>
-      <form
-        class="search flex items-center rounded-3xl border-4 border-stone-400"
-      >
+      <form class="search flex items-center rounded-3xl">
         <div class="relative">
           <input
             type="text"
             id="simple-search"
-            class="border-gray-300 text-gray-900 text-sm rounded-3xl focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:mr-5 font-normal place placeholder"
+            class="text-sm rounded-3xl focus:ring-blue-500 focus:border-blue-800 block w-full pl-10 p-2.5 font-normal place"
             placeholder="Buscar películas..."
             required
           />
@@ -154,7 +193,7 @@
           </span>
         </div>
       </form>
-      <button>Entrar</button>
+      <button class="text-white">Entrar</button>
       <button
         type="button"
         class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-full text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -277,4 +316,25 @@
       <span class="sr-only">Next</span>
     </span>
   </button>
+</div>
+
+<!-- /////////////////////////////////////////////////////////////////////////// -->
+
+<div #asTitle class="bars__menu">
+  <span #asTitle1 class="line1__bars-menu"></span>
+  <span #asTitle2 class="line2__bars-menu"></span>
+  <span #asTitle3 class="line3__bars-menu"></span>
+</div>
+<div
+  id="app"
+  class="bg-gray-300 flex w-screen h-screen items-center justify-center"
+>
+  <div
+    #toggle
+    class="toggle w-32 h-32 bg-red-800 relative transition-all duration-200 ease-in-out bg-white shadow-x1 rounded-x1 transform hover:-translate-y-1 hover:scale-125"
+  >
+    <span class="rounded-md w-24 bg-blue-500 absolute h-4 top-8 left-4"></span>
+    <span class="rounded-md w-24 bg-blue-500 absolute h-4 top-14 left-4"></span>
+    <span class="rounded-md w-24 bg-blue-500 absolute h-4 top-20 left-4"></span>
+  </div>
 </div>
