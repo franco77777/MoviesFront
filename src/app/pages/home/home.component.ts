@@ -29,12 +29,12 @@ export class HomeComponent implements AfterViewInit {
     const togle = this.toggle.nativeElement;
     if (!this.active) {
       this.renderer2.addClass(togle, 'active');
-      this.renderer2.addClass(this.sidebar.nativeElement, 'sidebar');
+      this.renderer2.addClass(this.sidebar.nativeElement, 'sidebaractive');
 
       this.active = true;
     } else {
       this.renderer2.removeClass(togle, 'active');
-      this.renderer2.removeClass(this.sidebar.nativeElement, 'sidebar');
+      this.renderer2.removeClass(this.sidebar.nativeElement, 'sidebaractive');
       this.active = false;
     }
 
