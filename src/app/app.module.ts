@@ -5,10 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { PeliculaComponent } from './pages/pelicula/pelicula.component';
 import { BuscarComponent } from './pages/buscar/buscar.component';
-import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
+
 import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './pages/pages/pages.module';
 import { AppComponent } from './app.component';
+
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,8 @@ import { AppComponent } from './app.component';
     HomeComponent,
     PeliculaComponent,
     BuscarComponent,
-    NavBarComponent,
+    NavbarComponent,
+    SidebarComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, PagesModule],
   providers: [],
