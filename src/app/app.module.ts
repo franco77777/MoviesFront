@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     BuscarComponent,
     NavbarComponent,
     SidebarComponent,
+    CarouselComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, PagesModule],
   providers: [],

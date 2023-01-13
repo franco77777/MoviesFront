@@ -1,0 +1,97 @@
+.activeline1__bars-menu {
+  transform: rotate(45deg) translate(-2px, 1px);
+}
+
+.activeline2__bars-menu {
+  opacity: 0;
+  margin-left: -30px;
+}
+
+.activeline3__bars-menu {
+  transform: rotate(-45deg) translate(-4px, 2px);
+}
+
+.active span:nth-child(1) {
+  width: 2rem;
+
+  transform: translateY(8px) translateX(-4px) rotate(405deg);
+}
+.active span:nth-child(2) {
+  left: 9rem;
+}
+
+.active span:nth-child(3) {
+  width: 2rem;
+
+  transform: translateY(-8px) translateX(-5px) rotate(315deg);
+}
+
+.animacion:hover {
+  animation-duration: 0.3s;
+  animation-name: zoom;
+}
+
+@keyframes zoom {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.07);
+  }
+}
+.boton {
+  z-index: 999;
+}
+.cover {
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease-in-out;
+}
+
+.toggle span {
+  transition: all 0.3s ease;
+  left: 13px;
+  z-index: 9999;
+}
+
+.toggle:hover {
+}
+
+.toggle :nth-child(2) {
+  top: 22px;
+}
+.toggle :nth-child(3) {
+  top: 30px;
+}
+
+.sidebar {
+  background-color: rgb(8, 14, 40);
+  max-height: 100vh;
+  transition: all 0.3s ease-in-out;
+}
+.sidebaractive {
+  left: 0;
+}
+.place {
+  border: 1px solid rgba(61, 79, 145, 0.5);
+  transition: all 0.3s ease-in-out;
+}
+.place::placeholder {
+  position: relative;
+  top: 1px;
+  left: -25px;
+  font-size: 16px;
+  z-index: 9;
+  color: rgb(134, 152, 179);
+  width: 100%;
+  background-color: rgba(8, 15, 40, 0.5);
+}
+
+input {
+  transition: all 0.3s ease-in-out;
+  background-color: rgb(18, 20, 39);
+}
+
+svg {
+  color: rgb(0, 122, 255);
+}
