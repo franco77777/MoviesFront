@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { SwiperModule } from 'swiper/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './pages/home/home.component';
@@ -13,6 +14,8 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { SlideComponent } from './components/slide/slide.component';
+import { PruebasComponent } from './components/pruebas/pruebas.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +26,10 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     NavbarComponent,
     SidebarComponent,
     CarouselComponent,
+    SlideComponent,
+    PruebasComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, PagesModule],
+  imports: [BrowserModule, AppRoutingModule, PagesModule, SwiperModule],
   providers: [],
   bootstrap: [AppComponent],
 })

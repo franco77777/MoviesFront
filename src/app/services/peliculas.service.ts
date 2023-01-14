@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class PeliculasService {
-  private URL: string = 'https://api.themoviedb.org/3';
+  private URL: string = 'https://api.themoviedb.org/3/';
 
   constructor(private http: HttpClient) {}
 }

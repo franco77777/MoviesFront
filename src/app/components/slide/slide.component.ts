@@ -5,11 +5,9 @@ import SwiperCore, { Navigation, Pagination } from 'swiper';
 SwiperCore.use([Navigation, Pagination]);
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: 'app-slide',
+  templateUrl: './slide.component.html',
+  styleUrls: ['./slide.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class AppComponent {
-  title = 'moviesApp';
-}
+export class SlideComponent {}

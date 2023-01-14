@@ -71,30 +71,30 @@ input {
 }
 
 .carousel-img {
-  background-image: url("../../img/adam.png");
+  background-image: url("../../../assets/images/adam.png");
   background-position: center center;
   background-size: cover;
 }
 
 .carousel-img2 {
-  background-image: url("../../img/avatar.png");
+  background-image: url("../../../assets/images/avatar.png");
   background-position: center center;
   background-size: cover;
 }
 .carousel-img3 {
-  background-image: url("../../img/galaxia.png");
+  background-image: url("../../../assets/images/galaxia.png");
   background-position: center center;
   background-size: cover;
 }
 
 .carousel-img4 {
-  background-image: url("../../img/gato.png");
+  background-image: url("../../../assets/images/gato.png");
   background-position: center center;
   background-size: cover;
 }
 
 .carousel-img5 {
-  background-image: url("../../img/megan.jpg");
+  background-image: url("../../../assets/images/megan.png");
   background-position: center center;
   background-size: cover;
 }
