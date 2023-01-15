@@ -1,16 +1,18 @@
+////////////////////////MODULOS//////////////////////////////
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { SwiperModule } from 'swiper/angular';
+import { SharedModule } from './shared/shared.module';
+import { PagesModule } from './pages/pages/pages.module';
+import { HttpClientModule } from '@angular/common/http';
 
+/* /////////////////////////COMPONENTES////////////////////////// */
+
+import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { PeliculaComponent } from './pages/pelicula/pelicula.component';
 import { BuscarComponent } from './pages/buscar/buscar.component';
-
-import { SharedModule } from './shared/shared.module';
-import { PagesModule } from './pages/pages/pages.module';
-import { AppComponent } from './app.component';
-
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
@@ -29,7 +31,13 @@ import { PruebasComponent } from './components/pruebas/pruebas.component';
     SlideComponent,
     PruebasComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, PagesModule, SwiperModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    PagesModule,
+    SwiperModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
