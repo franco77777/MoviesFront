@@ -25,6 +25,10 @@ swiper {
 .swiper-pagination-fraction {
   display: none;
 }
+.swiper-button-next,
+.swiper-button-prev {
+  top: 40%;
+}
 
 .que2:hover .que::before {
   display: block;
@@ -92,7 +96,7 @@ swiper {
   right: 0;
   bottom: 0;
   margin: auto;
-  transform: scale(14);
+  transform: scale(12);
   width: 30px;
   height: 30px;
   border-radius: 50%;

@@ -1,0 +1,20 @@
+.fondo {
+  background-color: rgb(8, 14, 40);
+}
+
+.titles {
+  color: #4f6b95;
+  font: 400 1rem/1.5625rem sans-serif;
+}
+
+@media screen and (max-width: 862px) {
+  .desactivateAside {
+    flex-direction: column;
+  }
+  .aside {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+  }
+}

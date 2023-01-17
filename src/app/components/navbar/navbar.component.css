@@ -50,11 +50,6 @@ input {
   transition: all 0.3s;
 } */
 
-.animacion:hover {
-  animation-duration: 0.3s;
-  animation-name: zoom;
-}
-
 .badge {
   font-size: 10px;
 }

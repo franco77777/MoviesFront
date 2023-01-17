@@ -18,6 +18,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { SlideComponent } from './components/slide/slide.component';
 import { PruebasComponent } from './components/pruebas/pruebas.component';
+import { MoviesCardComponent } from './components/movies-card/movies-card.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { PruebasComponent } from './components/pruebas/pruebas.component';
     CarouselComponent,
     SlideComponent,
     PruebasComponent,
+    MoviesCardComponent,
   ],
   imports: [
     BrowserModule,
