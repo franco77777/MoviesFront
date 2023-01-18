@@ -19,6 +19,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { SlideComponent } from './components/slide/slide.component';
 import { PruebasComponent } from './components/pruebas/pruebas.component';
 import { MoviesCardComponent } from './components/movies-card/movies-card.component';
+import { AsideComponent } from './components/aside/aside.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MoviesCardComponent } from './components/movies-card/movies-card.compon
     SlideComponent,
     PruebasComponent,
     MoviesCardComponent,
+    AsideComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,24 @@
+<section class="flex flex-col items-center">
+  <div class="text-base font-bold">RECOMENDADOS</div>
+  <ul class="flex flex-col gap-5">
+    <li
+      *ngFor="let i of recomendados"
+      class="flex items-center justify-center gap-3 group cursor-pointer"
+    >
+      <div class="que2 relative overflow-hidden fondo max-w-max">
+        <div class="que flex items-center gap-5 fondo">
+          <img
+            class="rounded-md h-40 w-28 object-cover fondo"
+            [src]="getURL(i.poster_path)"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="text-base text-white titleAside">
+        <div class="group-hover:text-blue-500">{{ i.title }}</div>
+        <div class="text-yellow-300 text-lg">{{ i.vote_average }}/10</div>
+        <div class="text-sm text-blue-300">{{ i.release_date }}</div>
+      </div>
+    </li>
+  </ul>
+</section>
