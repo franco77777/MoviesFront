@@ -1,33 +1,53 @@
-<div class="flex justify-between h-80 bg-red-700 desactivateAside">
-  <div
-    class="h-12 fondo pl-16 pr-16 pb-5 max-md:pr-4 max-md:pl-4 max-lg:pr-1 max-lg:pl-8 flex flex-wrap items-center text-center"
-  >
+<div
+  class="flex desactivateAside fondo max-sm:pr-4 max-sm:pl-4 max-lg:pl-8 max-lg:pr-8 pl-16 pr-16"
+>
+  <div class="main h-auto fondo pb-5 flex flex-wrap text-center">
     <h2 class="font-bold text-4xl text-white pr-6">Películas</h2>
-    <section class="flex items-center gap-6 mt-3 fondo overflow-x-auto">
-      <div class="titles">ULTIMAS</div>
-      <div class="titles">ESTRENOS</div>
-      <div class="titles">RANKING</div>
-      <div class="titles w-full">MAS VISTAS</div>
-      <div class="titles">PROXIMAMENTE</div>
-    </section>
-  </div>
-  <div class="w-80 bg-blue-600 text-5xl aside mt-12">hola</div>
-</div>
-
-<!-- <div *ngFor="let i of discover">
-  <div class="w-full h-full">
-    <div class="que2 relative overflow-hidden">
-      <div class="que w-full flex flex-col items-center">
-        <img
-          class="rounded-lg max-h-36"
-          [src]="getURL(i.backdrop_path)"
-          alt=""
-        />
+    <section
+      class="flex items-center gap-6 mt-3 fondo min-w-max overflow-x-auto opciones"
+    >
+      <div class="relative">
+        <div #boton class="titles neon hover:font-extrabold">ULTIMAS</div>
       </div>
-    </div>
-    <div class="text-white text-sm group-hover:text-blue-600 z-50 text-center">
-      {{ i.name }}
-    </div>
+      <div class="relative">
+        <div #boton2 class="titles neon">ESTRENOS</div>
+      </div>
+      <div class="relative">
+        <div #boton3 class="titles neon">RANKING</div>
+      </div>
+      <div class="relative">
+        <div #boton4 class="titles w-full neon whitespace-nowrap">
+          MAS VISTAS
+        </div>
+      </div>
+      <div class="relative">
+        <div #boton5 class="titles neon">PROXIMAMENTE</div>
+      </div>
+    </section>
+    <ul
+      class="flex flex-wrap justify-between gap-2 mt-5 mr-5 fondo unorderList"
+    >
+      <li
+        *ngFor="let i of discover"
+        class="h-80 lista rounded-lg mb-8 fondo cursor-pointer"
+      >
+        <div class="que2 relative overflow-hidden fondo">
+          <div class="que flex items-center fondo">
+            <img
+              class="rounded-md h-72 object-cover fondo"
+              [src]="getURL(i.backdrop_path)"
+              alt=""
+            />
+          </div>
+        </div>
+        <div
+          class="pt-2 text-white text-sm group-hover:text-blue-600 z-50 text-center fondo"
+        >
+          {{ i.title }}
+        </div>
+      </li>
+    </ul>
   </div>
+
+  <aside class="w-80 bg-blue-600 text-5xl aside h-screen">hola</aside>
 </div>
- -->

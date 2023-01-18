@@ -1,5 +1,5 @@
 <div
-  class="slide pl-16 pr-16 pb-5 max-sm:pr-4 max-sm:pl-4 flex justify-between"
+  class="slide pl-16 pr-16 pb-5 max-sm:pr-4 max-sm:pl-4 max-lg:pl-8 max-lg:pr-8 flex justify-between"
 >
   <h2 class="font-bold text-4xl text-white">Series</h2>
   <button
@@ -10,7 +10,9 @@
   </button>
 </div>
 
-<div class="h-min pl-16 pr-16 max-sm:pr-4 max-sm:pl-4 slide overflow-y-auto">
+<div
+  class="h-min pl-16 pr-16 max-sm:pr-4 max-sm:pl-4 max-lg:pl-8 max-lg:pr-8 slide overflow-y-auto"
+>
   <swiper
     [loop]="true"
     [loopFillGroupWithBlank]="true"
@@ -70,45 +72,5 @@
         <p class="text-blue-300 text-xs text-center">{{ i.first_air_date }}</p>
       </div>
     </ng-template>
-    <!-- <ng-template swiperSlide class="group cursor-pointer"
-      ><div class="flex flex-col items-center">
-        <div class="que2 relative">
-          <img
-            class="rounded-lg que"
-            src="../../../assets/images/avatar.png"
-            alt=""
-          />
-        </div>
-
-        <div class="text-white group-hover:text-blue-600 w-full">titulo</div>
-      </div></ng-template
-    >
-    <ng-template swiperSlide
-      ><p class="text-white">titulo</p>
-      <img src="../../../assets/images/galaxia.png" alt=""
-    /></ng-template>
-    <ng-template swiperSlide
-      ><img src="../../../assets/images/gato.png" alt=""
-    /></ng-template>
-    <ng-template swiperSlide
-      ><img src="../../../assets/images/megan.png" alt=""
-    /></ng-template>
-    <ng-template swiperSlide
-      ><img src="../../../assets/images/adam.png" alt=""
-    /></ng-template>
-    <ng-template swiperSlide
-      ><img src="../../../assets/images/avatar.png" alt=""
-    /></ng-template>
-    <ng-template swiperSlide
-      ><img src="../../../assets/images/galaxia.png" alt=""
-    /></ng-template>
-    <ng-template swiperSlide
-      ><img src="../../../assets/images/gato.png" alt=""
-    /></ng-template>
-    <ng-template swiperSlide
-      ><img src="../../../assets/images/megan.png" alt=""
-    /></ng-template>
- -->
   </swiper>
 </div>
-
