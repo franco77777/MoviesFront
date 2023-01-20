@@ -362,7 +362,6 @@ export class MoviesCardComponent implements AfterViewInit, OnInit {
     return `${this.URL}${post}`;
   }
 
-  @ViewChild('boton') boton: ElementRef;
   @ViewChild('boton2') boton2: ElementRef;
   @ViewChild('boton3') boton3: ElementRef;
   @ViewChild('boton4') boton4: ElementRef;
@@ -374,9 +373,6 @@ export class MoviesCardComponent implements AfterViewInit, OnInit {
   ) {}
 
   ngAfterViewInit(): void {
-    this.renderer2.listen(this.boton.nativeElement, 'click', (evt) => {
-      this.change(this.boton);
-    });
     this.renderer2.listen(this.boton2.nativeElement, 'click', (evt) => {
       this.change(this.boton2);
     });
@@ -408,11 +404,42 @@ export class MoviesCardComponent implements AfterViewInit, OnInit {
       );
   }
 
-  getPremieres(page:string): void{
+  getPremieres(page: string): void {
     this.service
       .getPremieres(page)
       .subscribe(
-        (response) => ((this.list = response.results), console.log(response))
+        (response) => (
+          (this.list = response.results), console.log('soy estrenos', response)
+        )
+      );
+  }
+
+  getPopular(page: string): void {
+    this.service
+      .getPopular(page)
+      .subscribe(
+        (response) => (
+          (this.list = response.results), console.log('soy vistas', response)
+        )
+      );
+  }
+  getRated(page: string): void {
+    this.service
+      .getRated(page)
+      .subscribe(
+        (response) => (
+          (this.list = response.results), console.log('soy ranking', response)
+        )
+      );
+  }
+  getComing(page: string): void {
+    this.service
+      .getComing(page)
+      .subscribe(
+        (response) => (
+          (this.list = response.results),
+          console.log('soy proximamente', response)
+        )
       );
   }
 }

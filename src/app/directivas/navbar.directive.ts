@@ -1,20 +1,17 @@
 import { Directive, HostBinding, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[appNavbar]'
+  selector: '[appNavbar]',
 })
 export class NavbarDirective {
-
-  constructor() { }
+  constructor() {}
 
   @HostBinding('class.newNav') newNav: boolean;
   @HostListener('window:scroll') onScroll() {
-    console.log(window.scrollY)
     if (window.scrollY >= 50) {
-      this.newNav=true
+      this.newNav = true;
     } else {
-      this.newNav=false
+      this.newNav = false;
     }
   }
-
 }
