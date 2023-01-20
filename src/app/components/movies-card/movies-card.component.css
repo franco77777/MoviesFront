@@ -120,7 +120,7 @@
   right: 0;
   bottom: 0;
   margin: auto;
-  transform: scale(12);
+  transform: scale(15);
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -142,7 +142,7 @@
 }
 
 .main {
-  width: calc(100% - 320px);
+  width: calc(100% - 300px);
 }
 
 .lista {
@@ -150,9 +150,9 @@
 }
 
 .aside {
-  margin-top: 6.5rem;
+  width: 300px;
 
-  top: 0;
+  margin-top: 77px;
 }
 
 .aside div {
@@ -176,7 +176,56 @@
   padding-bottom: 6px;
 }
 
-@media screen and (max-width: 780px) {
+.modal {
+  transition: all 0.3s ease-in-out;
+  position: absolute;
+  left: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10%;
+  height: 10%;
+  background: linear-gradient(rgba(8, 14, 40) to rgb(11, 53, 240));
+  backdrop-filter: blur(30px);
+  overflow: hidden;
+  padding: 1rem;
+  z-index: 999;
+  border-radius: 50%;
+
+  opacity: 0;
+  margin-top: -1rem;
+  pointer-events: none;
+
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.que2:hover ~ .modal {
+  opacity: 1;
+
+  display: block;
+  max-width: 345px;
+  max-height: 230px;
+  height: auto;
+  width: 200%;
+  left: 60%;
+  top: 50%;
+  border-radius: 5px;
+}
+
+.sonAside {
+  right: -130%;
+}
+
+.newAside {
+  right: 0;
+}
+
+.stickyAside {
+}
+@media screen and (max-width: 910px) {
+  .que2:hover ~ .modal {
+    display: none;
+  }
   .desactivateAside {
     flex-direction: column;
   }
@@ -184,7 +233,6 @@
     width: 100%;
     padding-left: 1rem;
     padding-right: 1rem;
-    margin-top: auto;
   }
   .main {
     width: auto;
@@ -193,16 +241,19 @@
     margin-right: auto;
   }
   .lista {
-    width: 31%;
+    width: 23%;
   }
   .opciones {
     min-width: auto;
   }
 }
 
-@media screen and (min-width: 1185px) {
+@media screen and (min-width: 910px) {
+  .lista {
+    width: 31%;
+  }
   .aside {
-    margin-top: 4rem;
+    margin-top: 115px;
   }
 }
 
@@ -213,15 +264,9 @@
 }
  */
 
-@media screen and (min-width: 780px) {
-  .lista {
-    width: 47%;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .lista {
-    width: 31%;
+@media screen and (min-width: 1157px) {
+  .aside {
+    margin-top: 77px;
   }
 }
 
@@ -233,7 +278,12 @@
 
 @media screen and (min-width: 1400px) {
   .lista {
-    width: 17%;
+    width: 18%;
+  }
+}
+@media screen and (max-width: 760px) {
+  .lista {
+    width: 32%;
   }
 }
 

@@ -1,11 +1,10 @@
-<div class="navbar flex z-0">
-  <nav
-    class="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700 z-10"
-  >
+<div>
+  <nav class="bg-transparent relative">
+    <!-- aqui habia z-10 -->
     <div
-      class="flex items-center justify-between lg:justify-around mx-auto h-24"
+      class="flex items-center justify-between lg:justify-around mx-auto h-24 z-50"
     >
-      <a href="#" class="flex items-center pb-1 max-lg:ml-5">
+      <a href="#" class="flex items-center pb-1 max-lg:ml-5 z-10">
         <img
           src="https://flowbite.com/docs/images/logo.svg"
           class="mr-3 max-sm:h-14 max-sm:w-14 h-16 w-16"
@@ -16,7 +15,7 @@
         >
       </a>
 
-      <div class="hidden w-full lg:block md:w-auto" id="navbar-dropdown">
+      <div class="z-10 hidden w-full lg:block md:w-auto" id="navbar-dropdown">
         <ul
           class="flex flex-col justify-center gap-1 mt-4 rounded-lg bg-transparent md:flex-row lg:space-x-8 md:mt-0 md:text-base md:border-0 md:bg-transparent"
         >
@@ -170,7 +169,7 @@
           </li>
         </ul>
       </div>
-      <form class="search items-center rounded-3xl hidden lg:flex">
+      <form class="z-10 search items-center rounded-3xl hidden lg:flex">
         <div class="relative">
           <input
             type="text"
@@ -197,13 +196,17 @@
           </span>
         </div>
       </form>
-      <button class="text-white hidden lg:block animacion2">Entrar</button>
+      <button class="z-10 text-white hidden lg:block animacion2">Entrar</button>
       <button
         type="button"
-        class="animacion max-lg:hidden text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-full text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        class="z-10 animacion max-lg:hidden text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-full text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
       >
         Registro
       </button>
     </div>
+    <div
+      appNavbar
+      class="transition-all duration-300 ease-in-out absolute -top-full left-0 z-0 text-lg w-full h-full"
+    ></div>
   </nav>
 </div>

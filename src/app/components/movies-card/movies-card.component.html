@@ -10,7 +10,7 @@
         <div #boton class="titles neon hover:font-extrabold">ULTIMAS</div>
       </div>
       <div class="relative">
-        <div #boton2 class="titles neon">ESTRENOS</div>
+        <div #boton2 class="titles neon" (click)="getPremieres("1")">ESTRENOS</div>
       </div>
       <div class="relative">
         <div #boton3 class="titles neon">RANKING</div>
@@ -24,18 +24,16 @@
         <div #boton5 class="titles neon">PROXIMAMENTE</div>
       </div>
     </section>
-    <ul
-      class="flex flex-wrap justify-between gap-2 mt-5 mr-5 fondo unorderList"
-    >
+    <ul class="flex flex-wrap justify-between gap-2 mr-5 fondo unorderList">
       <li
-        *ngFor="let i of discover"
-        class="h-80 lista rounded-lg mb-8 fondo cursor-pointer"
+        *ngFor="let i of list"
+        class="lista rounded-lg mt-8 fondo cursor-pointer flex flex-col items-center relative group"
       >
         <div class="que2 relative overflow-hidden fondo">
           <div class="que flex items-center fondo">
             <img
-              class="rounded-md h-72 object-cover fondo"
-              [src]="getURL(i.backdrop_path)"
+              class="rounded-md object-cover fondo"
+              [src]="getURL(i.poster_path)"
               alt=""
             />
           </div>
@@ -45,11 +43,24 @@
         >
           {{ i.title }}
         </div>
+        <div class="modal text-left">
+          <div class="text-left text-white font-bold text-base">
+            {{ i.title }}
+          </div>
+          <div class="flex text-left gap-7 items-center">
+            <div class="text-yellow-300 text-lg">{{ i.vote_average }}/10</div>
+            <div class="text-sm text-blue-400">{{ i.release_date }}</div>
+          </div>
+          <div class="text-blue-300 text-sm">{{ i.overview }}</div>
+        </div>
       </li>
     </ul>
   </div>
 
-  <aside class="w-80 text-5xl aside h-screen">
-    <app-aside></app-aside>
+  <aside class="text-5xl h-auto aside pl-5 mb-12 overflow-clip">
+    <app-aside
+      appAside
+      class="relative sonAside transition-all duration-300 ease-out"
+    ></app-aside>
   </aside>
 </div>

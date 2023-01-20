@@ -29,11 +29,15 @@
   width: min-content;
 }
 
+.newNav {
+  background-color: rgb(8, 14, 40);
+  top: 0;
+}
+
 nav {
   position: fixed;
   z-index: 99;
   width: 100%;
-  background-color: transparent;
 }
 
 svg {

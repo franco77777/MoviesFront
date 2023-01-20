@@ -11,6 +11,8 @@ export class PeliculasService {
     '/tv/top_rated?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES&page=1';
   private MoviesDiscover: string =
     '/discover/movie?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&with_watch_monetization_types=flatrate';
+  private MoviesPremier: string =
+    '/movie/now_playing?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES&page=';
 
   //https://api.themoviedb.org/3/tv/top_rated?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES&page=1
 
@@ -22,5 +24,9 @@ export class PeliculasService {
 
   getDiscover(): Observable<any> {
     return this.http.get(`${this.URL}${this.MoviesDiscover}`);
+  }
+
+  getPremieres(page:string): Observable<any> {
+    return this.http.get(`${URL}${this.MoviesPremier}${page}`);
   }
 }

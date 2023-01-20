@@ -16,7 +16,7 @@ import { PeliculasService } from 'src/app/services/peliculas.service';
 export class MoviesCardComponent implements AfterViewInit, OnInit {
   public activo: ElementRef = null;
   private URL: string = 'https://image.tmdb.org/t/p/w500';
-  public discover: any[] = [
+  public list: any[] = [
     {
       adult: false,
       backdrop_path: '/r9PkFnRUIthgBp2JZZzD380MWZy.jpg',
@@ -404,9 +404,15 @@ export class MoviesCardComponent implements AfterViewInit, OnInit {
     this.service
       .getDiscover()
       .subscribe(
-        (response) => (
-          (this.discover = response.results), console.log(response)
-        )
+        (response) => ((this.list = response.results), console.log(response))
+      );
+  }
+
+  getPremieres(page:string): void{
+    this.service
+      .getPremieres(page)
+      .subscribe(
+        (response) => ((this.list = response.results), console.log(response))
       );
   }
 }

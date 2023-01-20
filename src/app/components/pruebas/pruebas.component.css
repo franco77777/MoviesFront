@@ -1,8 +1,14 @@
-.prueba {
-  width: 25%;
+.padre {
+  height: 2000px;
   background-color: red;
-  max-width: 25%;
 }
 
-.sera {
+.uno {
+  background-color: blue;
+  height: 300px;
+  width: 100%;
+}
+
+.hijo {
+  height: 2000px;
 }

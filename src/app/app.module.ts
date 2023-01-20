@@ -20,6 +20,8 @@ import { SlideComponent } from './components/slide/slide.component';
 import { PruebasComponent } from './components/pruebas/pruebas.component';
 import { MoviesCardComponent } from './components/movies-card/movies-card.component';
 import { AsideComponent } from './components/aside/aside.component';
+import { NavbarDirective } from './directivas/navbar.directive';
+import { AsideDirective } from './directivas/aside.directive';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { AsideComponent } from './components/aside/aside.component';
     PruebasComponent,
     MoviesCardComponent,
     AsideComponent,
+    NavbarDirective,
+    AsideDirective,
   ],
   imports: [
     BrowserModule,

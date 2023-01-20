@@ -1,12 +1,14 @@
-<section class="flex flex-col items-center">
-  <div class="text-base font-bold">RECOMENDADOS</div>
+<section class="flex flex-col items-center sticky top-24">
+  <div class="text-base font-bold titles recomendado w-full text-center mb-5">
+    RECOMENDADOS
+  </div>
   <ul class="flex flex-col gap-5">
     <li
       *ngFor="let i of recomendados"
-      class="flex items-center justify-center gap-3 group cursor-pointer"
+      class="flex items-center justify-center gap-3 group cursor-pointer efect2"
     >
-      <div class="que2 relative overflow-hidden fondo max-w-max">
-        <div class="que flex items-center gap-5 fondo">
+      <div class="relative overflow-hidden fondo max-w-max">
+        <div class="efect flex items-center gap-5 fondo">
           <img
             class="rounded-md h-40 w-28 object-cover fondo"
             [src]="getURL(i.poster_path)"
