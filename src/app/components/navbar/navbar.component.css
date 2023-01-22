@@ -1,6 +1,5 @@
 .search {
-  width: 184px;
-  height: 40px;
+  height: 30px;
   border: none;
 }
 .sera {
@@ -9,16 +8,16 @@
 .place {
   border: 1px solid rgba(61, 79, 145, 0.5);
   transition: all 0.3s ease-in-out;
+  background-color: rgba(8, 15, 40, 0.5);
 }
 .place::placeholder {
   position: relative;
-  top: 1px;
+  top: -2px;
   left: -25px;
   font-size: 16px;
   z-index: 9;
   color: rgb(134, 152, 179);
   width: 100%;
-  background-color: rgba(8, 15, 40, 0.5);
 }
 
 .fondito:hover {
@@ -46,7 +45,6 @@ svg {
 
 input {
   transition: all 0.3s ease-in-out;
-  background-color: rgb(18, 20, 39);
 }
 
 /* input:focus {
@@ -132,7 +130,8 @@ input {
   animation-duration: 0.2s;
   animation-fill-mode: both;
   animation-name: zoom;
-  width: 180px;
+  width: 340px;
+  min-width: auto;
 }
 
 .bars__menu {

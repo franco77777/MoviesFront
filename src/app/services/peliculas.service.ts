@@ -20,6 +20,12 @@ export class PeliculasService {
   private MoviesComing: string =
     '/movie/upcoming?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES&page=1';
 
+  //https://api.themoviedb.org/3/genre/movie/list?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES
+
+  //https://api.themoviedb.org/3/discover/tv?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate&with_status=0&with_type=0
+
+  //https://api.themoviedb.org/3/movie/76600/videos?api_key=b2420eb5b40423ebe58589621b36134c&language=en-US
+
   //https://api.themoviedb.org/3/movie/upcoming?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES&page=1
 
   //https://api.themoviedb.org/3/movie/top_rated?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES&page=1
@@ -27,8 +33,6 @@ export class PeliculasService {
   //https://api.themoviedb.org/3/movie/popular?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES&page=1
 
   //https://api.themoviedb.org/3/tv/top_rated?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES&page=1
-
-  //http://localhost:4200/function%20URL()%20%7B%20[native%20code]%20%7D/movie/now_playing?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES&page=1
 
   constructor(private http: HttpClient) {}
 
