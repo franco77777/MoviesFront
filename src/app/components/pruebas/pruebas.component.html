@@ -1,39 +1,17 @@
-<div class="w-52 float-left bg-red-600">
-  <img
-    class="w-full h-full object-cover"
-    src="https://image.tmdb.org/t/p/w500/kUAG4ZQcsNbRyiPyAr3hLdsVgAq.jpg"
-    alt=""
-  />
+<button #botontube>x</button>
+<div #youtube class="video">
+  <div #demoYouTubePlayer class="demo-youtube-player">
+    <section>
+      <youtube-player
+        videoId="RSGQuH_gWNw"
+        [width]="videoWidth"
+        [height]="videoHeight"
+      ></youtube-player>
+    </section>
+  </div>
 </div>
-<div class="flex flex-col flex-wrap">
-  <div>
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo beatae culpa
-    velit. Exercitationem omnis dolor tenetur nemo, recusandae architecto
-    possimus deleniti odio eaque corrupti tempore, cum delectus dolorem
-    consequuntur debitis?
-  </div>
-  <div>
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo beatae culpa
-    velit. Exercitationem omnis dolor tenetur nemo, recusandae architecto
-    possimus deleniti odio eaque corrupti tempore, cum delectus dolorem
-    consequuntur debitis?
-  </div>
-  <div>
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo beatae culpa
-    velit. Exercitationem omnis dolor tenetur nemo, recusandae architecto
-    possimus deleniti odio eaque corrupti tempore, cum delectus dolorem
-    consequuntur debitis?
-  </div>
-  <div>
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo beatae culpa
-    velit. Exercitationem omnis dolor tenetur nemo, recusandae architecto
-    possimus deleniti odio eaque corrupti tempore, cum delectus dolorem
-    consequuntur debitis?
-  </div>
-  <div>
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo beatae culpa
-    velit. Exercitationem omnis dolor tenetur nemo, recusandae architecto
-    possimus deleniti odio eaque corrupti tempore, cum delectus dolorem
-    consequuntur debitis?
-  </div>
+<div
+  class="w-screen h-screen absolute top-0 left-0 bottom-0 right-0 overflow-hidden m-auto -z-10 bg-red-500 padre grid place-content-center"
+>
+  <div #covermovie class="cover"></div>
 </div>

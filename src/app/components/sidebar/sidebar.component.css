@@ -72,6 +72,9 @@
 .sidebaractive {
   left: 0;
 }
+.coveractive {
+  right: 0;
+}
 .place {
   border: 1px solid rgba(61, 79, 145, 0.5);
   transition: all 0.3s ease-in-out;

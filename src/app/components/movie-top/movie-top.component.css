@@ -1,0 +1,135 @@
+.posterMovie {
+  grid-template-columns: minmax(120px, 200px) min-content;
+  grid-template-rows: content max-content max-content;
+  grid-template-areas: "grid1 grid2 grid2" "grid1 grid3 grid3" "grid1 grid4 grid4";
+  grid-column-gap: 30px;
+}
+.grid1 img {
+}
+.grid1 {
+  grid-area: grid1;
+
+  width: 100%;
+
+  min-height: 180px;
+  align-self: center;
+}
+
+.grid2 {
+  grid-area: grid2;
+  align-self: center;
+}
+.grid3 {
+  grid-area: grid3;
+  max-height: 194px;
+}
+.grid4 {
+  grid-area: grid4;
+}
+
+.grid3::-webkit-scrollbar {
+  position: relative;
+  bottom: -10px;
+  width: 5px;
+  height: 10px;
+  background: rgb(8, 14, 40);
+  margin-top: 5px;
+}
+.grid3::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #00bcff, rgb(0, 122, 255));
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+.play {
+}
+
+/* /////////////////////// */
+
+.video {
+  border-radius: 50%;
+  opacity: 0;
+  width: 70%;
+  height: max-content;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.contenedor {
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+.videoactive {
+  z-index: 999;
+  opacity: 1;
+}
+
+.cover {
+  transition: all 0.3s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.coveractive {
+  z-index: 998;
+  transform: scale(25);
+  width: 100px;
+  height: 100px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+
+  object-fit: cover;
+}
+
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+  display: none;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  top: 40%;
+}
+
+@media screen and (max-width: 400px) {
+  .posterMovie {
+    grid-template-areas:
+      "grid1 grid2 grid2"
+      " grid3 grid3 grid3"
+      " grid4 grid4 grid4";
+
+    grid-gap: 10px;
+  }
+}
+@media screen and (min-width: 400px) {
+  .posterMovie {
+    grid-template-areas:
+      "grid1 grid2 grid2"
+      " grid1 grid3 grid3"
+      " grid4 grid4 grid4";
+    grid-gap: 15px;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .posterMovie {
+    grid-template-areas:
+      "grid1 grid2 grid2"
+      " grid1 grid3 grid3"
+      " grid1 grid4 grid4";
+  }
+}

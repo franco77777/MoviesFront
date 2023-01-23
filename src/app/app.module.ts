@@ -19,6 +19,8 @@ import { MoviesCardComponent } from './components/movies-card/movies-card.compon
 import { AsideComponent } from './components/aside/aside.component';
 import { NavbarDirective } from './directivas/navbar.directive';
 import { AsideDirective } from './directivas/aside.directive';
+import { MovieTopComponent } from './components/movie-top/movie-top.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 @NgModule({
   declarations: [
@@ -35,8 +37,10 @@ import { AsideDirective } from './directivas/aside.directive';
     AsideComponent,
     NavbarDirective,
     AsideDirective,
+    MovieTopComponent,
   ],
   imports: [
+    YouTubePlayerModule,
     BrowserModule,
     AppRoutingModule,
     SwiperModule,

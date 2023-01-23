@@ -37,13 +37,13 @@ export class SidebarComponent implements AfterViewInit {
     if (!this.active) {
       this.renderer2.addClass(togle, 'active');
       this.renderer2.addClass(this.sidebar.nativeElement, 'sidebaractive');
-      this.renderer2.addClass(this.cover.nativeElement, 'sidebaractive');
+      this.renderer2.addClass(this.cover.nativeElement, 'coveractive');
 
       this.active = true;
     } else {
       this.renderer2.removeClass(togle, 'active');
       this.renderer2.removeClass(this.sidebar.nativeElement, 'sidebaractive');
-      this.renderer2.removeClass(this.cover.nativeElement, 'sidebaractive');
+      this.renderer2.removeClass(this.cover.nativeElement, 'coveractive');
       this.active = false;
     }
 
