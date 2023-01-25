@@ -21,6 +21,7 @@ import { NavbarDirective } from './directivas/navbar.directive';
 import { AsideDirective } from './directivas/aside.directive';
 import { MovieTopComponent } from './components/movie-top/movie-top.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { RecargaDirective } from './directivas/recarga.directive';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     NavbarDirective,
     AsideDirective,
     MovieTopComponent,
+    RecargaDirective,
   ],
   imports: [
     YouTubePlayerModule,

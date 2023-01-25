@@ -1,5 +1,4 @@
 .video {
-  border-radius: 50%;
   opacity: 0;
   width: 70%;
   height: max-content;
@@ -19,6 +18,7 @@
 }
 
 .videoactive {
+  z-index: 999;
   opacity: 1;
 }
 
@@ -32,6 +32,7 @@
 }
 
 .coveractive {
+  z-index: 998;
   transform: scale(25);
   width: 100px;
   height: 100px;

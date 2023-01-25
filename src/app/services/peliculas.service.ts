@@ -1,6 +1,9 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Credits, movieDetails, Trailers, Videos } from '../interfaces';
+import { modalBackdrop } from 'flowbite';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +22,16 @@ export class PeliculasService {
     '/movie/top_rated?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES&page=';
   private MoviesComing: string =
     '/movie/upcoming?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES&page=1';
+  private MoviesCredits: string =
+    '/credits?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES';
+  private MoviesTrailers: string =
+    '/videos?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES';
+
+  /* https://api.themoviedb.org/3/movie/76600/videos?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES */
+
+  /* https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES */
+
+  /* 'https://api.themoviedb.org/3/movie/436270?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES''; */
 
   //https://api.themoviedb.org/3/genre/movie/list?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES
 
@@ -57,5 +70,23 @@ export class PeliculasService {
 
   getComing(page: string): Observable<any> {
     return this.http.get(`${this.URL}${this.MoviesComing}${page}`);
+  }
+  getDetails(id: string): Observable<movieDetails> {
+    return this.http.get<movieDetails>(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES`
+    );
+  }
+
+  getCredits(id: string): Observable<Credits> {
+    return this.http.get<Credits>(
+      `${this.URL}/movie/${id}${this.MoviesCredits}`
+    );
+  }
+
+  getMovieTrailer(id: string) :Observable<Videos>{
+    let response = this.http.get<Videos>(
+      `${this.URL}/movie/${id}${this.MoviesTrailers}`
+    );
+    return response
   }
 }
