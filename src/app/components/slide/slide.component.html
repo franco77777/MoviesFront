@@ -60,26 +60,27 @@
         *ngFor="let i of series.results"
         swiperSlide
         class="group cursor-pointer"
-      >
-        <div class="w-full h-full">
-          <div class="que2 relative overflow-hidden">
-            <div class="que w-full flex flex-col items-center">
-              <img
-                class="rounded-lg max-h-36"
-                [src]="getURL(i.backdrop_path)"
-                alt=""
-              />
+        ><a [routerLink]="['/view/serie', i.id]">
+          <div class="w-full h-full">
+            <div class="que2 relative overflow-hidden">
+              <div class="que w-full flex flex-col items-center">
+                <img
+                  class="rounded-lg max-h-36"
+                  [src]="getURL(i.backdrop_path)"
+                  alt=""
+                />
+              </div>
             </div>
+            <div
+              class="text-white text-sm group-hover:text-blue-600 z-50 text-center"
+            >
+              {{ i.name }}
+            </div>
+            <p class="text-blue-300 text-xs text-center">
+              {{ i.first_air_date }}
+            </p>
           </div>
-          <div
-            class="text-white text-sm group-hover:text-blue-600 z-50 text-center"
-          >
-            {{ i.name }}
-          </div>
-          <p class="text-blue-300 text-xs text-center">
-            {{ i.first_air_date }}
-          </p>
-        </div>
+        </a>
       </ng-template>
     </swiper>
   </div>

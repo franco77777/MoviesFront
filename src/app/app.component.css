@@ -5,6 +5,7 @@
 @import "~swiper/css/effect-cube";
 
 body {
+  background-color: rgb(8, 14, 40);
 }
 .swiper-pagination-bullet {
   width: 12px;

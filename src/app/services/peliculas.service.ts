@@ -28,6 +28,7 @@ export class PeliculasService {
     '/videos?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES';
   private SeriesDiscover: string =
     '&language=es-ES&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate&with_status=0&with_type=0';
+  private key: string = 'b2420eb5b40423ebe58589621b36134c';
 
   /*  https://api.themoviedb.org/3/tv/popular?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES&page=1 */
 
@@ -94,9 +95,27 @@ export class PeliculasService {
     return response;
   }
 
-  getSeriesPopular(id:string): Observable<Series> {
+  getSeriesPopular(id: string): Observable<Series> {
     return this.http.get<Series>(
       ` https://api.themoviedb.org/3/tv/popular?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES&page=${id}`
+    );
+  }
+
+  getDetailsSerie(id: string): Observable<Serie> {
+    return this.http.get<Serie>(
+      `https://api.themoviedb.org/3/tv/${id}?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES`
+    );
+  }
+
+  getCreditsSerie(id: string): Observable<Credits> {
+    return this.http.get<Credits>(
+      `https://api.themoviedb.org/3/tv/${id}/credits?api_key=${this.key}&language=es-ES`
+    );
+  }
+
+  getSerieTrailer(id: string): Observable<Videos> {
+    return this.http.get<Videos>(
+      `https://api.themoviedb.org/3/tv/${id}/videos?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES`
     );
   }
 }

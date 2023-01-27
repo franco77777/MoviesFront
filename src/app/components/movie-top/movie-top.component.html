@@ -160,7 +160,10 @@
         </article>
 
         <article class="text-white block grid4">
-          <p class="flex gap-2 text-blue-200">
+          <p
+            *ngIf="getDirectors(credits.crew).length"
+            class="flex gap-2 text-blue-200"
+          >
             Director:
             <span
               class="text-white"
@@ -176,11 +179,11 @@
               >{{ i }}</span
             >
           </p>
-          <p>
+          <p *ngIf="movieDetails.budget">
             <span class="text-blue-300"> Presupuesto:</span>
             {{ movieDetails.budget }} $
           </p>
-          <p>
+          <p *ngIf="movieDetails.revenue">
             <span class="text-blue-300">Ingresos:</span>
             {{ movieDetails.revenue }} $
           </p>
@@ -195,6 +198,7 @@
         <swiper
           [loop]="true"
           [loopFillGroupWithBlank]="true"
+          [pagination]="false"
           [navigation]="true"
           [breakpoints]="{
             '0': {
@@ -281,16 +285,21 @@
     <div #demoYouTubePlayer class="demo-youtube-player">
       <section>
         <ng-container *ngIf="movieTrailers$ | async as movieTrailers">
-          <youtube-player
-            *appRecarga="recargar"
-            suggestedQuality="highres"
-            [videoId]="getTrailer(movieTrailers)"
-            [width]="videoWidth"
-            [height]="videoHeight"
-          ></youtube-player>
+          <ng-container *ngIf="movieTrailers.results.length; else video">
+            <youtube-player
+              *appRecarga="recargar"
+              suggestedQuality="highres"
+              [videoId]="getTrailer(movieTrailers)"
+              [width]="videoWidth"
+              [height]="videoHeight"
+            ></youtube-player>
+          </ng-container>
         </ng-container>
       </section>
     </div>
   </div>
   <div #covermovie (click)="actualizar()" class="cover -z-50"></div>
 </div>
+<ng-template #video
+  ><img src="../../../assets/images/travolta3.png"
+/></ng-template>
