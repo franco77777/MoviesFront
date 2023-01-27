@@ -20,9 +20,6 @@ export class MoviesCardComponent implements AfterViewInit, OnInit, OnDestroy {
   private subscription: Subscription;
   private URL: string = 'https://image.tmdb.org/t/p/w500';
   public list: any[];
-  getURL(post: string) {
-    return `${this.URL}${post}`;
-  }
 
   @ViewChild('boton2') boton2: ElementRef;
   @ViewChild('boton3') boton3: ElementRef;
@@ -48,13 +45,6 @@ export class MoviesCardComponent implements AfterViewInit, OnInit, OnDestroy {
       this.change(this.boton5);
     });
   }
-  change(elemento: ElementRef): void {
-    this.activo
-      ? this.renderer2.removeClass(this.activo.nativeElement, 'active')
-      : (this.activo = elemento);
-    this.renderer2.addClass(elemento.nativeElement, 'active');
-    this.activo = elemento;
-  }
 
   ngOnInit(): void {
     this.subscription = this.service
@@ -67,7 +57,18 @@ export class MoviesCardComponent implements AfterViewInit, OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+  change(elemento: ElementRef): void {
+    this.activo
+      ? this.renderer2.removeClass(this.activo.nativeElement, 'active')
+      : (this.activo = elemento);
+    this.renderer2.addClass(elemento.nativeElement, 'active');
+    this.activo = elemento;
+  }
 
+  getURL(post: string) {
+    if (!post) return '../../../assets/images/travolta2.png';
+    return `${this.URL}${post}`;
+  }
   /* getDiscover(): void {
     this.service
       .getDiscover()

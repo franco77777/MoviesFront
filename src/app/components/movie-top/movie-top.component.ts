@@ -27,9 +27,9 @@ import {
   styleUrls: ['./movie-top.component.css'],
 })
 export class MovieTopComponent implements AfterViewInit, OnInit, OnDestroy {
-  @ViewChild('covermovie') covermovie: ElementRef<HTMLDivElement>;
+  @ViewChild('covermovie') covermovie: ElementRef;
 
-  @ViewChild('youtube') youtube: ElementRef<HTMLDivElement>;
+  @ViewChild('youtube') youtube: ElementRef;
   @ViewChild('demoYouTubePlayer') demoYouTubePlayer: ElementRef<HTMLDivElement>;
   videoWidth: number | undefined;
   videoHeight: number | undefined;
@@ -52,6 +52,8 @@ export class MovieTopComponent implements AfterViewInit, OnInit, OnDestroy {
   public movieTrailers$: Observable<Videos>;
 
   public actores: any[];
+
+  public recargar: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -87,14 +89,6 @@ export class MovieTopComponent implements AfterViewInit, OnInit, OnDestroy {
     this.movieTrailers$ = this.service.getMovieTrailer(this.indice);
   }
 
-  barra(): number {
-    let uno = this.movieDetails.vote_average.toString()[0];
-    let dos = this.movieDetails.vote_average.toString()[2];
-
-    this.Stars(parseInt(`${uno}${dos}`));
-    return parseInt(`${uno}${dos}`);
-  }
-
   ngAfterViewInit(): void {
     this.renderer2.listen(this.covermovie.nativeElement, 'click', (evt) => {
       this.change();
@@ -102,6 +96,17 @@ export class MovieTopComponent implements AfterViewInit, OnInit, OnDestroy {
 
     this.onResize();
     window.addEventListener('resize', this.onResize);
+  }
+
+  actualizar() {
+    this.recargar = this.recargar * -1 + 1;
+  }
+  barra(): number {
+    let uno = this.movieDetails.vote_average.toString()[0];
+    let dos = this.movieDetails.vote_average.toString()[2];
+
+    this.Stars(parseInt(`${uno}${dos}`));
+    return parseInt(`${uno}${dos}`);
   }
 
   getURL(post: string) {
@@ -172,11 +177,9 @@ export class MovieTopComponent implements AfterViewInit, OnInit, OnDestroy {
     let trailer = trailers.results.find((e) =>
       e.name.toLowerCase().includes('tráiler oficial')
     );
-    if (español) {
-      return español.key;
-    } else {
-      return trailer.key;
-    }
+    if (español) return español.key;
+    if (trailer) return trailer.key;
+    return trailers.results[0].key;
   }
 
   getVotes(number: number): string {

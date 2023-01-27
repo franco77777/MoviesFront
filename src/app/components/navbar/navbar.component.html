@@ -9,7 +9,8 @@
         class="mr-3 max-sm:h-14 max-sm:w-14 h-16 w-16"
         alt="Flowbite Logo"
       />
-      <span class="text-3xl font-semibold whitespace-nowrap text-white"
+      <span
+        class="cinetitle text-3xl font-semibold whitespace-nowrap text-white"
         >Cinecalidad</span
       >
     </a>
@@ -19,15 +20,17 @@
         class="flex justify-between w-full mt-4 rounded-lg bg-transparent md:mt-0 md:text-base md:border-0 md:bg-transparent"
       >
         <li>
-          <div class="">
-            <div class="group relative">
-              <button
-                class="bg-transparent text-white font-normal py-2 rounded inline-flex items-center transition duration-300 ease-in-out opacity-100"
-              >
-                <span class="mr-1 hover:text-blue-700 text-base">Inicio</span>
-              </button>
+          <a [routerLink]="['/home']">
+            <div class="">
+              <div class="group relative">
+                <button
+                  class="bg-transparent text-white font-normal py-2 rounded inline-flex items-center transition duration-300 ease-in-out opacity-100"
+                >
+                  <span class="mr-1 hover:text-blue-700 text-base">Inicio</span>
+                </button>
+              </div>
             </div>
-          </div>
+          </a>
         </li>
 
         <li>

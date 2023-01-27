@@ -1,7 +1,6 @@
-<div class="w-full h-full min-h-screen relative">
+<div class="w-full h-full min-h-screen relative overflow-hidden">
   <ng-container *ngIf="movieCredits$ | async as credits">
     <ng-container *ngIf="movieDetails">
-      <div class="velo bg-red-500 absolute top-0 left-0 -z-50"></div>
       <div class="imagenfondo">
         <div></div>
         <img
@@ -13,7 +12,7 @@
       </div>
 
       <div
-        class="pl-16 pr-16 max-sm:pr-4 max-lg:pl-8 max-lg:pr-8 max-sm:pl-4 pt-28 posterMovie grid gap-colums"
+        class="pl-16 pr-16 max-sm:pr-4 max-lg:pl-8 max-lg:pr-8 max-sm:pl-4 pt-28 posterMovie grid gap-colums z-20 relative"
       >
         <article class="poster grid1 max-h-content">
           <div class="flex flex-col gap-2 justify-center items-center">
@@ -29,7 +28,7 @@
             <button
               (click)="change()"
               type="button"
-              class="flex items-center justify-center gap-2 z-10 w-4/5 animacion text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-full px-4 py-1 text-center font-normal"
+              class="flex items-center justify-center gap-2 w-4/5 animacion text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-full px-4 py-1 text-center font-normal"
             >
               <i class="fa-solid fa-play text-white text-2xl"></i>
               <span class="text-white text-lg max-sm:text-sm">trailer</span>
@@ -161,67 +160,81 @@
         </article>
 
         <article class="text-white block grid4">
-          <p class="flex gap-2">
+          <p class="flex gap-2 text-blue-200">
             Director:
-            <span *ngFor="let i of getDirectors(credits.crew)">{{ i }}</span>
+            <span
+              class="text-white"
+              *ngFor="let i of getDirectors(credits.crew)"
+              >{{ i }}</span
+            >
           </p>
-          <p class="flex gap-2">
+          <p class="flex gap-2 text-blue-200">
             Genero:
-            <span *ngFor="let i of getGenres(movieDetails.genres)">{{
-              i
-            }}</span>
+            <span
+              class="text-white"
+              *ngFor="let i of getGenres(movieDetails.genres)"
+              >{{ i }}</span
+            >
           </p>
-          <p>Presupuesto: {{ movieDetails.budget }}$</p>
-          <p>Ingresos: {{ movieDetails.revenue }}$</p>
+          <p>
+            <span class="text-blue-300"> Presupuesto:</span>
+            {{ movieDetails.budget }} $
+          </p>
+          <p>
+            <span class="text-blue-300">Ingresos:</span>
+            {{ movieDetails.revenue }} $
+          </p>
         </article>
       </div>
 
       <!-- ///////////////////////actores////////////////////////////// -->
 
       <div
-        class="h-min pl-16 pr-16 max-sm:pr-4 max-sm:pl-4 max-lg:pl-8 max-lg:pr-8 slide overflow-y-auto"
+        class="h-min w-full slide overflow-y-auto z-10 pl-16 pr-16 max-sm:pr-4 max-lg:pl-8 max-lg:pr-8 max-sm:pl-4"
       >
         <swiper
           [loop]="true"
           [loopFillGroupWithBlank]="true"
-          [pagination]="{
-            clickable: true
-          }"
           [navigation]="true"
           [breakpoints]="{
             '0': {
+              slidesPerView: 1,
+              spaceBetween: 10,
+              slidesPerGroup: 1
+            },
+            '190': {
               slidesPerView: 2,
-
+              spaceBetween: 10,
               slidesPerGroup: 2
             },
             '342': {
               slidesPerView: 3,
-              spaceBetween: 0,
+              spaceBetween: 10,
               slidesPerGroup: 3
             },
             '520': {
               slidesPerView: 4,
-              spaceBetween: 0,
+              spaceBetween: 15,
               slidesPerGroup: 4
             },
             '768': {
               slidesPerView: 5,
-              spaceBetween: 0,
+              spaceBetween: 20,
               slidesPerGroup: 5
             },
             '1024': {
               slidesPerView: 6,
-              spaceBetween: 0,
+              spaceBetween: 20,
               slidesPerGroup: 6
             },
             '1280': {
               slidesPerView: 8,
-              spaceBetween: 0,
+              spaceBetween: 30,
               slidesPerGroup: 8
             },
             '1400': {
               slidesPerView: 10,
-              spaceBetween: 0,
+              spaceBetween: 30,
               slidesPerGroup: 10
             }
           }"
@@ -233,8 +246,8 @@
             class="group cursor-pointer mt-5 bg-transparent"
           >
             <div class="w-full h-full">
-              <div class="que2 relative overflow-hidden">
-                <div class="que w-full flex flex-col items-center">
+              <div class="relative overflow-hidden">
+                <div class="flex flex-col items-center">
                   <img
                     class="rounded-lg max-h-36"
                     [src]="getURL(i.profile_path)"
@@ -243,7 +256,7 @@
                 </div>
               </div>
               <div
-                class="text-white text-sm group-hover:text-blue-600 z-50 text-center"
+                class="text-white text-sm group-hover:text-blue-600 text-center"
               >
                 {{ i.name }}
               </div>
@@ -254,18 +267,23 @@
     </ng-container>
     <!-- /////////////////////////////////////////////////////// -->
 
-    <div
-      class="w-screen h-screen absolute top-0 left-0 bottom-0 right-0 overflow-hidden m-auto -z-10 bg-red-500 padre grid place-content-center"
-    ></div>
-
     <!-- ///////////////////////////// -->
   </ng-container>
 
-  <div #youtube class="video">
+  <div #youtube class="video -z-30 relative">
+    <button
+      (click)="change(); actualizar()"
+      type="button"
+      class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center grid content-center -top-12 -right-9 absolute h-10 w-10 botonclose"
+    >
+      <i class="fa-solid fa-xmark text-2xl"></i>
+    </button>
     <div #demoYouTubePlayer class="demo-youtube-player">
       <section>
         <ng-container *ngIf="movieTrailers$ | async as movieTrailers">
           <youtube-player
+            *appRecarga="recargar"
+            suggestedQuality="highres"
             [videoId]="getTrailer(movieTrailers)"
             [width]="videoWidth"
             [height]="videoHeight"
@@ -274,10 +292,5 @@
       </section>
     </div>
   </div>
-</div>
-<div
-  (click)="change()"
-  class="w-screen h-screen absolute top-0 left-0 bottom-0 right-0 overflow-hidden m-auto padre grid place-content-center"
->
-  <div #covermovie (click)="change()" class="cover"></div>
+  <div #covermovie (click)="actualizar()" class="cover -z-50"></div>
 </div>

@@ -217,9 +217,13 @@ input {
 .zoom:hover {
   transform: scale(1.05);
 }
+
 @media screen and (max-width: 350px) {
   .sera {
     height: 44rem;
+  }
+  .cinetitle {
+    font-size: 1rem;
   }
 }
 

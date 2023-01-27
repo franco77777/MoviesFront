@@ -1,8 +1,13 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import SwiperCore, { Navigation, Pagination } from 'swiper';
+import SwiperCore, {
+  EffectCreative,
+  EffectCube,
+  Navigation,
+  Pagination,
+} from 'swiper';
 
 // install Swiper modules
-SwiperCore.use([Navigation, Pagination]);
+SwiperCore.use([Navigation, Pagination, EffectCube, EffectCreative]);
 
 @Component({
   selector: 'app-root',

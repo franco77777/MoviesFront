@@ -1,8 +1,8 @@
-
+import { Serie } from './../interfaces/index';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Credits, movieDetails, Trailers, Videos } from '../interfaces';
+import { Credits, movieDetails, Series, Trailers, Videos } from '../interfaces';
 import { modalBackdrop } from 'flowbite';
 
 @Injectable({
@@ -26,8 +26,12 @@ export class PeliculasService {
     '/credits?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES';
   private MoviesTrailers: string =
     '/videos?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES';
+  private SeriesDiscover: string =
+    '&language=es-ES&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate&with_status=0&with_type=0';
 
-  /* https://api.themoviedb.org/3/movie/76600/videos?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES */
+  /*  https://api.themoviedb.org/3/tv/popular?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES&page=1 */
+
+  /* https://api.themoviedb.org/3/movie/653851/videos?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES */
 
   /* https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES */
 
@@ -83,10 +87,16 @@ export class PeliculasService {
     );
   }
 
-  getMovieTrailer(id: string) :Observable<Videos>{
+  getMovieTrailer(id: string): Observable<Videos> {
     let response = this.http.get<Videos>(
       `${this.URL}/movie/${id}${this.MoviesTrailers}`
     );
-    return response
+    return response;
+  }
+
+  getSeriesPopular(id:string): Observable<Series> {
+    return this.http.get<Series>(
+      ` https://api.themoviedb.org/3/tv/popular?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES&page=${id}`
+    );
   }
 }

@@ -2,6 +2,26 @@
 @import "~swiper/css/navigation";
 @import "~swiper/css/pagination";
 
+@import "~swiper/css/effect-cube";
+
+body {
+}
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: #93c5fd;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.4;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+
+  background: rgb(0, 122, 255);
+  width: 50px;
+  border-radius: 10px;
+}
+
 body::-webkit-scrollbar {
   width: 10px;
   background: rgb(8, 14, 40);
@@ -24,9 +44,9 @@ body::-webkit-scrollbar-thumb {
   animation-name: zoom;
 }
 
-.swiper-pagination {
+/* .swiper-pagination {
   display: none;
-}
+} */
 @keyframes zoom {
   0%,
   100% {
