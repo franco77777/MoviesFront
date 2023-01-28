@@ -1,3 +1,10 @@
+export interface Movies {
+  page: number;
+  results: movieDetails[];
+  total_pages: number;
+  total_results: number;
+}
+
 export interface movieDetails {
   adult: boolean;
   backdrop_path: string;
@@ -101,4 +108,33 @@ export interface Serie {
   poster_path: string;
   vote_average: number;
   vote_count: number;
+}
+
+export interface MovieGenres {
+  page: number;
+  results: MovieGenre[];
+  total_pages: number;
+  total_results: number;
+}
+
+export interface MovieGenre {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: Date;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+}
+
+export interface datos{
+  genero: string;
+  id:number
 }

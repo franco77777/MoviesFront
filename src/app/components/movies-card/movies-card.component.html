@@ -2,25 +2,32 @@
   class="flex desactivateAside fondo max-sm:pr-4 max-sm:pl-4 max-lg:pl-8 max-lg:pr-8 pl-16 pr-16"
 >
   <div class="main h-auto fondo pb-5 flex flex-wrap text-center">
-    <h2 class="font-bold text-4xl text-white pr-6">Películas</h2>
-    <section
-      class="flex items-center gap-6 mt-3 fondo min-w-max overflow-x-auto opciones"
-    >
-      <div class="relative" (click)="getPremieres('1')">
-        <div #boton2 class="titles neon">ESTRENOS</div>
-      </div>
-      <div class="relative" (click)="getRated('1')">
-        <div #boton3 class="titles neon">RANKING</div>
-      </div>
-      <div class="relative" (click)="getPopular('1')">
-        <div #boton4 class="titles w-full neon whitespace-nowrap">
-          MAS VISTAS
+    <ng-container *ngIf="!genero; else generoTitle">
+      <h2 id="peliculas" class="font-bold text-4xl text-white pr-6">
+        Películas
+      </h2>
+      <section
+        class="flex items-center gap-6 mt-3 fondo min-w-max overflow-x-auto opciones"
+      >
+        <div class="relative" (click)="getPremieres('1')">
+          <div #boton2 class="titles neon">ESTRENOS</div>
         </div>
-      </div>
-      <div class="relative" (click)="getComing('1')">
-        <div #boton5 class="titles neon">PROXIMAMENTE</div>
-      </div>
-    </section>
+        <div class="relative" (click)="getRated('1')">
+          <div #boton3 class="titles neon">RANKING</div>
+        </div>
+        <div class="relative" (click)="getPopular('1')">
+          <div #boton4 class="titles w-full neon whitespace-nowrap">
+            MAS VISTAS
+          </div>
+        </div>
+        <div class="relative" (click)="getComing('1')">
+          <div #boton5 class="titles neon">PROXIMAMENTE</div>
+        </div>
+      </section>
+    </ng-container>
+    <ng-template #generoTitle><h2 id="peliculas" class="font-bold text-4xl text-white pr-6">
+        {{genero}}
+      </h2></ng-template>
     <ul class="flex flex-wrap justify-between gap-2 mr-5 fondo unorderList">
       <li
         *ngFor="let i of list"

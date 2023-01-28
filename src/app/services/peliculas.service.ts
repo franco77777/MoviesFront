@@ -1,4 +1,4 @@
-import { Serie } from './../interfaces/index';
+import { MovieGenres, Serie } from './../interfaces/index';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -52,7 +52,7 @@ export class PeliculasService {
 
   //https://api.themoviedb.org/3/tv/top_rated?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES&page=1
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getSeries(): Observable<any> {
     return this.http.get(`${this.URL}${this.SeriesRated}`);
@@ -117,5 +117,9 @@ export class PeliculasService {
     return this.http.get<Videos>(
       `https://api.themoviedb.org/3/tv/${id}/videos?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES`
     );
+  }
+
+  getMovieGenre(id: number): Observable<MovieGenres> {
+    return this.http.get<MovieGenres>(`https://api.themoviedb.org/3/discover/movie?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES&page=1&with_genres=${id}`)
   }
 }

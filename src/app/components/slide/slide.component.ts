@@ -6,6 +6,7 @@ import {
   ViewEncapsulation,
   OnInit,
   AfterViewInit,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper';
 import { Series } from '../../interfaces';
@@ -18,6 +19,7 @@ SwiperCore.use([Navigation, Pagination, Autoplay]);
   templateUrl: './slide.component.html',
   styleUrls: ['./slide.component.css'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SlideComponent implements OnInit {
   public URL: string = 'https://image.tmdb.org/t/p/w500';
@@ -30,6 +32,7 @@ export class SlideComponent implements OnInit {
   }
 
   getURL(post: string) {
+    console.log('soy slide url');
     if (!post) return '../../../assets/images/travolta.png';
     return `${this.URL}${post}`;
   }

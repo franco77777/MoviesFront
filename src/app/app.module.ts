@@ -22,6 +22,8 @@ import { AsideDirective } from './directivas/aside.directive';
 import { MovieTopComponent } from './components/movie-top/movie-top.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { RecargaDirective } from './directivas/recarga.directive';
+import { GenresComponent } from './pages/genres/genres.component';
+import { MovieGenresComponent } from './components/movie-genres/movie-genres.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { RecargaDirective } from './directivas/recarga.directive';
     AsideDirective,
     MovieTopComponent,
     RecargaDirective,
+    GenresComponent,
+    MovieGenresComponent,
   ],
   imports: [
     YouTubePlayerModule,

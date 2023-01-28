@@ -11,6 +11,7 @@ import {
   OnDestroy,
   OnChanges,
   SimpleChanges,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
@@ -26,6 +27,7 @@ import {
   selector: 'app-movie-top',
   templateUrl: './movie-top.component.html',
   styleUrls: ['./movie-top.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MovieTopComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('covermovie') covermovie: ElementRef;

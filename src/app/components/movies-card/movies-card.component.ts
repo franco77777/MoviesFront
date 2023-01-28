@@ -1,3 +1,4 @@
+import { VariablesService } from 'src/app/services/variables.service';
 import { Subscription } from 'rxjs';
 import {
   AfterViewInit,
@@ -7,6 +8,7 @@ import {
   OnInit,
   Renderer2,
   ViewChild,
+  HostListener,
 } from '@angular/core';
 import { PeliculasService } from 'src/app/services/peliculas.service';
 
@@ -20,15 +22,20 @@ export class MoviesCardComponent implements AfterViewInit, OnInit, OnDestroy {
   private subscription: Subscription;
   private URL: string = 'https://image.tmdb.org/t/p/w500';
   public list: any[];
+  public genero: string = null;
 
   @ViewChild('boton2') boton2: ElementRef;
   @ViewChild('boton3') boton3: ElementRef;
   @ViewChild('boton4') boton4: ElementRef;
   @ViewChild('boton5') boton5: ElementRef;
-
+  /* @HostListener('window:scroll') onWidowScroll(): void {
+    console.log('ey');
+  }
+ */
   constructor(
     private renderer2: Renderer2,
-    private service: PeliculasService
+    private service: PeliculasService,
+    private genre: VariablesService
   ) {}
 
   ngAfterViewInit(): void {
@@ -47,6 +54,7 @@ export class MoviesCardComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.genero = this.genre.genre;
     this.subscription = this.service
       .getDiscover()
       .subscribe(
