@@ -24,6 +24,11 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
 import { RecargaDirective } from './directivas/recarga.directive';
 import { GenresComponent } from './pages/genres/genres.component';
 import { MovieGenresComponent } from './components/movie-genres/movie-genres.component';
+import { SeriesComponent } from './pages/series/series.component';
+import { SeriesRouteComponent } from './components/series-route/series-route.component';
+
+import { SearcherComponent } from './pages/searcher/searcher.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +49,11 @@ import { MovieGenresComponent } from './components/movie-genres/movie-genres.com
     RecargaDirective,
     GenresComponent,
     MovieGenresComponent,
+    SeriesComponent,
+    SeriesRouteComponent,
+
+    SearcherComponent,
+     SearchComponent,
   ],
   imports: [
     YouTubePlayerModule,

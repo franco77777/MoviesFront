@@ -1,3 +1,7 @@
+import { PeliculasService } from 'src/app/services/peliculas.service';
+import { Observable, map } from 'rxjs';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Variables2Service } from './../../services/variables2.service';
 import {
   AfterViewInit,
   Component,
@@ -5,8 +9,10 @@ import {
   Renderer2,
   ViewChild,
   Input,
+  OnInit,
   ChangeDetectionStrategy,
 } from '@angular/core';
+import { movieDetails } from 'src/app/interfaces';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +20,7 @@ import {
   styleUrls: ['./navbar.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit, AfterViewInit {
   public genres: any[] = [
     {
       id: 28,
@@ -93,4 +99,43 @@ export class NavbarComponent {
       name: 'Western',
     },
   ];
+  public listSearch$: Observable<movieDetails[]>;
+  public URL: string = 'https://image.tmdb.org/t/p/w500';
+  constructor(
+    private variable2: Variables2Service,
+    private route: Router,
+    private service: PeliculasService
+  ) {}
+  ngOnInit(): void {}
+
+  ngAfterViewInit(): void {
+    console.log('soy navbar');
+  }
+  variable2Change(data: string) {
+    this.variable2.setMovieGenre = { data: data, scroll: true };
+    console.log('soy data variable2 navbar', this.variable2.getMovieGenre);
+  }
+
+  submit(value: string) {
+    this.route.navigate(['/search', value]);
+    console.log('soy submit ', value);
+  }
+
+  keyupmovies(value: string) {
+    this.listSearch$ = this.service
+      .getMoviesSearch(value)
+      .pipe(map((response) => response.results));
+  }
+
+  scrollTo(element: any): void {
+    (document.getElementById(element) as HTMLElement).scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'nearest',
+    });
+  }
+
+  getURL(post: string) {
+    return `${this.URL}${post}`;
+  }
 }

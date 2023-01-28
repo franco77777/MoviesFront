@@ -1,3 +1,4 @@
+import { MovieNavbar } from './../interfaces/index';
 import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { datos } from '../interfaces';
@@ -6,17 +7,18 @@ import { datos } from '../interfaces';
   providedIn: 'root',
 })
 export class Variables2Service {
-  private Movie: BehaviorSubject<datos> = new BehaviorSubject<datos>({
-    genero: null,
-    id: null,
-  });
+  private Movie: BehaviorSubject<MovieNavbar> =
+    new BehaviorSubject<MovieNavbar>({
+      data: null,
+      scroll: false,
+    });
   constructor() {}
 
   get getMovieGenre() {
     return this.Movie.asObservable();
   }
 
-  set setMovieGenre(data: datos) {
+  set setMovieGenre(data: MovieNavbar) {
     this.Movie.next(data);
   }
 }

@@ -134,7 +134,12 @@ export interface MovieGenre {
   vote_count: number;
 }
 
-export interface datos{
+export interface datos {
   genero: string;
-  id:number
+  id: number;
+}
+
+export interface MovieNavbar {
+  data: string;
+  scroll: boolean;
 }

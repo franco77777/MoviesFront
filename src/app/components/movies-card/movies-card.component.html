@@ -3,13 +3,18 @@
 >
   <div class="main h-auto fondo pb-5 flex flex-wrap text-center">
     <ng-container *ngIf="!genero; else generoTitle">
-      <h2 id="peliculas" class="font-bold text-4xl text-white pr-6">
+      <h2 #peliculas id="peliculas" class="font-bold text-4xl text-white pr-6">
         Películas
       </h2>
       <section
         class="flex items-center gap-6 mt-3 fondo min-w-max overflow-x-auto opciones"
       >
-        <div class="relative" (click)="getPremieres('1')">
+        <div
+          #estrenos
+          id="estrenos"
+          class="relative"
+          (click)="getPremieres('1')"
+        >
           <div #boton2 class="titles neon">ESTRENOS</div>
         </div>
         <div class="relative" (click)="getRated('1')">
@@ -25,9 +30,11 @@
         </div>
       </section>
     </ng-container>
-    <ng-template #generoTitle><h2 id="peliculas" class="font-bold text-4xl text-white pr-6">
-        {{genero}}
-      </h2></ng-template>
+    <ng-template #generoTitle
+      ><h2 id="peliculas" class="font-bold text-4xl text-white pr-6">
+        {{ genero }}
+      </h2></ng-template
+    >
     <ul class="flex flex-wrap justify-between gap-2 mr-5 fondo unorderList">
       <li
         *ngFor="let i of list"

@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-aside',
   templateUrl: './aside.component.html',
   styleUrls: ['./aside.component.css'],
 })
-export class AsideComponent {
+export class AsideComponent implements AfterViewInit {
   private URL: string = 'https://image.tmdb.org/t/p/w500';
   public recomendados: any[] = [
     {
@@ -94,6 +94,10 @@ export class AsideComponent {
       vote_count: 8499,
     },
   ];
+
+  ngAfterViewInit() {
+    console.log('soy aside');
+  }
   getURL(post: string) {
     return `${this.URL}${post}`;
   }

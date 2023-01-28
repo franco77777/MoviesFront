@@ -1,0 +1,54 @@
+<div
+  class="flex desactivateAside fondo max-sm:pr-4 max-sm:pl-4 max-lg:pl-8 max-lg:pr-8 pl-16 pr-16 pt-24"
+>
+  <ng-container *ngIf="list$ | async as movies">
+    <div class="main h-auto fondo pb-5 flex flex-wrap text-center">
+      <h2 class="font-bold text-4xl text-white pr-6 mb-1">
+        {{ search }}
+      </h2>
+
+      >
+      <ul class="flex flex-wrap justify-between gap-2 mr-5 fondo unorderList">
+        <li
+          *ngFor="let i of movies"
+          class="lista rounded-lg mt-8 fondo cursor-pointer flex flex-col items-center relative group"
+        >
+          <a [routerLink]="['/view/movie', i.id]">
+            <div class="que2 relative overflow-hidden fondo">
+              <div class="que flex items-center fondo">
+                <img
+                  class="rounded-md object-cover fondo"
+                  [src]="getURL(i.poster_path)"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div
+              class="pt-2 text-white text-sm group-hover:text-blue-600 z-50 text-center fondo"
+            >
+              {{ i.title }}
+            </div>
+            <div class="modal text-left">
+              <div class="text-left text-white font-bold text-base">
+                {{ i.title }}
+              </div>
+              <div class="flex text-left gap-7 items-center">
+                <div class="text-yellow-500 text-lg">
+                  {{ i.vote_average }}/10
+                </div>
+                <div class="text-sm text-blue-400">{{ i.release_date }}</div>
+              </div>
+              <div class="text-blue-300 text-sm">{{ i.overview }}</div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </ng-container>
+
+  <aside class="text-5xl h-auto aside pl-5 mb-12 overflow-clip relative">
+    <app-aside
+      class="relative sonAside transition-all duration-300 ease-out"
+    ></app-aside>
+  </aside>
+</div>

@@ -24,6 +24,7 @@ export class SidebarComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    console.log('soy sidebar');
     this.renderer2.listen(this.toggle.nativeElement, 'click', (evt) => {
       this.change();
     });

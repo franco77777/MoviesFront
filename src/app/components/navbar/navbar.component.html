@@ -54,7 +54,7 @@
                 </svg>
               </button>
               <ul
-                class="absolute hidden text-gray-700 pt-1 group-hover:flex flex-wrap transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 listitas rounded text-sm"
+                class="absolute hidden text-gray-700 pt-1 group-hover:flex flex-wrap transition ease-in-out w-80 delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 listitas rounded text-sm"
               >
                 <li class="w-1/2" *ngFor="let i of genres">
                   <a
@@ -87,33 +87,45 @@
                 </svg>
               </button>
               <ul
-                class="absolute hidden text-gray-700 pt-1 group-hover:block transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 listitas rounded text-sm"
+                class="absolute hidden text-gray-700 pt-1 group-hover:block transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 listitas2 rounded text-sm"
               >
-                <li class="">
+                <li
+                  class=""
+                  (click)="variable2Change('estrenos'); scrollTo('peliculas')"
+                >
                   <a
+                    [routerLink]="'#peliculas'"
                     class="rounded-t fondito text-white hover:text-blue-700 py-2 px-4 block whitespace-no-wrap"
-                    href="#"
                     >Estrenos</a
                   >
                 </li>
-                <li class="">
+                <li
+                  class=""
+                  (click)="variable2Change('ranking'); scrollTo('peliculas')"
+                >
                   <a
+                    [routerLink]="'#peliculas'"
                     class="fondito py-2 text-white px-4 hover:text-blue-700 block whitespace-no-wrap"
-                    href="#"
                     >Ranking</a
                   >
                 </li>
-                <li class="">
+                <li
+                  class=""
+                  (click)="variable2Change('vistas'); scrollTo('peliculas')"
+                >
                   <a
-                    class="rounded-b fondito text-white py-2 hover:text-blue-700 px-4 block whitespace-no-wrap"
-                    href="#"
+                    [routerLink]="'#peliculas'"
+                    class="rounded-b fondito text-white py-2 hover:text-blue-700 px-4 block whitespace-no-wrap w-max min-w-max"
                     >Mas Vistas</a
                   >
                 </li>
-                <li class="">
+                <li
+                  (click)="
+                    variable2Change('proximamente'); scrollTo('peliculas')
+                  "
+                >
                   <a
                     class="rounded-b fondito text-white py-2 hover:text-blue-700 px-4 block whitespace-no-wrap"
-                    href="#"
                     >Proximamente</a
                   >
                 </li>
@@ -140,27 +152,27 @@
                 </svg>
               </button>
               <ul
-                class="absolute hidden text-gray-700 pt-1 group-hover:block transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 listitas rounded text-sm"
+                class="absolute hidden text-gray-700 pt-1 group-hover:block transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 listitas2 rounded text-sm"
               >
                 <li class="">
                   <a
                     class="rounded-t fondito text-white hover:text-blue-700 py-2 px-4 block whitespace-no-wrap"
-                    href="#"
-                    >One</a
+                    [routerLink]="'/series/Recientes'"
+                    >Recientes</a
                   >
                 </li>
                 <li class="">
                   <a
                     class="fondito py-2 text-white px-4 hover:text-blue-700 block whitespace-no-wrap"
-                    href="#"
-                    >Two</a
+                    [routerLink]="'/series/Mas Vistas'"
+                    >Mas Vistas</a
                   >
                 </li>
                 <li class="">
                   <a
                     class="rounded-b fondito text-white py-2 hover:text-blue-700 px-4 block whitespace-no-wrap"
-                    href="#"
-                    >Three is the magic number</a
+                    [routerLink]="'/series/Ranking'"
+                    >Ranking</a
                   >
                 </li>
               </ul>
@@ -169,12 +181,15 @@
         </li>
       </ul>
     </div>
-    <form class="z-10 search items-center rounded-3xl hidden lg:flex">
+    <form class="z-10 search items-center rounded-3xl hidden lg:flex relative">
       <div class="relative">
         <input
+          #input
+          (keydown.enter)="submit(input.value)"
+          (keyup)="keyupmovies(input.value)"
           type="text"
           id="simple-search"
-          class="xl:focus:w-60 w-44 h-10 text-base rounded-3xl focus:ring-blue-500 focus:border-blue-800 block pl-10 p-2.5 font-normal place"
+          class="xl:focus:w-60 w-44 h-10 text-base text-white rounded-3xl focus:ring-blue-500 focus:border-blue-800 block pl-10 p-2.5 font-normal place"
           placeholder="Buscar películas..."
           required
         />
@@ -195,6 +210,45 @@
           </svg>
         </span>
       </div>
+      <ng-container *ngIf="(listSearch$ | async).length">
+        <ng-container *ngIf="listSearch$ | async as movies">
+          <div
+            class="absolute h-60 w-10 -bottom-64 -left-10 bg-white buscadorcito"
+          >
+            <ul class="flex flex-col justify-between gap-2 w-full unorderList">
+              <li
+                *ngFor="let i of movies"
+                class="fondo cursor-pointer items-center relative group lista"
+              >
+                <a [routerLink]="['/view/movie', i.id]" class="flex">
+                  <div class="que2 relative overflow-hidden fondo">
+                    <div class="que flex items-center fondo">
+                      <img
+                        class="rounded-md object-cover fondo"
+                        [src]="getURL(i.poster_path)"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                  <section class="flex flex-col">
+                    <div
+                      class="pt-2 text-white text-sm group-hover:text-blue-600 z-50 text-center fondo"
+                    >
+                      {{ i.title }}
+                    </div>
+                    <div class="text-yellow-500 text-lg">
+                      {{ i.vote_average }}/10
+                    </div>
+                    <div class="text-sm text-blue-400">
+                      {{ i.release_date }}
+                    </div>
+                  </section>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </ng-container>
+      </ng-container>
     </form>
     <button
       class="z-10 text-white hidden lg:block animacion2 text-base font-normal"

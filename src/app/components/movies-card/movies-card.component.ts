@@ -1,5 +1,7 @@
+import { Variables2Service } from './../../services/variables2.service';
+import { MovieNavbar } from './../../interfaces/index';
 import { VariablesService } from 'src/app/services/variables.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable, map } from 'rxjs';
 import {
   AfterViewInit,
   OnDestroy,
@@ -23,6 +25,8 @@ export class MoviesCardComponent implements AfterViewInit, OnInit, OnDestroy {
   private URL: string = 'https://image.tmdb.org/t/p/w500';
   public list: any[];
   public genero: string = null;
+  public MovieNavbar$: Observable<string> = null;
+  public scroll$: Observable<boolean>;
 
   @ViewChild('boton2') boton2: ElementRef;
   @ViewChild('boton3') boton3: ElementRef;
@@ -35,10 +39,13 @@ export class MoviesCardComponent implements AfterViewInit, OnInit, OnDestroy {
   constructor(
     private renderer2: Renderer2,
     private service: PeliculasService,
-    private genre: VariablesService
+    private genre: VariablesService,
+    private variable2: Variables2Service
   ) {}
 
   ngAfterViewInit(): void {
+    console.log('soy movies card');
+
     this.renderer2.listen(this.boton2.nativeElement, 'click', (evt) => {
       this.change(this.boton2);
     });
@@ -54,6 +61,27 @@ export class MoviesCardComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.MovieNavbar$ = this.variable2.getMovieGenre.pipe(
+      map((response) => response.data)
+    );
+
+    this.scroll$ = this.variable2.getMovieGenre.pipe(
+      map((response) => response.scroll)
+    );
+
+    this.subscription = this.variable2.getMovieGenre.subscribe((response) => {
+      switch (response.data) {
+        case 'estrenos':
+          return this.getPremieres('1'), this.change(this.boton2);
+        case 'ranking':
+          return this.getRated('1'), this.change(this.boton3);
+        case 'vistas':
+          return this.getPopular('1'), this.change(this.boton4);
+        case 'proximamente':
+          return this.getComing('1'), this.change(this.boton5);
+      }
+    });
+
     this.genero = this.genre.genre;
     this.subscription = this.service
       .getDiscover()
@@ -62,9 +90,14 @@ export class MoviesCardComponent implements AfterViewInit, OnInit, OnDestroy {
       );
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  scrollTo(element: any): void {
+    (document.getElementById(element) as HTMLElement).scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'nearest',
+    });
   }
+
   change(elemento: ElementRef): void {
     this.activo
       ? this.renderer2.removeClass(this.activo.nativeElement, 'active')
@@ -122,5 +155,8 @@ export class MoviesCardComponent implements AfterViewInit, OnInit, OnDestroy {
           console.log('soy proximamente', response)
         )
       );
+  }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

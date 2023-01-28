@@ -125,13 +125,21 @@ input {
   animation-name: zoom;
 }
 
+.listitas2 {
+  background-color: #1e2747;
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+  animation-name: zoom;
+  width: max-content;
+}
 .listitas {
   background-color: #1e2747;
   animation-duration: 0.2s;
   animation-fill-mode: both;
   animation-name: zoom;
-  width: 340px;
-  min-width: auto;
+}
+.buscadorcito {
+  width: 150%;
 }
 
 .bars__menu {
@@ -234,4 +242,81 @@ input {
 }
 
 @media screen and (max-width: 1200px) {
+}
+
+.que::before {
+  content: "\f04b";
+  animation-duration: 0.3s;
+  display: none;
+  position: absolute;
+  width: 3.75rem;
+  height: 3.75rem;
+  line-height: 3.5rem;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  text-align: center;
+
+  font-family: "Font Awesome 5 Free";
+  font-weight: bold;
+
+  color: white;
+
+  z-index: 20;
+
+  animation-name: zoomIn;
+
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+
+  /* content: "\f04b";
+  width: 3.75rem;
+  height: 3.75rem;
+  line-height: 3.75rem;
+  text-align: center;
+  border: 2px solid #fff;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 1;
+  border-radius: 50%;
+  font-size: 1.25rem;
+
+  color: black; */
+}
+
+.que::after {
+  display: none;
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  transform: scale(15);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  animation-name: zoomIn;
+  animation-duration: 0.4s;
+  overflow: hidden;
+}
+
+.que2:hover .que::before {
+  display: block;
+}
+
+.que2:hover .que::after {
+  z-index: 10;
+  display: block;
+  transition: all 0.3s ease-in-out;
 }
