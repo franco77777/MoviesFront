@@ -3,7 +3,7 @@
 >
   <ng-container *ngIf="list$ | async as movies">
     <div class="main h-auto fondo pb-5 flex flex-wrap text-center">
-      <h2  class="font-bold text-4xl text-white pr-6 ">
+      <h2 class="font-bold text-4xl text-white pr-6">
         {{ type$ }}
       </h2>
 
@@ -41,6 +41,31 @@
               <div class="text-blue-300 text-sm">{{ i.overview }}</div>
             </div>
           </a>
+          <div class="absolute left-1 bottom-8">
+            <circle-progress
+              [title]=""
+              [innerText]=""
+              [titleColor]="color(i.vote_average)"
+              [percent]="barra(i.vote_average)"
+              [space]="-2"
+              [radius]="15"
+              [outerStrokeWidth]="2"
+              [innerStrokeWidth]="2"
+              [outerStrokeColor]="color(i.vote_average)"
+              [innerStrokeColor]="'#8DA0BC'"
+              [animation]="true"
+              [animationDuration]="1000"
+              [titleFontSize]="'10'"
+              [showSubtitle]="false"
+              [showUnits]="true"
+              [unitsColor]="color(i.vote_average)"
+              [unitsFontSize]="'10'"
+              [showBackground]="true"
+              [backgroundColor]="'#1E2747'"
+              [backgroundPadding]="0"
+              [backgroundOpacity]="1"
+            ></circle-progress>
+          </div>
         </li>
       </ul>
     </div>

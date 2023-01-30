@@ -183,72 +183,91 @@
     </div>
     <form class="z-10 search items-center rounded-3xl hidden lg:flex relative">
       <div class="relative">
+        <!-- (input)="inputFocus()"
+          (blur)="inputOverFocus()"
+         -->
         <input
-          #input
-          (keydown.enter)="submit(input.value)"
-          (keyup)="keyupmovies(input.value)"
+          [autocomplete]="'off'"
+          (keydown.escape)="movieSearchInput.blur()"
+          (focus)="Focus()"
+          (focusout)="OverFocus()"
+          #movieSearchInput
+          (keydown.enter)="submit(movieSearchInput.value)"
+          (keyup)="keyupmovies(movieSearchInput.value)"
           type="text"
           id="simple-search"
           class="xl:focus:w-60 w-44 h-10 text-base text-white rounded-3xl focus:ring-blue-500 focus:border-blue-800 block pl-10 p-2.5 font-normal place"
           placeholder="Buscar películas..."
           required
         />
-        <span class="absolute top-3 right-3 cursor-pointer hover:scale-125">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="3"
-            stroke="currentColor"
-            class="w-4 h-4"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-            />
-          </svg>
-        </span>
+        <a [routerLink]="['/search', movieSearchInput.value]">
+          <span class="absolute top-3 right-3 cursor-pointer hover:scale-125">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="3"
+              stroke="currentColor"
+              class="w-4 h-4"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+              />
+            </svg>
+          </span>
+        </a>
       </div>
-      <!-- <ng-container *ngIf="(listSearch$ | async).length">
-        <ng-container *ngIf="listSearch$ | async as movies">
-          <div
-            class="absolute h-60 w-10 -bottom-64 -left-10 bg-white buscadorcito"
-          >
-            <ul class="flex flex-col justify-between gap-2 w-full unorderList">
-              <li
-                *ngFor="let i of movies"
-                class="fondo cursor-pointer items-center relative group lista"
+      <div #listita class="h-0 bottom-0 hidden">
+        <ng-container *ngIf="listSearch$ | async">
+          <ng-container *ngIf="listSearch$ | async as movies">
+            <div
+              class="absolute h-60 w-10 -bottom-64 -left-10 buscadorcito fondo rounded-lg overflow-auto"
+            >
+              <ul
+                class="flex flex-col justify-between gap-2 w-full unorderList p-2 fondo max-h-16"
               >
-                <a [routerLink]="['/view/movie', i.id]" class="flex">
-                  <div class="que2 relative overflow-hidden fondo">
-                    <div class="que flex items-center fondo">
-                      <img
-                        class="rounded-md object-cover fondo"
-                        [src]="getURL(i.poster_path)"
-                        alt=""
-                      />
+                <li
+                  *ngFor="let i of movies"
+                  class="fondo cursor-pointer items-center relative group lista z-50"
+                >
+                  <a
+                    [routerLink]="['/view/movie', i.id]"
+                    class="flex justify-start items-center gap-4"
+                  >
+                    <div class="que2 relative overflow-hidden fondo">
+                      <div class="que flex items-center fondo w-10">
+                        <img
+                          class="rounded-md object-cover fondo"
+                          [src]="getURL(i.poster_path)"
+                          alt=""
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <section class="flex flex-col">
-                    <div
-                      class="pt-2 text-white text-sm group-hover:text-blue-600 z-50 text-center fondo"
-                    >
-                      {{ i.title }}
-                    </div>
-                    <div class="text-yellow-500 text-lg">
-                      {{ i.vote_average }}/10
-                    </div>
-                    <div class="text-sm text-blue-400">
-                      {{ i.release_date }}
-                    </div>
-                  </section>
-                </a>
-              </li>
-            </ul>
-          </div>
+                    <section class="flex flex-col items-baseline">
+                      <div
+                        class="pt-2 text-white text-sm group-hover:text-blue-600 text-center fondo"
+                      >
+                        {{ i.title }}
+                      </div>
+                      <article class="flex gap-2">
+                        <div class="text-yellow-500 text-xs">
+                          {{ i.vote_average }}/10
+                        </div>
+
+                        <div class="text-xs text-blue-400">
+                          {{ i.release_date }}
+                        </div>
+                      </article>
+                    </section>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </ng-container>
         </ng-container>
-      </ng-container> -->
+      </div>
     </form>
     <button
       class="z-10 text-white hidden lg:block animacion2 text-base font-normal"

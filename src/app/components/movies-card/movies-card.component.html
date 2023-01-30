@@ -65,6 +65,31 @@
             </div>
             <div class="text-blue-300 text-sm">{{ i.overview }}</div>
           </div>
+          <div class="absolute left-1 bottom-12">
+            <circle-progress
+              [title]=""
+              [innerText]=""
+              [titleColor]="color(i.vote_average)"
+              [percent]="barra(i.vote_average)"
+              [space]="-2"
+              [radius]="15"
+              [outerStrokeWidth]="2"
+              [innerStrokeWidth]="2"
+              [outerStrokeColor]="color(i.vote_average)"
+              [innerStrokeColor]="'#8DA0BC'"
+              [animation]="true"
+              [animationDuration]="1000"
+              [titleFontSize]="'10'"
+              [showSubtitle]="false"
+              [showUnits]="true"
+              [unitsColor]="color(i.vote_average)"
+              [unitsFontSize]="'10'"
+              [showBackground]="true"
+              [backgroundColor]="'#1E2747'"
+              [backgroundPadding]="0"
+              [backgroundOpacity]="1"
+            ></circle-progress>
+          </div>
         </a>
       </li>
     </ul>

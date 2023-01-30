@@ -24,28 +24,90 @@
       <form class="items-center rounded-3xl w-60">
         <div class="relative -left-3">
           <input
+            (keydown.escape)="movieSearchInput2.blur()"
+            (focus)="Focus()"
+            (focusout)="OverFocus()"
+            [autocomplete]="'off'"
+            #movieSearchInput2
+            (keydown.enter)="submit(movieSearchInput2.value)"
+            (keyup)="keyupmovies(movieSearchInput2.value)"
             type="text"
             id="simple-search"
-            class="w-64 text-sm rounded-3xl focus:ring-blue-500 focus:border-blue-800 block pl-10 p-2.5 font-normal place"
+            class="w-64 text-lg rounded-3xl text-white focus:ring-blue-500 focus:border-blue-800 block pl-10 p-2.5 font-normal place"
             placeholder="Buscar películas..."
             required
           />
-          <span class="absolute top-3 right-3 cursor-pointer hover:scale-125">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="3"
-              stroke="currentColor"
-              class="w-4 h-4"
+          <a [routerLink]="['/search', movieSearchInput2.value]">
+            <span
+              (click)="submit(movieSearchInput2.value)"
+              class="absolute top-5 right-0 cursor-pointer hover:scale-125"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-              />
-            </svg>
-          </span>
+              <svg
+                (click)="keyupmovies(movieSearchInput2.value)"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="3"
+                stroke="currentColor"
+                class="w-4 h-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                />
+              </svg>
+            </span>
+          </a>
+        </div>
+        <div #listita2 class="z-50 mt-1 hidden">
+          <ng-container *ngIf="listSearch$ | async">
+            <ng-container *ngIf="listSearch$ | async as movies">
+              <div
+                class="absolute h-60 w-full left-0 buscadorcito fondo rounded-lg overflow-auto"
+              >
+                <ul
+                  class="flex flex-col justify-between gap-2 w-full unorderList p-2 fondo max-h-16"
+                >
+                  <li
+                    *ngFor="let i of movies"
+                    class="fondo cursor-pointer items-center relative group lista z-50"
+                  >
+                    <a
+                      [routerLink]="['/view/movie', i.id]"
+                      class="flex justify-start items-center gap-4"
+                    >
+                      <div class="que2 relative overflow-hidden fondo">
+                        <div class="que flex items-center fondo w-10">
+                          <img
+                            class="rounded-md object-cover fondo"
+                            [src]="getURL(i.poster_path)"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                      <section class="flex flex-col items-baseline">
+                        <div
+                          class="pt-2 text-white text-sm group-hover:text-blue-600 text-center fondo"
+                        >
+                          {{ i.title }}
+                        </div>
+                        <article class="flex gap-2">
+                          <div class="text-yellow-500 text-xs">
+                            {{ i.vote_average }}/10
+                          </div>
+
+                          <div class="text-xs text-blue-400">
+                            {{ i.release_date }}
+                          </div>
+                        </article>
+                      </section>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </ng-container>
+          </ng-container>
         </div>
       </form>
       <div class="flex justify-center gap-2">
@@ -68,7 +130,7 @@
     >
       <li>
         <a
-          href="#"
+          [routerLink]="['/home']"
           class="w-min flex items-center p-2 text-base font-normal text-white rounded-lg hover:text-blue-500"
         >
           <span class="ml-3">Inicio</span>
@@ -102,112 +164,14 @@
         </button>
         <ul
           id="dropdown-example"
-          class="hidden py-2 space-y-2 w-80 transition-all ease-in-out duration-300"
+          class="hidden py-2 space-y-2 transition-all ease-in-out duration-300 w-full"
         >
           <ul class="flex flex-wrap">
-            <li class="w-1/2">
+            <li class="w-1/2" *ngFor="let i of genres">
               <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
+                class="flex items-center w-full p-2 text-sm font-normal transition duration-75 rounded-lg pl-11 group hover:text-blue-700 rounded-t fondito text-gray-400 py-2 px-5 whitespace-no-wrap min-w-max"
+                [routerLink]="['/pelicula', i.name, i.id]"
+                >{{ i.name }}</a
               >
             </li>
           </ul>
@@ -244,109 +208,48 @@
           class="hidden py-2 space-y-2 w-80 transition-all ease-in-out duration-300"
         >
           <ul class="flex flex-wrap">
-            <li class="w-1/2">
+            <li
+              #sidebarclose
+              class=""
+              (click)="variable2Change('estrenos'); scrollTo('peliculas')"
+            >
               <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
+                [routerLink]="'#peliculas'"
+                class="rounded-t fondito hover:text-blue-700 py-2 px-4 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group"
+                >Estrenos</a
               >
             </li>
-            <li class="w-1/2">
+            <li
+              #sidebarclose2
+              class=""
+              (click)="variable2Change('ranking'); scrollTo('peliculas')"
+            >
               <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
+                [routerLink]="'#peliculas'"
+                class="rounded-t fondito hover:text-blue-700 py-2 px-4 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group"
+                >Ranking</a
               >
             </li>
-            <li class="w-1/2">
+            <li
+              #sidebarclose3
+              class=""
+              (click)="variable2Change('vistas'); scrollTo('peliculas')"
+            >
               <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
+                [routerLink]="'#peliculas'"
+                class="rounded-t fondito hover:text-blue-700 py-2 px-4 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group"
+                >Mas Vistas</a
               >
             </li>
-            <li class="w-1/2">
+            <li
+              #sidebarclose4
+              class=""
+              (click)="variable2Change('proximamente'); scrollTo('peliculas')"
+            >
               <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
+                [routerLink]="'#peliculas'"
+                class="rounded-t fondito hover:text-blue-700 py-2 px-4 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group"
+                >Proximamente</a
               >
             </li>
           </ul>
@@ -383,109 +286,25 @@
           class="hidden py-2 space-y-2 w-80 transition-all ease-in-out duration-300"
         >
           <ul class="flex flex-wrap">
-            <li class="w-1/2">
+            <li (click)="change()" class="">
               <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
+                class="rounded-t fondito hover:text-blue-700 py-2 px-4 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group"
+                [routerLink]="'/series/Recientes'"
+                >Recientes</a
               >
             </li>
-            <li class="w-1/2">
+            <li (click)="change()" class="">
               <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
+                class="rounded-t fondito hover:text-blue-700 py-2 px-4 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group"
+                [routerLink]="'/series/Mas Vistas'"
+                >Mas Vistas</a
               >
             </li>
-            <li class="w-1/2">
+            <li (click)="change()" class="">
               <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
-              >
-            </li>
-            <li class="w-1/2">
-              <a
-                href="#"
-                class="flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group hover:text-blue-500"
-                >Products</a
+                class="rounded-t fondito hover:text-blue-700 py-2 px-4 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group"
+                [routerLink]="'/series/Ranking'"
+                >Ranking</a
               >
             </li>
           </ul>

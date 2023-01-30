@@ -20,6 +20,21 @@
   width: 100%;
 }
 
+.listitafocus {
+  display: block;
+  bottom: -16rem;
+  height: 15rem;
+  opacity: 1;
+}
+
+/* .search div input:focus ~ .search .dos .uno div {
+  display: block;
+} */
+
+.fondo {
+  background-color: rgb(30, 39, 71);
+}
+
 .fondito:hover {
   background-color: #080f28;
 }
@@ -142,6 +157,21 @@ input {
   width: 150%;
 }
 
+.buscadorcito::-webkit-scrollbar {
+  position: relative;
+  bottom: -10px;
+  width: 5px;
+  height: 10px;
+  background: rgb(8, 14, 40);
+  margin-top: 5px;
+  border-radius: 20px;
+}
+.buscadorcito::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #00bcff, rgb(0, 122, 255));
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
 .bars__menu {
   width: 30px;
   height: 30px;
@@ -249,12 +279,12 @@ input {
   animation-duration: 0.3s;
   display: none;
   position: absolute;
-  width: 3.75rem;
-  height: 3.75rem;
-  line-height: 3.5rem;
+  width: 2rem;
+  height: 2rem;
+  line-height: 1.8rem;
   border: 2px solid #fff;
   border-radius: 50%;
-  font-size: 1.25rem;
+  font-size: 1rem;
   text-align: center;
 
   font-family: "Font Awesome 5 Free";

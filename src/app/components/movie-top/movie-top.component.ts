@@ -1,4 +1,4 @@
-import { Observable, Subscriber, Subscription } from 'rxjs';
+import { Observable, Subscriber, Subscription, map } from 'rxjs';
 import { PeliculasService } from 'src/app/services/peliculas.service';
 import {
   Component,
@@ -12,6 +12,7 @@ import {
   OnChanges,
   SimpleChanges,
   ChangeDetectionStrategy,
+  HostListener,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
@@ -27,13 +28,12 @@ import {
   selector: 'app-movie-top',
   templateUrl: './movie-top.component.html',
   styleUrls: ['./movie-top.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MovieTopComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('covermovie') covermovie: ElementRef;
-
   @ViewChild('youtube') youtube: ElementRef;
   @ViewChild('demoYouTubePlayer') demoYouTubePlayer: ElementRef<HTMLDivElement>;
+
   videoWidth: number | undefined;
   videoHeight: number | undefined;
   trailerActive: boolean = false;
@@ -45,7 +45,7 @@ export class MovieTopComponent implements AfterViewInit, OnInit, OnDestroy {
   public color4: string = 'color:#EDB709';
   public color5: string = 'color:#EDB709';
   public title: string;
-  public indice: string;
+  public indice$: Observable<string>;
   public type: string;
   public percentage: number;
   public URL: string = 'https://image.tmdb.org/t/p/w500';
@@ -59,6 +59,16 @@ export class MovieTopComponent implements AfterViewInit, OnInit, OnDestroy {
 
   public recargar: number = 0;
 
+  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(
+    event: KeyboardEvent
+  ) {
+    this.trailerActive = false;
+    this.renderer2.removeClass(this.youtube.nativeElement, 'videoactive');
+    this.renderer2.removeClass(this.covermovie.nativeElement, 'coveractive');
+    this.actualizar();
+    console.log(event);
+  }
+
   constructor(
     private route: ActivatedRoute,
     private _changeDetectorRef: ChangeDetectorRef,
@@ -67,10 +77,31 @@ export class MovieTopComponent implements AfterViewInit, OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.indice = this.route.snapshot.params['id'];
     this.type = this.route.snapshot.params['type'];
+    this.indice$ = this.route.params.pipe(map((response) => response['id']));
 
-    console.log('soy indice', this.indice);
+    this.subscription = this.indice$.subscribe((response) => {
+      if (this.type === 'movie') {
+        this.subscription = this.service
+          .getDetails(response)
+          .subscribe(
+            (response) => (
+              (this.movieDetails = response),
+              console.log('soy response', response)
+            )
+          );
+        this.movieCredits$ = this.service.getCredits(response);
+        this.movieTrailers$ = this.service.getMovieTrailer(response);
+      } else {
+        this.subscription = this.service
+          .getDetailsSerie(response)
+          .subscribe((response) => (this.movieDetails = response));
+        this.movieCredits$ = this.service.getCreditsSerie(response);
+        this.movieTrailers$ = this.service.getSerieTrailer(response);
+      }
+    });
+
+    console.log('soy indice', this.indice$);
 
     /////////////////////////////////
 
@@ -81,9 +112,9 @@ export class MovieTopComponent implements AfterViewInit, OnInit, OnDestroy {
     /////////////////////////
 
     ///////////////////////////////////////////
-    if (this.type === 'movie') {
+    /* if (this.type === 'movie') {
       this.subscription = this.service
-        .getDetails(this.indice)
+        .getDetails(this.indice$)
         .subscribe(
           (response) => (
             (this.movieDetails = response),
@@ -98,7 +129,7 @@ export class MovieTopComponent implements AfterViewInit, OnInit, OnDestroy {
         .subscribe((response) => (this.movieDetails = response));
       this.movieCredits$ = this.service.getCreditsSerie(this.indice);
       this.movieTrailers$ = this.service.getSerieTrailer(this.indice);
-    }
+    } */
 
     /////////////////////////////////////
   }

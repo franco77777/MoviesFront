@@ -61,4 +61,35 @@ export class SeriesRouteComponent implements OnInit {
     if (!post) return '../../../assets/images/travolta2.png';
     return `${this.URL}${post}`;
   }
+  barra(value: number): number {
+    let uno = value.toString()[0];
+    let dos = value.toString()[2];
+    if (!dos) {
+      dos = '0';
+    }
+    let result = parseInt(`${uno}${dos}`);
+
+    return result;
+  }
+
+  color(value: number): string {
+    let uno = value.toString()[0];
+    let dos = value.toString()[2];
+    if (!dos) {
+      dos = '0';
+    }
+    let result = parseInt(`${uno}${dos}`);
+    if (result < 40) {
+      return '#FF0000';
+    }
+
+    if (result >= 40 && result < 75) {
+      return '#f9c109';
+    }
+
+    if (result >= 75) {
+      return '#1de60b';
+    }
+    return '';
+  }
 }

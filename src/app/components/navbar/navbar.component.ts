@@ -1,5 +1,15 @@
 import { PeliculasService } from 'src/app/services/peliculas.service';
-import { Observable, map } from 'rxjs';
+import {
+  Observable,
+  map,
+  tap,
+  Subscription,
+  fromEvent,
+  filter,
+  debounceTime,
+  distinct,
+  switchMap,
+} from 'rxjs';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Variables2Service } from './../../services/variables2.service';
 import {
@@ -12,7 +22,7 @@ import {
   OnInit,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { movieDetails } from 'src/app/interfaces';
+import { movieDetails, Movies } from 'src/app/interfaces';
 
 @Component({
   selector: 'app-navbar',
@@ -21,6 +31,8 @@ import { movieDetails } from 'src/app/interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent implements OnInit, AfterViewInit {
+  @ViewChild('listita') listita: ElementRef;
+  @ViewChild('movieSearchInput', { static: true }) movieSearchInput: ElementRef;
   public genres: any[] = [
     {
       id: 28,
@@ -101,12 +113,36 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   ];
   public listSearch$: Observable<movieDetails[]>;
   public URL: string = 'https://image.tmdb.org/t/p/w500';
+  public minutes: number;
+  public moviesSubscription: Subscription;
   constructor(
     private variable2: Variables2Service,
     private route: Router,
-    private service: PeliculasService
+    private service: PeliculasService,
+    private renderer2: Renderer2
   ) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    /*   this.listSearch$ = fromEvent<Event>(
+      this.movieSearchInput.nativeElement,
+      'keyup'
+    ).pipe(
+      map((event: Event) => {
+        const searchTerm = (event.target as HTMLInputElement).value;
+        console.log(searchTerm);
+        return searchTerm;
+      }),
+      filter((searchTerm: string) => searchTerm.length > 1),
+      debounceTime(500),
+      switchMap((searchTerm: string) =>
+        this.service.getMoviesSearch(searchTerm)
+      ),
+      map((response) => {
+        console.log(response.results);
+        return response.results;
+      })
+    );
+   */
+  }
 
   ngAfterViewInit(): void {
     console.log('soy navbar');
@@ -117,6 +153,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   submit(value: string) {
+    event.preventDefault();
     this.route.navigate(['/search', value]);
     console.log('soy submit ', value);
   }
@@ -136,6 +173,27 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   getURL(post: string) {
+    if (!post) return '../../../assets/images/travolta2.png';
     return `${this.URL}${post}`;
+  }
+
+  getHours(runtime: number): string {
+    let hours = (runtime / 60).toString()[0];
+
+    this.minutes = runtime % 60;
+    return hours;
+  }
+
+  Focus() {
+    this.renderer2.addClass(this.listita.nativeElement, 'listitafocus');
+  }
+  OverFocus() {
+    setTimeout(() => {
+      this.renderer2.removeClass(this.listita.nativeElement, 'listitafocus');
+    }, 100);
+  }
+
+  submit2(value: string) {
+    console.log(value);
   }
 }
