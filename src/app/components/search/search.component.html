@@ -71,7 +71,10 @@
     </div>
   </ng-container>
 
-  <aside class="text-5xl h-auto aside pl-5 mb-12 overflow-clip relative">
+  <aside
+    *appRecarga="recargar"
+    class="text-5xl h-auto aside pl-5 mb-12 overflow-clip relative"
+  >
     <app-aside
       class="relative sonAside transition-all duration-300 ease-out"
     ></app-aside>

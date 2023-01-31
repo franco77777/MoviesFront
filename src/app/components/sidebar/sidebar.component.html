@@ -15,6 +15,7 @@
 ></p>
 <!-- /////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <aside
+  *appRecarga="recargar"
   #sidebar
   class="w-80 min-h-screen fixed overflow-y-auto -left-80 z-20 top-0 transition-all ease-in-out duration-300 lg:hidden sidebar overflow-x-hidden"
   aria-label="Sidebar"
@@ -138,6 +139,7 @@
       </li>
       <li>
         <button
+          (click)="generosDisplay()"
           type="button"
           class="flex items-center w-min p-2 text-base font-normal text-white transition duration-75 rounded-lg group hover:text-blue-500"
           aria-controls="dropdown-example"
@@ -162,23 +164,23 @@
             ></path>
           </svg>
         </button>
+
         <ul
-          id="dropdown-example"
-          class="hidden py-2 space-y-2 transition-all ease-in-out duration-300 w-full"
+          #generosList
+          class="flex-wrap flex w-64 h-0 transition-all ease-in-out duration-300 fondo ml-10 rounded-md text-white overflow-hidden"
         >
-          <ul class="flex flex-wrap">
-            <li class="w-1/2" *ngFor="let i of genres">
-              <a
-                class="flex items-center w-full p-2 text-sm font-normal transition duration-75 rounded-lg pl-11 group hover:text-blue-700 rounded-t fondito text-gray-400 py-2 px-5 whitespace-no-wrap min-w-max"
-                [routerLink]="['/pelicula', i.name, i.id]"
-                >{{ i.name }}</a
-              >
-            </li>
-          </ul>
+          <li class="w-1/2" *ngFor="let i of genres">
+            <a
+              class="flex items-center w-full p-2 text-sm font-normal transition duration-75 rounded-lg group hover:text-blue-700 rounded-t fondito text-gray-400 py-2 whitespace-no-wrap min-w-max"
+              [routerLink]="['/pelicula', i.name, i.id]"
+              >{{ i.name }}</a
+            >
+          </li>
         </ul>
       </li>
       <li>
         <button
+          (click)="peliculasDisplay()"
           type="button"
           class="flex items-center w-min p-2 text-base font-normal text-white transition duration-75 rounded-lg group hover:text-blue-500"
           aria-controls="dropdown-example"
@@ -203,60 +205,60 @@
             ></path>
           </svg>
         </button>
+
         <ul
-          id="dropdown-example2"
-          class="hidden py-2 space-y-2 w-80 transition-all ease-in-out duration-300"
+          #peliculasList
+          class="flex-wrap flex w-64 h-0 transition-all ease-in-out duration-300 fondo ml-10 rounded-md text-white overflow-hidden"
         >
-          <ul class="flex flex-wrap">
-            <li
-              #sidebarclose
-              class=""
-              (click)="variable2Change('estrenos'); scrollTo('peliculas')"
+          <li
+            #sidebarclose
+            class="w-1/2"
+            (click)="variable2Change('estrenos'); scrollTo('peliculas')"
+          >
+            <a
+              [routerLink]="'#peliculas'"
+              class="rounded-t fondito hover:text-blue-700 py-2 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg group"
+              >Estrenos</a
             >
-              <a
-                [routerLink]="'#peliculas'"
-                class="rounded-t fondito hover:text-blue-700 py-2 px-4 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group"
-                >Estrenos</a
-              >
-            </li>
-            <li
-              #sidebarclose2
-              class=""
-              (click)="variable2Change('ranking'); scrollTo('peliculas')"
+          </li>
+          <li
+            #sidebarclose2
+            class="w-1/2"
+            (click)="variable2Change('ranking'); scrollTo('peliculas')"
+          >
+            <a
+              [routerLink]="'#peliculas'"
+              class="rounded-t fondito hover:text-blue-700 py-2 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg group"
+              >Ranking</a
             >
-              <a
-                [routerLink]="'#peliculas'"
-                class="rounded-t fondito hover:text-blue-700 py-2 px-4 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group"
-                >Ranking</a
-              >
-            </li>
-            <li
-              #sidebarclose3
-              class=""
-              (click)="variable2Change('vistas'); scrollTo('peliculas')"
+          </li>
+          <li
+            #sidebarclose3
+            class="w-1/2"
+            (click)="variable2Change('vistas'); scrollTo('peliculas')"
+          >
+            <a
+              [routerLink]="'#peliculas'"
+              class="rounded-t fondito hover:text-blue-700 py-2 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg group"
+              >Mas Vistas</a
             >
-              <a
-                [routerLink]="'#peliculas'"
-                class="rounded-t fondito hover:text-blue-700 py-2 px-4 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group"
-                >Mas Vistas</a
-              >
-            </li>
-            <li
-              #sidebarclose4
-              class=""
-              (click)="variable2Change('proximamente'); scrollTo('peliculas')"
+          </li>
+          <li
+            #sidebarclose4
+            class="w-1/2"
+            (click)="variable2Change('proximamente'); scrollTo('peliculas')"
+          >
+            <a
+              [routerLink]="'#peliculas'"
+              class="rounded-t fondito hover:text-blue-700 py-2 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg group"
+              >Proximamente</a
             >
-              <a
-                [routerLink]="'#peliculas'"
-                class="rounded-t fondito hover:text-blue-700 py-2 px-4 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group"
-                >Proximamente</a
-              >
-            </li>
-          </ul>
+          </li>
         </ul>
       </li>
-      <li>
+      <li class="transition-all duration-1000 ease-in-out">
         <button
+          (click)="seriesDisplay()"
           type="button"
           class="flex items-center w-min p-2 text-base font-normal text-white transition duration-75 rounded-lg group hover:text-blue-500"
           aria-controls="dropdown-example"
@@ -282,32 +284,30 @@
           </svg>
         </button>
         <ul
-          id="dropdown-example3"
-          class="hidden py-2 space-y-2 w-80 transition-all ease-in-out duration-300"
+          #seriesList
+          class="flex-wrap flex w-64 h-0 transition-all ease-in-out duration-300 fondo ml-10 rounded-md text-gray-400 overflow-hidden"
         >
-          <ul class="flex flex-wrap">
-            <li (click)="change()" class="">
-              <a
-                class="rounded-t fondito hover:text-blue-700 py-2 px-4 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group"
-                [routerLink]="'/series/Recientes'"
-                >Recientes</a
-              >
-            </li>
-            <li (click)="change()" class="">
-              <a
-                class="rounded-t fondito hover:text-blue-700 py-2 px-4 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group"
-                [routerLink]="'/series/Mas Vistas'"
-                >Mas Vistas</a
-              >
-            </li>
-            <li (click)="change()" class="">
-              <a
-                class="rounded-t fondito hover:text-blue-700 py-2 px-4 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg pl-11 group"
-                [routerLink]="'/series/Ranking'"
-                >Ranking</a
-              >
-            </li>
-          </ul>
+          <li class="w-1/2" (click)="change()">
+            <a
+              class="rounded-t fondito hover:text-blue-700 py-2 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal transition duration-75 rounded-lg group"
+              [routerLink]="'/series/Recientes'"
+              >Recientes</a
+            >
+          </li>
+          <li (click)="change()" class="w-1/2">
+            <a
+              class="rounded-t fondito hover:text-blue-700 py-2 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal transition duration-75 rounded-lg group"
+              [routerLink]="'/series/Mas Vistas'"
+              >Mas Vistas</a
+            >
+          </li>
+          <li (click)="change()" class="w-1/2">
+            <a
+              class="rounded-t fondito hover:text-blue-700 py-2 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal transition duration-75 rounded-lg group"
+              [routerLink]="'/series/Ranking'"
+              >Ranking</a
+            >
+          </li>
         </ul>
       </li>
     </ul>

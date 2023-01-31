@@ -25,6 +25,7 @@ export class PruebasComponent implements AfterViewInit, OnDestroy {
   videoWidth: number | undefined;
   videoHeight: number | undefined;
   trailerActive: boolean = false;
+  public mostrado: boolean = true;
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
@@ -35,8 +36,14 @@ export class PruebasComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {}
 
-  focuss() {
-    this.renderer2.addClass(this.prueba2.nativeElement, 'ver');
+  display() {
+    if (this.mostrado) {
+      this.mostrado = false;
+      this.renderer2.addClass(this.prueba2.nativeElement, 'ver');
+    } else {
+      this.mostrado = true;
+      this.renderer2.removeClass(this.prueba2.nativeElement, 'ver');
+    }
   }
 
   focusout() {

@@ -25,7 +25,7 @@ export class SidebarComponent implements AfterViewInit {
   public listSearch$: Observable<movieDetails[]>;
   public active: boolean = false;
   public URL: string = 'https://image.tmdb.org/t/p/w500';
-
+  public recargar: number = 0;
   public genres: any[] = [
     {
       id: 28,
@@ -104,6 +104,9 @@ export class SidebarComponent implements AfterViewInit {
       name: 'Western',
     },
   ];
+  public seriesNone: boolean = true;
+  public peliculasNone: boolean = true;
+  public generosNone:boolean= true
   @ViewChild('toggle') toggle: ElementRef;
   @ViewChild('sidebar') sidebar: ElementRef;
   @ViewChild('cover') cover: ElementRef;
@@ -112,6 +115,9 @@ export class SidebarComponent implements AfterViewInit {
   @ViewChild('sidebarclose2') sidebarclose2: ElementRef;
   @ViewChild('sidebarclose3') sidebarclose3: ElementRef;
   @ViewChild('sidebarclose4') sidebarclose4: ElementRef;
+  @ViewChild('seriesList') seriesList: ElementRef;
+  @ViewChild('peliculasList') peliculasList: ElementRef;
+  @ViewChild('generosList') generosList: ElementRef;
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(
     event: KeyboardEvent
@@ -181,16 +187,15 @@ export class SidebarComponent implements AfterViewInit {
     const togle = this.toggle.nativeElement;
     console.log('soy change');
     if (!this.active) {
+      this.active = true;
       this.renderer2.addClass(togle, 'active');
       this.renderer2.addClass(this.sidebar.nativeElement, 'sidebaractive');
       this.renderer2.addClass(this.cover.nativeElement, 'coveractive');
-
-      this.active = true;
     } else {
+      this.active = false;
       this.renderer2.removeClass(togle, 'active');
       this.renderer2.removeClass(this.sidebar.nativeElement, 'sidebaractive');
       this.renderer2.removeClass(this.cover.nativeElement, 'coveractive');
-      this.active = false;
     }
 
     /* const asTitle = this.title.nativeElement;
@@ -210,5 +215,46 @@ export class SidebarComponent implements AfterViewInit {
   variable2Change(data: string) {
     this.variable2.setMovieGenre = { data: data, scroll: true };
     console.log('soy data variable2 navbar', this.variable2.getMovieGenre);
+  }
+
+  seriesDisplay() {
+    if (this.seriesNone) {
+      this.seriesNone = false;
+      this.renderer2.addClass(this.seriesList.nativeElement, 'displaySeries');
+    } else {
+      this.seriesNone = true;
+      this.renderer2.removeClass(
+        this.seriesList.nativeElement,
+        'displaySeries'
+      );
+    }
+  }
+  peliculasDisplay() {
+    if (this.peliculasNone) {
+      this.peliculasNone = false;
+      this.renderer2.addClass(
+        this.peliculasList.nativeElement,
+        'displaySeries'
+      );
+    } else {
+      this.peliculasNone = true;
+      this.renderer2.removeClass(
+        this.peliculasList.nativeElement,
+        'displaySeries'
+      );
+    }
+  }
+
+  generosDisplay() {
+    if (this.generosNone) {
+      this.generosNone = false;
+      this.renderer2.addClass(this.generosList.nativeElement, 'displayGeneros');
+    } else {
+      this.generosNone = true;
+      this.renderer2.removeClass(
+        this.generosList.nativeElement,
+        'displayGeneros'
+      );
+    }
   }
 }

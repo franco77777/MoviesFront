@@ -127,6 +127,21 @@
   display: block;
 }
 
+.displaySeries {
+  height: 72px;
+}
+
+.displayGeneros{
+  height: 376px;
+}
+
+.fondo {
+  background-color: rgb(30, 39, 71);
+}
+.fondito:hover {
+  background-color: #080f28;
+}
+
 input {
   transition: all 0.3s ease-in-out;
   background-color: rgb(18, 20, 39);

@@ -1,7 +1,7 @@
 import { PeliculasService } from './../../services/peliculas.service';
 import { Observable, map, Subscription } from 'rxjs';
 import { ActivatedRoute, TitleStrategy } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { movieDetails } from 'src/app/interfaces';
 
 @Component({
@@ -9,12 +9,13 @@ import { movieDetails } from 'src/app/interfaces';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
 })
-export class SearchComponent implements OnInit, OnDestroy {
+export class SearchComponent implements OnInit, OnDestroy, AfterViewInit {
   public search$: Observable<string>;
   public search: string;
   public list$: Observable<movieDetails[]>;
   private URL: string = 'https://image.tmdb.org/t/p/w500';
   public subscribe: Subscription;
+  public recargar: number = 0;
   constructor(
     private activeRoute: ActivatedRoute,
     private service: PeliculasService
@@ -40,9 +41,12 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.search$.pipe(map((response) => console.log('soy el param', response))); */
   }
 
+  ngAfterViewInit(): void {}
+
   ngOnDestroy(): void {
     this.subscribe.unsubscribe();
   }
+
   getMovieSeach(input: string) {
     this.list$ = this.service
       .getMoviesSearch(input)
