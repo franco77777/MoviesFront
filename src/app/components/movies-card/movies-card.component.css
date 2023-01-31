@@ -247,13 +247,18 @@
     min-width: auto;
   }
 }
-
 @media screen and (min-width: 910px) {
   .lista {
     width: 31%;
   }
   .aside {
-    margin-top: 115px;
+    margin-top: 100px;
+  }
+}
+
+@media screen and (min-width: 1003px) {
+  .aside {
+    margin-top: 61px;
   }
 }
 
@@ -266,11 +271,8 @@
 
 @media screen and (min-width: 1157px) {
   .aside {
-    margin-top: 77px;
+    margin-top: 59px;
   }
-}
-
-@media screen and (min-width: 1280px) {
   .lista {
     width: 23%;
   }

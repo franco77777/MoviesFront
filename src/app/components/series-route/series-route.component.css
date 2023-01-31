@@ -276,12 +276,12 @@
   .aside {
     margin-top: 77px;
   }
-}
-
-@media screen and (min-width: 1280px) {
   .lista {
     width: 23%;
   }
+}
+
+@media screen and (min-width: 1280px) {
 }
 
 @media screen and (min-width: 1400px) {

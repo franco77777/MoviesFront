@@ -35,19 +35,46 @@
         {{ genero }}
       </h2></ng-template
     >
-    <ul class="flex flex-wrap justify-between gap-2 mr-5 fondo unorderList">
+    <ul
+      class="flex flex-wrap justify-between gap-2 mr-5 fondo unorderList mt-4"
+    >
       <li
         *ngFor="let i of list"
-        class="lista rounded-lg mt-8 fondo cursor-pointer flex flex-col items-center relative group"
+        class="lista rounded-lg fondo cursor-pointer flex flex-col items-center relative group max-h-72 mb-11"
       >
-        <a [routerLink]="['/view/movie', i.id]">
-          <div class="que2 relative overflow-hidden fondo">
-            <div class="que flex items-center fondo">
+        <a [routerLink]="['/view/movie', i.id]" class="h-full">
+          <div class="que2 relative overflow-hidden fondo h-full">
+            <div class="que flex items-center fondo h-full relative">
               <img
-                class="rounded-md object-cover fondo"
+                class="rounded-md object-cover fondo h-full "
                 [src]="getURL(i.poster_path)"
                 alt=""
               />
+              <div class="absolute left-1 bottom-0.5">
+                <circle-progress
+                  [title]=""
+                  [innerText]=""
+                  [titleColor]="color(i.vote_average)"
+                  [percent]="barra(i.vote_average)"
+                  [space]="-2"
+                  [radius]="15"
+                  [outerStrokeWidth]="2"
+                  [innerStrokeWidth]="2"
+                  [outerStrokeColor]="color(i.vote_average)"
+                  [innerStrokeColor]="'#8DA0BC'"
+                  [animation]="true"
+                  [animationDuration]="1000"
+                  [titleFontSize]="'10'"
+                  [showSubtitle]="false"
+                  [showUnits]="true"
+                  [unitsColor]="color(i.vote_average)"
+                  [unitsFontSize]="'10'"
+                  [showBackground]="true"
+                  [backgroundColor]="'#1E2747'"
+                  [backgroundPadding]="0"
+                  [backgroundOpacity]="1"
+                ></circle-progress>
+              </div>
             </div>
           </div>
           <div
@@ -64,31 +91,6 @@
               <div class="text-sm text-blue-400">{{ i.release_date }}</div>
             </div>
             <div class="text-blue-300 text-sm">{{ i.overview }}</div>
-          </div>
-          <div class="absolute left-1 bottom-12">
-            <circle-progress
-              [title]=""
-              [innerText]=""
-              [titleColor]="color(i.vote_average)"
-              [percent]="barra(i.vote_average)"
-              [space]="-2"
-              [radius]="15"
-              [outerStrokeWidth]="2"
-              [innerStrokeWidth]="2"
-              [outerStrokeColor]="color(i.vote_average)"
-              [innerStrokeColor]="'#8DA0BC'"
-              [animation]="true"
-              [animationDuration]="1000"
-              [titleFontSize]="'10'"
-              [showSubtitle]="false"
-              [showUnits]="true"
-              [unitsColor]="color(i.vote_average)"
-              [unitsFontSize]="'10'"
-              [showBackground]="true"
-              [backgroundColor]="'#1E2747'"
-              [backgroundPadding]="0"
-              [backgroundOpacity]="1"
-            ></circle-progress>
           </div>
         </a>
       </li>
