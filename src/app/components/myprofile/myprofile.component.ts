@@ -80,11 +80,6 @@ export class MyprofileComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.SeriesId$ = this.serviceApi.getUser().pipe(map((res) => res.series));
 
-    this.MoviesId$.subscribe((response) =>
-      console.log('soy moviesIds', response)
-    );
-    console.log('soy moviesIds', this.MoviesId$);
-
     this.MoviesList$ = this.MoviesId$.pipe(
       switchMap((array) =>
         forkJoin(array.map((res) => this.service.getDetails(res.toString())))
@@ -177,9 +172,7 @@ export class MyprofileComponent implements OnInit, AfterViewInit, OnDestroy {
       console.log('soy movie id despus del delete', res)
     ); */
 
-    this.serviceApi
-      .RemoveMovie([id])
-      .subscribe((res) => console.log('soy movies on destroy', res));
+    this.serviceApi.RemoveMovie([id]).subscribe();
   }
 
   DeleteSerie(id: Number) {
@@ -194,7 +187,7 @@ export class MyprofileComponent implements OnInit, AfterViewInit, OnDestroy {
     this.SeriesId$.subscribe((res) =>
       console.log('soy SeriesId id despus del delete', res)
     ); */
-    this.serviceApi.RemoveSerie([id]).subscribe((res) => console.log(res));
+    this.serviceApi.RemoveSerie([id]).subscribe();
   }
 
   /* movieExist(value: Number) {

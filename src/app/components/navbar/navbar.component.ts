@@ -149,9 +149,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         .getUser()
         .subscribe((response) => this.serviceApi.setUserApi(response.email));
     }
-    this.user$.subscribe((response) =>
-      console.log('soy userapi subscribe', response)
-    );
+    this.user$.subscribe();
 
     /*   this.listSearch$ = fromEvent<Event>(
       this.movieSearchInput.nativeElement,
@@ -175,18 +173,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
    */
   }
 
-  ngAfterViewInit(): void {
-    console.log('soy navbar');
-  }
+  ngAfterViewInit(): void {}
   variable2Change(data: string) {
     this.variable2.setMovieGenre = { data: data, scroll: true };
-    console.log('soy data variable2 navbar', this.variable2.getMovieGenre);
   }
 
   submit(value: string) {
     event.preventDefault();
     this.route.navigate(['/search', value]);
-    console.log('soy submit ', value);
   }
 
   keyupmovies(value: string) {
@@ -246,9 +240,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     }
   }
 
-  submit2(value: string) {
-    console.log(value);
-  }
+  submit2(value: string) {}
 
   sendRegister() {}
 

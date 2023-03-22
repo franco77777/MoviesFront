@@ -69,7 +69,6 @@ export class MovieTopComponent implements AfterViewInit, OnInit, OnDestroy {
     this.renderer2.removeClass(this.youtube.nativeElement, 'videoactive');
     this.renderer2.removeClass(this.covermovie.nativeElement, 'coveractive');
     this.actualizar();
-    console.log(event);
   }
 
   constructor(
@@ -89,12 +88,7 @@ export class MovieTopComponent implements AfterViewInit, OnInit, OnDestroy {
       if (this.type === 'movie') {
         this.subscription = this.service
           .getDetails(response)
-          .subscribe(
-            (response) => (
-              (this.movieDetails = response),
-              console.log('soy response', response)
-            )
-          );
+          .subscribe((response) => (this.movieDetails = response));
         this.movieCredits$ = this.service.getCredits(response);
         this.movieTrailers$ = this.service.getMovieTrailer(response);
       } else {
@@ -105,8 +99,6 @@ export class MovieTopComponent implements AfterViewInit, OnInit, OnDestroy {
         this.movieTrailers$ = this.service.getSerieTrailer(response);
       }
     });
-
-    console.log('soy indice', this.indice$);
 
     /////////////////////////////////
 
@@ -264,9 +256,7 @@ export class MovieTopComponent implements AfterViewInit, OnInit, OnDestroy {
         background: '#1E2747',
         color: '#fff',
       });
-      return this.serviceApi
-        .AddMovie([parseInt(this.indice)])
-        .subscribe((response) => console.log(response));
+      return this.serviceApi.AddMovie([parseInt(this.indice)]).subscribe();
     } else {
       Swal.fire({
         icon: 'success',
@@ -276,9 +266,7 @@ export class MovieTopComponent implements AfterViewInit, OnInit, OnDestroy {
         background: '#1E2747',
         color: '#fff',
       });
-      return this.serviceApi
-        .AddSerie([parseInt(this.indice)])
-        .subscribe((response) => console.log(response));
+      return this.serviceApi.AddSerie([parseInt(this.indice)]).subscribe();
     }
   }
 }

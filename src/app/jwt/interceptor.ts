@@ -18,7 +18,7 @@ export class Interceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     const token: string = this.cookieService.get('token');
-    console.log('soy toke', token);
+
     let req = request;
     if (token) {
       req = request.clone({

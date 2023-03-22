@@ -32,7 +32,6 @@ export class SlideComponent implements OnInit {
   }
 
   getURL(post: string) {
-    console.log('soy slide url');
     if (!post) return '../../../assets/images/travolta.png';
     return `${this.URL}${post}`;
   }

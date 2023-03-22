@@ -45,8 +45,6 @@ export class MoviesCardComponent implements AfterViewInit, OnInit, OnDestroy {
   ) {}
 
   ngAfterViewInit(): void {
-    console.log('soy movies card');
-
     this.renderer2.listen(this.boton2.nativeElement, 'click', (evt) => {
       this.change(this.boton2);
     });
@@ -86,9 +84,7 @@ export class MoviesCardComponent implements AfterViewInit, OnInit, OnDestroy {
     this.genero = this.genre.genre;
     this.subscription = this.service
       .getDiscover()
-      .subscribe(
-        (response) => ((this.list = response.results), console.log(response))
-      );
+      .subscribe((response) => (this.list = response.results));
   }
 
   scrollTo(element: any): void {
@@ -114,52 +110,33 @@ export class MoviesCardComponent implements AfterViewInit, OnInit, OnDestroy {
   getDiscover(): void {
     this.service
       .getDiscover()
-      .subscribe(
-        (response) => ((this.list = response.results), console.log(response))
-      );
+      .subscribe((response) => (this.list = response.results));
   }
 
   getPremieres(page: string): void {
     event.preventDefault();
     this.subscription = this.service
       .getPremieres(page)
-      .subscribe(
-        (response) => (
-          (this.list = response.results), console.log('soy estrenos', response)
-        )
-      );
+      .subscribe((response) => (this.list = response.results));
   }
 
   getPopular(page: string): void {
     event.preventDefault();
     this.subscription = this.service
       .getPopular(page)
-      .subscribe(
-        (response) => (
-          (this.list = response.results), console.log('soy vistas', response)
-        )
-      );
+      .subscribe((response) => (this.list = response.results));
   }
   getRated(page: string): void {
     event.preventDefault();
     this.subscription = this.service
       .getRated(page)
-      .subscribe(
-        (response) => (
-          (this.list = response.results), console.log('soy ranking', response)
-        )
-      );
+      .subscribe((response) => (this.list = response.results));
   }
   getComing(page: string): void {
     event.preventDefault();
     this.subscription = this.service
       .getComing(page)
-      .subscribe(
-        (response) => (
-          (this.list = response.results),
-          console.log('soy proximamente', response)
-        )
-      );
+      .subscribe((response) => (this.list = response.results));
   }
 
   barra(value: number): number {

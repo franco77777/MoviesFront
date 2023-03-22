@@ -57,7 +57,6 @@ export class LoginComponent {
         .Login({ email: this.email, password: this.password })
         .subscribe(
           (response) => (
-            console.log('soy login', response.token),
             this.cookiesService.set('token', response.token),
             (this.loginActive = false),
             this.renderer2.removeClass(

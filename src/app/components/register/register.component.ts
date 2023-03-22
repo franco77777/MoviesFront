@@ -49,9 +49,7 @@ export class RegisterComponent implements OnInit {
       'registermodalview'
     );
   }
-  ngOnInit(): void {
-    console.log('soy la ruta actual', this.router.url);
-  }
+  ngOnInit(): void {}
 
   closeModal() {
     this.register = false;
@@ -121,11 +119,6 @@ export class RegisterComponent implements OnInit {
     } catch (error) {
       alert('datos incorrectos');
     }
-    console.log('soy token', this.cookieService.get('token'));
-
-    console.log(this.email);
-    console.log(this.password);
-    console.log(this.password2);
   }
   ngOnDestroy(): void {}
 }

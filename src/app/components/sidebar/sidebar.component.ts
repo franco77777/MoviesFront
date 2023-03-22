@@ -133,7 +133,6 @@ export class SidebarComponent implements AfterViewInit {
     this.renderer2.removeClass(this.sidebar.nativeElement, 'sidebaractive');
     this.renderer2.removeClass(this.cover.nativeElement, 'coveractive');
     this.active = false;
-    console.log(event);
   }
 
   constructor(
@@ -149,7 +148,6 @@ export class SidebarComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log('soy sidebar');
     this.renderer2.listen(this.toggle.nativeElement, 'click', (evt) => {
       this.change();
     });
@@ -172,7 +170,6 @@ export class SidebarComponent implements AfterViewInit {
   submit(value: string) {
     event.preventDefault();
     this.route.navigate(['/search', value]);
-    console.log('soy submit ', value);
   }
   keyupmovies(value: string) {
     this.listSearch$ = this.service
@@ -194,7 +191,7 @@ export class SidebarComponent implements AfterViewInit {
   }
   change(): void {
     const togle = this.toggle.nativeElement;
-    console.log('soy change');
+
     if (!this.active) {
       this.active = true;
       this.renderer2.addClass(togle, 'active');
@@ -223,7 +220,6 @@ export class SidebarComponent implements AfterViewInit {
 
   variable2Change(data: string) {
     this.variable2.setMovieGenre = { data: data, scroll: true };
-    console.log('soy data variable2 navbar', this.variable2.getMovieGenre);
   }
 
   seriesDisplay() {

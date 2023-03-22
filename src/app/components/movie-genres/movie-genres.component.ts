@@ -40,7 +40,6 @@ export class MovieGenresComponent implements OnInit {
 
   actualizar() {
     this.recargar = this.recargar * -1 + 1;
-    console.log('soy actualizar');
   }
 
   barra(value: number): number {

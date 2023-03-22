@@ -95,9 +95,7 @@ export class AsideComponent implements AfterViewInit {
     },
   ];
 
-  ngAfterViewInit() {
-    console.log('soy aside');
-  }
+  ngAfterViewInit() {}
   getURL(post: string) {
     return `${this.URL}${post}`;
   }
