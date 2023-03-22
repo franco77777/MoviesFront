@@ -1,0 +1,86 @@
+<div
+  class="flex desactivateAside fondo max-sm:pr-4 max-sm:pl-4 max-lg:pl-8 max-lg:pr-8 pl-16 pr-16 pt-24"
+>
+  <ng-container *ngIf="list$ | async as movies">
+    <div class="main h-auto fondo pb-5 flex flex-wrap text-center">
+      <h2 class="font-bold text-4xl text-white pr-6">
+        {{ type$ }}
+      </h2>
+
+      >
+      <ul class="w-full gap-5 fondo unorderList mt-4">
+        <li
+          *ngFor="let i of movies"
+          class="rounded-lg fondo cursor-pointer flex flex-col items-center relative group mb-3 w-full h-full"
+        >
+          <a
+            [routerLink]="['/view/serie', i.id]"
+            class="flex flex-col justify-center items-center w-full h-full"
+          >
+            <div
+              class="que2 relative overflow-hidden fondo rounded-md flex justify-center w-full h-full"
+            >
+              <figure
+                class="que flex items-center fondo relative justify-center w-full h-full"
+              >
+                <img
+                  class="rounded-md object-cover fondo max-w-full h-full"
+                  [src]="getURL(i.poster_path)"
+                  alt=""
+                />
+                <div class="absolute left-1 bottom-0.5">
+                  <circle-progress
+                    [title]=""
+                    [innerText]=""
+                    [titleColor]="color(i.vote_average)"
+                    [percent]="barra(i.vote_average)"
+                    [space]="-2"
+                    [radius]="15"
+                    [outerStrokeWidth]="2"
+                    [innerStrokeWidth]="2"
+                    [outerStrokeColor]="color(i.vote_average)"
+                    [innerStrokeColor]="'#8DA0BC'"
+                    [animation]="true"
+                    [animationDuration]="1000"
+                    [titleFontSize]="'10'"
+                    [showSubtitle]="false"
+                    [showUnits]="true"
+                    [unitsColor]="color(i.vote_average)"
+                    [unitsFontSize]="'10'"
+                    [showBackground]="true"
+                    [backgroundColor]="'#1E2747'"
+                    [backgroundPadding]="0"
+                    [backgroundOpacity]="1"
+                  ></circle-progress>
+                </div>
+              </figure>
+            </div>
+            <div
+              class="pt-2 text-white text-sm group-hover:text-blue-600 text-center fondo min-h-[48px]"
+            >
+              {{ i.title }}
+            </div>
+            <div class="modal text-left">
+              <div class="text-left text-white font-bold text-base">
+                {{ i.title }}
+              </div>
+              <div class="flex text-left gap-7 items-center">
+                <div class="text-yellow-500 text-lg">
+                  {{ i.vote_average }}/10
+                </div>
+                <div class="text-sm text-blue-400">{{ i.release_date }}</div>
+              </div>
+              <div class="text-blue-300 text-sm">{{ i.overview }}</div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </ng-container>
+
+  <aside class="text-5xl h-auto aside pl-5 mb-12 overflow-clip relative">
+    <app-aside
+      class="relative sonAside transition-all duration-300 ease-out"
+    ></app-aside>
+  </aside>
+</div>

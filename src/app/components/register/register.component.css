@@ -1,0 +1,27 @@
+.animation {
+  animation-duration: 0.3s;
+  animation-name: zoom;
+}
+
+.modaltitle::before {
+  width: 3.75rem;
+  height: 3.75rem;
+  line-height: 3.75rem;
+  display: inline-block;
+  text-align: center;
+  background-color: rgba(0, 122, 255, 0.1);
+  border-radius: 4rem;
+  color: #007aff;
+  margin-right: 1rem;
+  content: "\f007";
+  font-family: "Font Awesome 5 Free";
+}
+
+@media screen and (max-width: 576px) {
+  .modaltitle::before {
+    width: 2.5rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    font-size: 1rem;
+  }
+}

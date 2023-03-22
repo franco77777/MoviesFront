@@ -13,6 +13,7 @@ import {
   HostListener,
 } from '@angular/core';
 import { PeliculasService } from 'src/app/services/peliculas.service';
+import { EVENT_MANAGER_PLUGINS } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-movies-card',
@@ -69,18 +70,18 @@ export class MoviesCardComponent implements AfterViewInit, OnInit, OnDestroy {
       map((response) => response.scroll)
     );
 
-    this.subscription = this.variable2.getMovieGenre.subscribe((response) => {
+    /* this.subscription = this.variable2.getMovieGenre.subscribe((response) => {
       switch (response.data) {
         case 'estrenos':
-          return this.getPremieres('1'), this.change(this.boton2);
+          return this.change(this.boton2);
         case 'ranking':
-          return this.getRated('1'), this.change(this.boton3);
+          return this.change(this.boton3);
         case 'vistas':
-          return this.getPopular('1'), this.change(this.boton4);
+          return this.change(this.boton4);
         case 'proximamente':
-          return this.getComing('1'), this.change(this.boton5);
+          return this.change(this.boton5);
       }
-    });
+    }); */
 
     this.genero = this.genre.genre;
     this.subscription = this.service
@@ -110,15 +111,16 @@ export class MoviesCardComponent implements AfterViewInit, OnInit, OnDestroy {
     if (!post) return '../../../assets/images/travolta2.png';
     return `${this.URL}${post}`;
   }
-  /* getDiscover(): void {
+  getDiscover(): void {
     this.service
       .getDiscover()
       .subscribe(
         (response) => ((this.list = response.results), console.log(response))
       );
   }
- */
+
   getPremieres(page: string): void {
+    event.preventDefault();
     this.subscription = this.service
       .getPremieres(page)
       .subscribe(
@@ -129,6 +131,7 @@ export class MoviesCardComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   getPopular(page: string): void {
+    event.preventDefault();
     this.subscription = this.service
       .getPopular(page)
       .subscribe(
@@ -138,6 +141,7 @@ export class MoviesCardComponent implements AfterViewInit, OnInit, OnDestroy {
       );
   }
   getRated(page: string): void {
+    event.preventDefault();
     this.subscription = this.service
       .getRated(page)
       .subscribe(
@@ -147,6 +151,7 @@ export class MoviesCardComponent implements AfterViewInit, OnInit, OnDestroy {
       );
   }
   getComing(page: string): void {
+    event.preventDefault();
     this.subscription = this.service
       .getComing(page)
       .subscribe(

@@ -62,11 +62,13 @@ export class PeliculasService {
     return this.http.get(`${this.URL}${this.MoviesDiscover}`);
   }
 
-  getPremieres(page: string): Observable<any> {
-    return this.http.get(`${this.URL}${this.MoviesPremier}${page}`);
+  getPremieres(page: string): Observable<MovieGenres> {
+    return this.http.get<MovieGenres>(
+      `${this.URL}${this.MoviesPremier}${page}`
+    );
   }
-  getPopular(page: string): Observable<any> {
-    return this.http.get(`${this.URL}${this.MoviesViews}${page}`);
+  getPopular(page: string): Observable<MovieGenres> {
+    return this.http.get<MovieGenres>(`${this.URL}${this.MoviesViews}${page}`);
   }
 
   getRated(page: string): Observable<any> {

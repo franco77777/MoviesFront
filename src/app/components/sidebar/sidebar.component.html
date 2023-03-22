@@ -1,4 +1,6 @@
-<div class="fixed top-5 right-5 lg:hidden cursor-pointer boton">
+<div
+  class="fixed top-5 max-sm:right-4 max-lg:right-8 lg:hidden cursor-pointer boton"
+>
   <div
     #toggle
     class="toggle w-12 h-12 bg-blue-600 transition-all duration-200 ease-in-out shadow-x1 rounded-x1 hover:scale-105 rounded-full overflow-x-hidden z-50"
@@ -112,19 +114,77 @@
         </div>
       </form>
       <div class="flex justify-center gap-2">
-        <button
-          type="button"
-          class="animacion w-32 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-full text-md px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-        >
-          Entrar
-        </button>
-        <button
-          type="button"
-          class="animacion w-32 text-white bg-blue-600 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-full textmd px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-          Registro
-        </button>
+        <ng-container *ngIf="!(user$ | async); else user">
+          <button
+            (click)="Login()"
+            type="button"
+            class="animacion w-32 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-full text-md px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+          >
+            Entrar
+          </button>
+          <button
+            (click)="Register()"
+            type="button"
+            class="animacion w-32 text-white bg-blue-600 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-full textmd px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            Registro
+          </button>
+        </ng-container>
       </div>
+      <ng-template #user>
+        <div
+          class="lg:flex hidden gap-1 items-center justify-center group hover:cursor-pointer h-16"
+        >
+          <figure
+            class="relative w-6 h-6 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600"
+          >
+            <svg
+              class="absolute w-6 h-6 text-gray-400 left-0 top-0"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </figure>
+
+          <div class="text-sm text-white hover:text-blue-600">
+            {{ user$ | async }}
+          </div>
+
+          <svg
+            class="fill-current h-4 w-4"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+            />
+          </svg>
+          <ul
+            class="absolute usuariosvg hidden text-gray-700 pt-1 group-hover:block transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 listitas2 rounded text-sm"
+          >
+            <li class="">
+              <a
+                class="rounded-t fondito text-white hover:text-blue-700 py-2 px-4 block whitespace-no-wrap"
+                [routerLink]="'/profile'"
+                >Mi Pefil</a
+              >
+            </li>
+            <li class="">
+              <a
+                class="fondito py-2 text-white px-4 hover:text-blue-700 block whitespace-no-wrap"
+                (click)="closeSesion()"
+                >Cerrar Sesión</a
+              >
+            </li>
+          </ul>
+        </div>
+      </ng-template>
     </section>
     <ul
       class="space-y-2 transition-all ease-in-out duration-300 overflow-x-hidden"
@@ -210,46 +270,30 @@
           #peliculasList
           class="flex-wrap flex w-64 h-0 transition-all ease-in-out duration-300 fondo ml-10 rounded-md text-white overflow-hidden"
         >
-          <li
-            #sidebarclose
-            class="w-1/2"
-            (click)="variable2Change('estrenos'); scrollTo('peliculas')"
-          >
+          <li #sidebarclose class="w-1/2">
             <a
-              [routerLink]="'#peliculas'"
+              [routerLink]="'/pelicula/Estrenos'"
               class="rounded-t fondito hover:text-blue-700 py-2 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg group"
               >Estrenos</a
             >
           </li>
-          <li
-            #sidebarclose2
-            class="w-1/2"
-            (click)="variable2Change('ranking'); scrollTo('peliculas')"
-          >
+          <li #sidebarclose2 class="w-1/2">
             <a
-              [routerLink]="'#peliculas'"
+              [routerLink]="'/pelicula/Ranking'"
               class="rounded-t fondito hover:text-blue-700 py-2 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg group"
               >Ranking</a
             >
           </li>
-          <li
-            #sidebarclose3
-            class="w-1/2"
-            (click)="variable2Change('vistas'); scrollTo('peliculas')"
-          >
+          <li #sidebarclose3 class="w-1/2">
             <a
-              [routerLink]="'#peliculas'"
+              [routerLink]="'/pelicula/Mas Vistas'"
               class="rounded-t fondito hover:text-blue-700 py-2 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg group"
               >Mas Vistas</a
             >
           </li>
-          <li
-            #sidebarclose4
-            class="w-1/2"
-            (click)="variable2Change('proximamente'); scrollTo('peliculas')"
-          >
+          <li #sidebarclose4 class="w-1/2">
             <a
-              [routerLink]="'#peliculas'"
+              [routerLink]="'/pelicula/Proximamente'"
               class="rounded-t fondito hover:text-blue-700 py-2 whitespace-no-wrap flex items-center w-full p-2 text-sm font-normal text-gray-400 transition duration-75 rounded-lg group"
               >Proximamente</a
             >
@@ -313,3 +357,27 @@
     </ul>
   </div>
 </aside>
+
+<div #register class="hidden fixed top-0 left-0 w-screen h-screen z-20">
+  <div
+    (click)="Register()"
+    class="absolute w-full h-full bg-black bg-opacity-70 top-0 left-0 coverRegister"
+  ></div>
+  <app-register
+    class="register h-max"
+    [user$]="user$"
+    [registerModal]="{ nativeElement: register }"
+    [register]="registerActive"
+  ></app-register>
+</div>
+<div #login class="hidden fixed top-0 left-0 w-screen h-screen z-[100]">
+  <div
+    (click)="Login()"
+    class="absolute w-full h-full bg-black bg-opacity-70 top-0 left-0 coverRegister"
+  ></div>
+  <app-login
+    [loginActive]="loginActive"
+    [loginModal]="{ nativeElement: login }"
+    class="register fixed h-max"
+  ></app-login>
+</div>

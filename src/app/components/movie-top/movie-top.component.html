@@ -28,18 +28,69 @@
             <button
               (click)="change()"
               type="button"
-              class="flex items-center justify-center gap-2 w-4/5 animacion text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-full px-4 py-1 text-center font-normal"
+              class="flex items-center justify-center gap-2 w-4/5 animacion text-white bg-blue-600 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-full px-4 py-1 text-center font-normal"
             >
               <i class="fa-solid fa-play text-white text-2xl"></i>
               <span class="text-white text-lg max-sm:text-sm">trailer</span>
             </button>
+            <div
+              class="relative hidden gap-2 mt-1 items-center animation group cursor-pointer agregar2 text-white"
+            >
+              <button
+                type="button"
+                class="w-6 h-6 grid place-content-center group-hover:text-blue-700 animacion text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded"
+              >
+                <i class="fa-solid fa-plus group-hover:text-yellow-500"></i>
+              </button>
+              <span class="hover:text-blue-700">Agregar a</span>
+
+              <i
+                class="fa-solid fa-angle-right group-hover:text-blue-700 text-blue-500"
+              ></i>
+              <div
+                class="transition-all duration-300 ease-in-out h-[30px] max-h-[30px] right-0 w-0 flex justify-center items-center absolute rounded fondo group-hover:-right-[126px] -top-[2px] gap-2 group-hover:w-full overflow-hidden"
+              >
+                <i class="fa-solid fa-heart text-yellow-500"></i>
+                <div (click)="addToMyList()" class="hover:text-blue-600 relative h-[25px] text-center">
+                  Mi lista
+                </div>
+              </div>
+            </div>
           </div>
         </article>
 
-        <article class="text-white grid2">
+        <article class="text-white grid2 flex gap-5 justify-start items-center">
           <h2 class="text-white font-bold text-xl sm:text-4xl">
             {{ movieDetails.title }}
           </h2>
+          <div
+            class="relative flex gap-2 mt-1 items-center animation group cursor-pointer agregar1"
+          >
+            <button
+              type="button"
+              class="w-6 h-6 grid place-content-center animacion text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded"
+            >
+              <i class="fa-solid fa-plus group-hover:text-yellow-500"></i>
+            </button>
+            <span class="hover:text-blue-700">Agregar a</span>
+            <svg
+              class="fill-current h-4 w-4 text-blue-500"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+              />
+            </svg>
+            <div
+              class="transition-all duration-300 ease bottom-0 h-0 flex group-hover:h-[30px] justify-center items-center absolute group-hover:-bottom-8 rounded fondo gap-2 w-full overflow-hidden"
+            >
+              <i class="fa-solid fa-heart text-yellow-500"></i>
+              <div (click)="addToMyList()" class="hover:text-blue-600">Mi lista</div>
+            </div>
+          </div>
+        </article>
+        <article class="grid5">
           <p class="text-blue-200 text-sm">{{ movieDetails.original_title }}</p>
           <section class="flex items-center flex-wrap justify-between">
             <div class="flex items-center">
@@ -181,11 +232,11 @@
           </p>
           <p *ngIf="movieDetails.budget">
             <span class="text-blue-300"> Presupuesto:</span>
-            {{ movieDetails.budget }} $
+            {{ movieDetails.budget | currency : "USD" : "symbol" : ".0-0" }}
           </p>
           <p *ngIf="movieDetails.revenue">
             <span class="text-blue-300">Ingresos:</span>
-            {{ movieDetails.revenue }} $
+            {{ movieDetails.revenue | currency : "USD" : "symbol" : ".0-0" }}
           </p>
         </article>
       </div>

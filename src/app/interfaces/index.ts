@@ -143,3 +143,27 @@ export interface MovieNavbar {
   data: string;
   scroll: boolean;
 }
+
+export interface User {
+  email: string;
+  password: string;
+}
+
+export interface Token {
+  token: string;
+}
+
+export interface UserDatabase {
+  id: number;
+  email: string;
+  password: string;
+  peliculas: number[];
+  series: number[];
+  role: string;
+  authorities: any[];
+  username: string;
+  accountNonLocked: boolean;
+  credentialsNonExpired: boolean;
+  accountNonExpired: boolean;
+  enabled: boolean;
+}

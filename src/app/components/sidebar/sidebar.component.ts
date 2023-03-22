@@ -14,6 +14,8 @@ import { Observable, map } from 'rxjs';
 import { movieDetails } from 'src/app/interfaces';
 import { VariablesService } from 'src/app/services/variables.service';
 import { Variables2Service } from 'src/app/services/variables2.service';
+import { DatabaseService } from 'src/app/services/database.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-sidebar',
@@ -106,7 +108,10 @@ export class SidebarComponent implements AfterViewInit {
   ];
   public seriesNone: boolean = true;
   public peliculasNone: boolean = true;
-  public generosNone:boolean= true
+  public generosNone: boolean = true;
+  public user$ = this.serviceApi.userApi$;
+  public registerActive: boolean = false;
+  loginActive: boolean = false;
   @ViewChild('toggle') toggle: ElementRef;
   @ViewChild('sidebar') sidebar: ElementRef;
   @ViewChild('cover') cover: ElementRef;
@@ -118,6 +123,8 @@ export class SidebarComponent implements AfterViewInit {
   @ViewChild('seriesList') seriesList: ElementRef;
   @ViewChild('peliculasList') peliculasList: ElementRef;
   @ViewChild('generosList') generosList: ElementRef;
+  @ViewChild('register') register: ElementRef;
+  @ViewChild('login') login: ElementRef;
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(
     event: KeyboardEvent
@@ -134,7 +141,9 @@ export class SidebarComponent implements AfterViewInit {
     private renderer2: Renderer2,
     boton: VariablesService,
     private service: PeliculasService,
-    private route: Router
+    private route: Router,
+    private serviceApi: DatabaseService,
+    private cookieService: CookieService
   ) {
     boton.boton = this.toggle;
   }
@@ -256,5 +265,32 @@ export class SidebarComponent implements AfterViewInit {
         'displayGeneros'
       );
     }
+  }
+
+  Register() {
+    if (this.registerActive) {
+      this.registerActive = false;
+      this.renderer2.removeClass(
+        this.register.nativeElement,
+        'registermodalview'
+      );
+    } else {
+      this.registerActive = true;
+      this.renderer2.addClass(this.register.nativeElement, 'registermodalview');
+    }
+  }
+  Login() {
+    if (this.loginActive) {
+      this.loginActive = false;
+      this.renderer2.removeClass(this.login.nativeElement, 'registermodalview');
+    } else {
+      this.loginActive = true;
+      this.renderer2.addClass(this.login.nativeElement, 'registermodalview');
+    }
+  }
+  closeSesion() {
+    this.cookieService.delete('token');
+    this.serviceApi.setUserApi(null);
+    //window.location.replace('/home');
   }
 }

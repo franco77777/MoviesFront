@@ -1,8 +1,9 @@
 <div
-  class="flex desactivateAside fondo max-sm:pr-4 max-sm:pl-4 max-lg:pl-8 max-lg:pr-8 pl-16 pr-16"
+  class="mt-8 flex desactivateAside fondo max-sm:pr-4 max-sm:pl-4 max-lg:pl-8 max-lg:pr-8 pl-16 pr-16"
 >
   <div class="main h-auto fondo pb-5 flex flex-wrap text-center">
-    <ng-container *ngIf="!genero; else generoTitle">
+    <!-- *ngIf="!genero; else generoTitle" -->
+    <ng-container>
       <h2 #peliculas id="peliculas" class="font-bold text-4xl text-white pr-6">
         Películas
       </h2>
@@ -30,69 +31,81 @@
         </div>
       </section>
     </ng-container>
-    <ng-template #generoTitle
+    <!-- <ng-template #generoTitle
       ><h2 id="peliculas" class="font-bold text-4xl text-white pr-6">
         {{ genero }}
       </h2></ng-template
-    >
-    <ul
-      class="flex flex-wrap justify-between gap-2 mr-5 fondo unorderList mt-4"
-    >
+    > -->
+    <ul class="w-full gap-5 fondo unorderList mt-4">
       <li
         *ngFor="let i of list"
-        class="lista rounded-lg fondo cursor-pointer flex flex-col items-center relative group max-h-72 mb-11"
+        class="rounded-lg fondo cursor-pointer flex flex-col items-center relative group mb-3 w-full h-full"
       >
-        <a [routerLink]="['/view/movie', i.id]" class="h-full">
-          <div class="que2 relative overflow-hidden fondo h-full">
-            <div class="que flex items-center fondo h-full relative">
-              <img
-                class="rounded-md object-cover fondo h-full "
-                [src]="getURL(i.poster_path)"
-                alt=""
-              />
-              <div class="absolute left-1 bottom-0.5">
-                <circle-progress
-                  [title]=""
-                  [innerText]=""
-                  [titleColor]="color(i.vote_average)"
-                  [percent]="barra(i.vote_average)"
-                  [space]="-2"
-                  [radius]="15"
-                  [outerStrokeWidth]="2"
-                  [innerStrokeWidth]="2"
-                  [outerStrokeColor]="color(i.vote_average)"
-                  [innerStrokeColor]="'#8DA0BC'"
-                  [animation]="true"
-                  [animationDuration]="1000"
-                  [titleFontSize]="'10'"
-                  [showSubtitle]="false"
-                  [showUnits]="true"
-                  [unitsColor]="color(i.vote_average)"
-                  [unitsFontSize]="'10'"
-                  [showBackground]="true"
-                  [backgroundColor]="'#1E2747'"
-                  [backgroundPadding]="0"
-                  [backgroundOpacity]="1"
-                ></circle-progress>
-              </div>
-            </div>
-          </div>
-          <div
-            class="pt-2 text-white text-sm group-hover:text-blue-600 z-50 text-center fondo"
+        <ng-container>
+          <a
+            [routerLink]="['/view/movie', i.id]"
+            class="flex flex-col justify-center items-center w-full h-full"
           >
-            {{ i.title }}
-          </div>
-          <div class="modal text-left">
-            <div class="text-left text-white font-bold text-base">
+            <div
+              class="que2 relative overflow-hidden fondo rounded-md flex justify-center w-full h-full"
+            >
+              <figure
+                class="que flex items-center fondo relative justify-center w-full h-full"
+              >
+                <img
+                  class="rounded-md object-cover fondo max-w-full h-full"
+                  [src]="getURL(i.poster_path)"
+                  alt=""
+                />
+                <div class="absolute left-1 bottom-0.5">
+                  <circle-progress
+                    [title]=""
+                    [innerText]=""
+                    [titleColor]="color(i.vote_average)"
+                    [percent]="barra(i.vote_average)"
+                    [space]="-2"
+                    [radius]="15"
+                    [outerStrokeWidth]="2"
+                    [innerStrokeWidth]="2"
+                    [outerStrokeColor]="color(i.vote_average)"
+                    [innerStrokeColor]="'#8DA0BC'"
+                    [animation]="true"
+                    [animationDuration]="1000"
+                    [titleFontSize]="'10'"
+                    [showSubtitle]="false"
+                    [showUnits]="true"
+                    [unitsColor]="color(i.vote_average)"
+                    [unitsFontSize]="'10'"
+                    [showBackground]="true"
+                    [backgroundColor]="'#1E2747'"
+                    [backgroundPadding]="0"
+                    [backgroundOpacity]="1"
+                  ></circle-progress>
+                </div>
+              </figure>
+            </div>
+            <div
+              class="pt-2 text-white text-sm group-hover:text-blue-600 text-center min-h-[48px]"
+            >
               {{ i.title }}
             </div>
-            <div class="flex text-left gap-7 items-center">
-              <div class="text-yellow-500 text-lg">{{ i.vote_average }}/10</div>
-              <div class="text-sm text-blue-400">{{ i.release_date }}</div>
+            <div class="modal text-left">
+              <div class="text-left text-white font-bold text-base">
+                {{ i.title }}
+              </div>
+              <div class="flex text-left gap-7 items-center">
+                <div class="text-yellow-500 text-lg">
+                  {{ i.vote_average }}/10
+                </div>
+                <div class="text-sm text-blue-400">{{ i.release_date }}</div>
+              </div>
+              <div class="text-blue-300 text-sm">{{ i.overview }}</div>
             </div>
-            <div class="text-blue-300 text-sm">{{ i.overview }}</div>
-          </div>
-        </a>
+          </a>
+        </ng-container>
+        <!-- <ng-template #loader>
+          <app-loader></app-loader>
+        </ng-template> -->
       </li>
     </ul>
   </div>

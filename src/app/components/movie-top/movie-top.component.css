@@ -1,7 +1,7 @@
 .posterMovie {
-  grid-template-columns: minmax(120px, 200px) min-content;
-  grid-template-rows: content max-content max-content;
-  grid-template-areas: "grid1 grid2 grid2" "grid1 grid3 grid3" "grid1 grid4 grid4";
+  grid-template-columns: minmax(120px, 200px) 1fr;
+  /* grid-template-rows: content max-content max-content ; */
+
   grid-column-gap: 30px;
 }
 .grid1 img {
@@ -9,10 +9,8 @@
 .grid1 {
   grid-area: grid1;
 
-  width: 100%;
-
   min-height: 180px;
-  align-self: center;
+  align-self: baseline;
 }
 
 .grid2 {
@@ -26,7 +24,9 @@
 .grid4 {
   grid-area: grid4;
 }
-
+.grid5 {
+  grid-area: grid5;
+}
 .grid3::-webkit-scrollbar {
   position: relative;
   bottom: -10px;
@@ -152,31 +152,61 @@
   max-width: 100%;
 }
 
-@media screen and (max-width: 400px) {
+.fondo {
+  background-color: rgb(30, 39, 71);
+}
+
+@media screen and (max-width: 328px) {
   .posterMovie {
     grid-template-areas:
       "grid1 grid2 grid2"
+      "grid5 grid5 grid5"
       " grid3 grid3 grid3"
       " grid4 grid4 grid4";
 
-    grid-gap: 10px;
+    gap: 12px;
   }
 }
-@media screen and (min-width: 400px) {
+@media screen and (max-width: 500px) {
+  .posterMovie {
+    grid-template-columns: 142px 1fr;
+  }
+}
+@media screen and (min-width: 328px) {
   .posterMovie {
     grid-template-areas:
       "grid1 grid2 grid2"
+      "grid1 grid5 grid5"
+      " grid3 grid3 grid3"
+      " grid4 grid4 grid4";
+    grid-gap: 15px;
+  }
+}
+@media screen and (min-width: 500px) {
+  .posterMovie {
+    grid-template-areas:
+      "grid1 grid2 grid2"
+      "grid1 grid5 grid5"
       " grid1 grid3 grid3"
       " grid4 grid4 grid4";
     grid-gap: 15px;
   }
 }
-
 @media screen and (min-width: 750px) {
   .posterMovie {
     grid-template-areas:
       "grid1 grid2 grid2"
-      " grid1 grid3 grid3"
-      " grid1 grid4 grid4";
+      "grid1 grid5 grid5"
+      "grid1 grid3 grid3"
+      "grid1 grid4 grid4";
+  }
+}
+
+@media screen and (max-width: 1070px) {
+  .agregar1 {
+    display: none;
+  }
+  .agregar2{
+    display: flex;
   }
 }

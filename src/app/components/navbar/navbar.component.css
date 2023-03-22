@@ -48,9 +48,18 @@
   top: 0;
 }
 
+.register {
+  width: 400px;
+  z-index: 100;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 nav {
   position: fixed;
-  z-index: 99;
+  z-index: 70;
   width: 100%;
 }
 
@@ -82,35 +91,6 @@ input {
   );
 }
 
-.carousel-img {
-  background-image: url("../../../assets/images/adam.png");
-  background-position: center center;
-  background-size: cover;
-}
-
-.carousel-img2 {
-  background-image: url("../../../assets/images/avatar.png");
-  background-position: center center;
-  background-size: cover;
-}
-.carousel-img3 {
-  background-image: url("../../../assets/images/galaxia.png");
-  background-position: center center;
-  background-size: cover;
-}
-
-.carousel-img4 {
-  background-image: url("../../../assets/images/gato.png");
-  background-position: center center;
-  background-size: cover;
-}
-
-.carousel-img5 {
-  background-image: url("../../../assets/images/megan.png");
-  background-position: center center;
-  background-size: cover;
-}
-
 .cover {
   background-color: rgba(0, 0, 0, 0.8);
   transition: all 0.3s ease-in-out;
@@ -124,6 +104,9 @@ input {
   50% {
     transform: scale(1.07);
   }
+}
+.usuariosvg {
+  bottom: -44px;
 }
 
 .dropmenu {
@@ -256,6 +239,14 @@ input {
   transform: scale(1.05);
 }
 
+.registermodalview {
+  display: block;
+}
+
+.coverRegister {
+  z-index: 100;
+}
+
 @media screen and (max-width: 350px) {
   .sera {
     height: 44rem;
@@ -271,7 +262,10 @@ input {
 @media screen and (min-width: 1024px) {
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 520px) {
+  .register {
+    width: 80%;
+  }
 }
 
 .que::before {

@@ -155,9 +155,6 @@
   margin-top: 77px;
 }
 
-.aside div {
-}
-
 .opciones::-webkit-scrollbar {
   position: relative;
   bottom: -10px;
@@ -220,7 +217,12 @@
   right: 0;
 }
 
-.stickyAside {
+.unorderList {
+  grid-row-gap: 13px;
+  align-items: baseline;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 }
 @media screen and (max-width: 910px) {
   .que2:hover ~ .modal {
@@ -237,20 +239,16 @@
   .main {
     width: auto;
   }
-  .unorderList {
-    margin-right: auto;
-  }
-  .lista {
-    width: 23%;
-  }
+
   .opciones {
     min-width: auto;
   }
+  .fathercard {
+    display: flex;
+    justify-content: center;
+  }
 }
 @media screen and (min-width: 910px) {
-  .lista {
-    width: 31%;
-  }
   .aside {
     margin-top: 100px;
   }
@@ -273,30 +271,15 @@
   .aside {
     margin-top: 59px;
   }
-  .lista {
-    width: 23%;
-  }
 }
 
-@media screen and (min-width: 1400px) {
-  .lista {
-    width: 18%;
+@media (max-width: 470px) {
+  .unorderList {
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
   }
 }
-@media screen and (max-width: 760px) {
-  .lista {
-    width: 32%;
-  }
-}
-
-@media screen and (max-width: 560px) {
-  .lista {
-    width: 48%;
-  }
-}
-
-@media screen and (max-width: 300px) {
-  .lista {
-    width: auto;
+@media (max-width: 300px) {
+  .unorderList {
+    grid-template-columns: repeat(1, minmax(100px, 1fr));
   }
 }

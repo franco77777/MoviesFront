@@ -4,6 +4,10 @@
 
 @import "~swiper/css/effect-cube";
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: rgb(8, 14, 40);
 }

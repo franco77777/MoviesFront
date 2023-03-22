@@ -23,6 +23,8 @@ import {
   Trailers,
   Videos,
 } from 'src/app/interfaces';
+import { DatabaseService } from 'src/app/services/database.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-movie-top',
@@ -46,6 +48,7 @@ export class MovieTopComponent implements AfterViewInit, OnInit, OnDestroy {
   public color5: string = 'color:#EDB709';
   public title: string;
   public indice$: Observable<string>;
+  public indice: string;
   public type: string;
   public percentage: number;
   public URL: string = 'https://image.tmdb.org/t/p/w500';
@@ -73,11 +76,13 @@ export class MovieTopComponent implements AfterViewInit, OnInit, OnDestroy {
     private route: ActivatedRoute,
     private _changeDetectorRef: ChangeDetectorRef,
     private renderer2: Renderer2,
-    private service: PeliculasService
+    private service: PeliculasService,
+    private serviceApi: DatabaseService
   ) {}
 
   ngOnInit(): void {
     this.type = this.route.snapshot.params['type'];
+    this.indice = this.route.snapshot.params['id'];
     this.indice$ = this.route.params.pipe(map((response) => response['id']));
 
     this.subscription = this.indice$.subscribe((response) => {
@@ -236,7 +241,7 @@ export class MovieTopComponent implements AfterViewInit, OnInit, OnDestroy {
   getDirectors(cast: Cast[]): string[] {
     let directors = cast.flatMap((e) => (e.job === 'Director' ? e.name : []));
 
-    console.log('soy directores', directors);
+    //console.log('soy directores', directors);
     return directors;
   }
 
@@ -247,5 +252,33 @@ export class MovieTopComponent implements AfterViewInit, OnInit, OnDestroy {
   getActors(actors: Cast[]): Cast[] {
     let results = actors.filter((e) => e.profile_path !== null);
     return results;
+  }
+
+  addToMyList() {
+    if (this.type === 'movie') {
+      Swal.fire({
+        icon: 'success',
+        title: `la pelicula se agrego a tu lista`,
+        showConfirmButton: false,
+        timer: 1000,
+        background: '#1E2747',
+        color: '#fff',
+      });
+      return this.serviceApi
+        .AddMovie([parseInt(this.indice)])
+        .subscribe((response) => console.log(response));
+    } else {
+      Swal.fire({
+        icon: 'success',
+        title: `la serie se agrego a tu lista`,
+        showConfirmButton: false,
+        timer: 1000,
+        background: '#1E2747',
+        color: '#fff',
+      });
+      return this.serviceApi
+        .AddSerie([parseInt(this.indice)])
+        .subscribe((response) => console.log(response));
+    }
   }
 }

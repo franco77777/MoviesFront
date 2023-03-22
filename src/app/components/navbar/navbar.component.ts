@@ -1,3 +1,5 @@
+import { DatabaseService } from 'src/app/services/database.service';
+import { CookieService } from 'ngx-cookie-service';
 import { PeliculasService } from 'src/app/services/peliculas.service';
 import {
   Observable,
@@ -9,6 +11,8 @@ import {
   debounceTime,
   distinct,
   switchMap,
+  Subject,
+  BehaviorSubject,
 } from 'rxjs';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Variables2Service } from './../../services/variables2.service';
@@ -22,7 +26,8 @@ import {
   OnInit,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { movieDetails, Movies } from 'src/app/interfaces';
+import { movieDetails, Movies, UserDatabase } from 'src/app/interfaces';
+import { JwtServiceService } from 'src/app/jwt/jwt-service.service';
 
 @Component({
   selector: 'app-navbar',
@@ -32,6 +37,8 @@ import { movieDetails, Movies } from 'src/app/interfaces';
 })
 export class NavbarComponent implements OnInit, AfterViewInit {
   @ViewChild('listita') listita: ElementRef;
+  @ViewChild('register') register: ElementRef;
+  @ViewChild('login') login: ElementRef;
   @ViewChild('movieSearchInput', { static: true }) movieSearchInput: ElementRef;
   public genres: any[] = [
     {
@@ -115,13 +122,37 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   public URL: string = 'https://image.tmdb.org/t/p/w500';
   public minutes: number;
   public moviesSubscription: Subscription;
+  public registerActive: boolean = false;
+  loginActive: boolean = false;
+  public userLogged$: Subject<boolean>;
+  public user$ = this.serviceApi.userApi$; // Observable<string> = null;
+  public userTest$ = this.serviceApi.userApi$;
+
   constructor(
     private variable2: Variables2Service,
     private route: Router,
     private service: PeliculasService,
-    private renderer2: Renderer2
+    private renderer2: Renderer2,
+    private jwtService: JwtServiceService,
+    private cookieService: CookieService,
+    private serviceApi: DatabaseService
   ) {}
   ngOnInit(): void {
+    if (this.cookieService.get('token')) {
+      /*   this.user$ = this.serviceApi.getUser().pipe(
+        map((response) => {
+          console.log('soy la repuaer', response.email);
+          return response.email;
+        })
+      ); */
+      this.serviceApi
+        .getUser()
+        .subscribe((response) => this.serviceApi.setUserApi(response.email));
+    }
+    this.user$.subscribe((response) =>
+      console.log('soy userapi subscribe', response)
+    );
+
     /*   this.listSearch$ = fromEvent<Event>(
       this.movieSearchInput.nativeElement,
       'keyup'
@@ -193,7 +224,37 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     }, 100);
   }
 
+  Register() {
+    if (this.registerActive) {
+      this.registerActive = false;
+      this.renderer2.removeClass(
+        this.register.nativeElement,
+        'registermodalview'
+      );
+    } else {
+      this.registerActive = true;
+      this.renderer2.addClass(this.register.nativeElement, 'registermodalview');
+    }
+  }
+  Login() {
+    if (this.loginActive) {
+      this.loginActive = false;
+      this.renderer2.removeClass(this.login.nativeElement, 'registermodalview');
+    } else {
+      this.loginActive = true;
+      this.renderer2.addClass(this.login.nativeElement, 'registermodalview');
+    }
+  }
+
   submit2(value: string) {
     console.log(value);
+  }
+
+  sendRegister() {}
+
+  closeSesion() {
+    this.cookieService.delete('token');
+    this.serviceApi.setUserApi(null);
+    //window.location.replace('/home');
   }
 }

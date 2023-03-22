@@ -22,35 +22,32 @@
 }
 
 .carousel-img {
-  background-image: url("../../../assets/images/adam.png");
+  background-image: url("https://image.tmdb.org/t/p/w1280/bQXAqRx2Fgc46uCVWgoPz5L5Dtr.jpg");
   background-position: center center;
   background-size: cover;
 }
 
 .carousel-img2 {
-  background-image: url("../../../assets/images/avatar.png");
+  background-image: url("https://image.tmdb.org/t/p/w1280/198vrF8k7mfQ4FjDJsBmdQcaiyq.jpg");
   background-position: center center;
   background-size: cover;
 }
 .carousel-img3 {
-  background-image: url("../../../assets/images/galaxia.png");
+  background-image: url("https://image.tmdb.org/t/p/w1280/rfnmMYuZ6EKOBvQLp2wqP21v7sI.jpg");
   background-position: center center;
   background-size: cover;
 }
 
 .carousel-img4 {
-  background-image: url("../../../assets/images/gato.png");
+  background-image: url("https://image.tmdb.org/t/p/w1280/vNuHqmOJRQXY0PBd887DklSDlBP.jpg");
   background-position: center center;
   background-size: cover;
 }
 
 .carousel-img5 {
-  background-image: url("../../../assets/images/megan.png");
+  background-image: url("https://image.tmdb.org/t/p/w1280/6T0ioZM9ZyXXLBhcUixLJpN4q9i.jpg");
   background-position: center center;
   background-size: cover;
-}
-
-.carousel p {
 }
 
 .dropmenu {
