@@ -129,12 +129,13 @@
   background-color: rgb(30, 39, 71);
 }
 
-.listitafocus2 {
-  display: block;
-}
+
 
 .displaySeries {
   height: 72px;
+}
+.displayOpciones {
+  height: 75px;
 }
 
 .displayGeneros {
@@ -146,6 +147,10 @@
 }
 .fondito:hover {
   background-color: #080f28;
+}
+
+.displayOption {
+  display: block;
 }
 
 .que::before {

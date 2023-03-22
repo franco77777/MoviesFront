@@ -23,7 +23,7 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./sidebar.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SidebarComponent implements AfterViewInit {
+export class SidebarComponent implements AfterViewInit, OnInit {
   public listSearch$: Observable<movieDetails[]>;
   public active: boolean = false;
   public URL: string = 'https://image.tmdb.org/t/p/w500';
@@ -109,6 +109,7 @@ export class SidebarComponent implements AfterViewInit {
   public seriesNone: boolean = true;
   public peliculasNone: boolean = true;
   public generosNone: boolean = true;
+  public opciones: boolean = true;
   public user$ = this.serviceApi.userApi$;
   public registerActive: boolean = false;
   loginActive: boolean = false;
@@ -125,6 +126,8 @@ export class SidebarComponent implements AfterViewInit {
   @ViewChild('generosList') generosList: ElementRef;
   @ViewChild('register') register: ElementRef;
   @ViewChild('login') login: ElementRef;
+  @ViewChild('opcionesDisplay') opcionesDisplay: ElementRef;
+  @ViewChild('optionHidden') optionHidden: ElementRef;
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(
     event: KeyboardEvent
@@ -145,6 +148,14 @@ export class SidebarComponent implements AfterViewInit {
     private cookieService: CookieService
   ) {
     boton.boton = this.toggle;
+  }
+  ngOnInit(): void {
+    if (this.cookieService.get('token')) {
+      this.serviceApi
+        .getUser()
+        .subscribe((response) => this.serviceApi.setUserApi(response.email));
+    }
+    this.user$.subscribe();
   }
 
   ngAfterViewInit(): void {

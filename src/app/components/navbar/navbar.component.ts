@@ -139,38 +139,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   ) {}
   ngOnInit(): void {
     if (this.cookieService.get('token')) {
-      /*   this.user$ = this.serviceApi.getUser().pipe(
-        map((response) => {
-          console.log('soy la repuaer', response.email);
-          return response.email;
-        })
-      ); */
       this.serviceApi
         .getUser()
         .subscribe((response) => this.serviceApi.setUserApi(response.email));
     }
     this.user$.subscribe();
-
-    /*   this.listSearch$ = fromEvent<Event>(
-      this.movieSearchInput.nativeElement,
-      'keyup'
-    ).pipe(
-      map((event: Event) => {
-        const searchTerm = (event.target as HTMLInputElement).value;
-        console.log(searchTerm);
-        return searchTerm;
-      }),
-      filter((searchTerm: string) => searchTerm.length > 1),
-      debounceTime(500),
-      switchMap((searchTerm: string) =>
-        this.service.getMoviesSearch(searchTerm)
-      ),
-      map((response) => {
-        console.log(response.results);
-        return response.results;
-      })
-    );
-   */
   }
 
   ngAfterViewInit(): void {}

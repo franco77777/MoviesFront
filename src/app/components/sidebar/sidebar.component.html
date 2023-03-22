@@ -130,61 +130,65 @@
             Registro
           </button>
         </ng-container>
-      </div>
-      <ng-template #user>
-        <div
-          class="lg:flex hidden gap-1 items-center justify-center group hover:cursor-pointer h-16"
-        >
-          <figure
-            class="relative w-6 h-6 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600"
-          >
-            <svg
-              class="absolute w-6 h-6 text-gray-400 left-0 top-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
+        <ng-template #user>
+          <div class="flex flex-col justify-center items-center">
+            <section
+              class="lg:hidden flex gap-1 items-center justify-center group h-8"
             >
-              <path
-                fill-rule="evenodd"
-                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-          </figure>
+              <figure
+                class="relative w-6 h-6 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600"
+              >
+                <svg
+                  class="absolute w-6 h-6 text-gray-400 left-0 top-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </figure>
 
-          <div class="text-sm text-white hover:text-blue-600">
-            {{ user$ | async }}
+              <div class="text-sm text-white hover:text-blue-600">
+                {{ user$ | async }}
+              </div>
+
+              <svg
+                class="fill-current h-4 w-4"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                />
+              </svg>
+            </section>
+            <section class="fondito">
+              <ul
+                class="text-gray-700 pt-1 transition ease-in-out delay-150 duration-300 rounded text-sm"
+              >
+                <li>
+                  <a
+                    class="rounded-t fondito text-white hover:text-blue-700 py-2 px-4 block whitespace-no-wrap"
+                    [routerLink]="'/profile'"
+                    >Mi Pefil</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="fondito py-2 text-white px-4 hover:text-blue-700 block whitespace-no-wrap cursor-pointer"
+                    (click)="closeSesion()"
+                    >Cerrar Sesión</a
+                  >
+                </li>
+              </ul>
+            </section>
           </div>
-
-          <svg
-            class="fill-current h-4 w-4"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-          >
-            <path
-              d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-            />
-          </svg>
-          <ul
-            class="absolute usuariosvg hidden text-gray-700 pt-1 group-hover:block transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 listitas2 rounded text-sm"
-          >
-            <li class="">
-              <a
-                class="rounded-t fondito text-white hover:text-blue-700 py-2 px-4 block whitespace-no-wrap"
-                [routerLink]="'/profile'"
-                >Mi Pefil</a
-              >
-            </li>
-            <li class="">
-              <a
-                class="fondito py-2 text-white px-4 hover:text-blue-700 block whitespace-no-wrap"
-                (click)="closeSesion()"
-                >Cerrar Sesión</a
-              >
-            </li>
-          </ul>
-        </div>
-      </ng-template>
+        </ng-template>
+      </div>
     </section>
     <ul
       class="space-y-2 transition-all ease-in-out duration-300 overflow-x-hidden"
