@@ -208,51 +208,53 @@
           </span>
         </a>
       </div>
-      <div #listita class="h-0 bottom-0">
-        <ng-container *ngIf="listSearch$ | async as movies">
-          <div
-            class="absolute h-60  -bottom-64 -left-10 buscadorcito fondo rounded-lg overflow-auto"
-          >
-            <ul
-              class="flex flex-col justify-between gap-2 w-full unorderList p-2 fondo max-h-16"
+      <div #listita class="h-0 bottom-0 hidden">
+        <ng-container *ngIf="listSearch$ | async">
+          <ng-container *ngIf="listSearch$ | async as movies">
+            <div
+              class="absolute h-60 -bottom-64 -left-10 buscadorcito fondo rounded-lg overflow-auto"
             >
-              <li
-                *ngFor="let i of movies"
-                class="fondo cursor-pointer items-center relative group lista z-50"
+              <ul
+                class="flex flex-col justify-between gap-2 w-full unorderList p-2 fondo max-h-16"
               >
-                <a
-                  [routerLink]="['/view/movie', i.id]"
-                  class="flex justify-start items-center gap-4"
+                <li
+                  *ngFor="let i of movies"
+                  class="fondo cursor-pointer items-center relative group lista z-50"
                 >
-                  <div class="que2 relative overflow-hidden fondo">
-                    <div class="que flex items-center fondo w-10">
-                      <img
-                        class="rounded-md object-cover fondo"
-                        [src]="getURL(i.poster_path)"
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                  <section class="flex flex-col items-baseline">
-                    <div
-                      class="pt-2 text-white text-sm group-hover:text-blue-600 text-center fondo"
-                    >
-                      {{ i.title }}
-                    </div>
-                    <article class="flex gap-2">
-                      <div class="text-yellow-500 text-xs">
-                        {{ i.vote_average }}/10
+                  <a
+                    [routerLink]="['/view/movie', i.id]"
+                    class="flex justify-start items-center gap-4"
+                  >
+                    <div class="que2 relative overflow-hidden fondo">
+                      <div class="que flex items-center fondo w-10">
+                        <img
+                          class="rounded-md object-cover fondo"
+                          [src]="getURL(i.poster_path)"
+                          alt=""
+                        />
                       </div>
+                    </div>
+                    <section class="flex flex-col items-baseline">
+                      <div
+                        class="pt-2 text-white text-sm group-hover:text-blue-600 text-center fondo"
+                      >
+                        {{ i.title }}
+                      </div>
+                      <article class="flex gap-2">
+                        <div class="text-yellow-500 text-xs">
+                          {{ i.vote_average }}/10
+                        </div>
 
-                      <div class="text-xs text-blue-400">
-                        {{ i.release_date }}
-                      </div>
-                    </article>
-                  </section>
-                </a>
-              </li>
-            </ul>
-          </div>
+                        <div class="text-xs text-blue-400">
+                          {{ i.release_date }}
+                        </div>
+                      </article>
+                    </section>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </ng-container>
         </ng-container>
       </div>
     </form>
