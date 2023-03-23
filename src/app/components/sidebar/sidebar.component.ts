@@ -145,7 +145,8 @@ export class SidebarComponent implements AfterViewInit, OnInit {
     private service: PeliculasService,
     private route: Router,
     private serviceApi: DatabaseService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private variable: VariablesService
   ) {
     boton.boton = this.toggle;
   }
@@ -299,5 +300,8 @@ export class SidebarComponent implements AfterViewInit, OnInit {
     this.cookieService.delete('token');
     this.serviceApi.setUserApi(null);
     //window.location.replace('/home');
+  }
+  resetPage() {
+    this.variable.resetPageObserver();
   }
 }

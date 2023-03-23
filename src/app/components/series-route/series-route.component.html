@@ -4,13 +4,13 @@
   <ng-container *ngIf="list$ | async as movies">
     <div class="main h-auto fondo pb-5 flex flex-wrap text-center">
       <h2 class="font-bold text-4xl text-white pr-6">
-        {{ type$ }}
+        {{ genre }}
       </h2>
 
       >
       <ul class="w-full gap-5 fondo unorderList mt-4">
         <li
-          *ngFor="let i of movies"
+          *ngFor="let i of movies.results"
           class="rounded-lg fondo cursor-pointer flex flex-col items-center relative group mb-3 w-full h-full"
         >
           <a
@@ -75,6 +75,29 @@
           </a>
         </li>
       </ul>
+      <section class="flex gap-2 w-full justify-center">
+        <button
+          [disabled]="buttonDown()"
+          (click)="pageDown()"
+          type="button"
+          class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500"
+        >
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <div class="flex text-white gap-3 items-center">
+          <p>{{ page }}</p>
+          <p>de</p>
+          <p>{{ (list$ | async).total_pages }}</p>
+        </div>
+        <button
+          [disabled]="buttonUp()"
+          (click)="pageUp()"
+          type="button"
+          class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500"
+        >
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </section>
     </div>
   </ng-container>
 

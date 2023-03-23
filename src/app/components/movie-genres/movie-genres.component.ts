@@ -1,9 +1,10 @@
 import { Variables2Service } from './../../services/variables2.service';
 import { MovieGenre, MovieGenres } from './../../interfaces/index';
-import { Observable } from 'rxjs';
+import { combineLatest, map, Observable } from 'rxjs';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PeliculasService } from 'src/app/services/peliculas.service';
+import { VariablesService } from 'src/app/services/variables.service';
 
 @Component({
   selector: 'app-movie-genres',
@@ -17,20 +18,28 @@ export class MovieGenresComponent implements OnInit {
   public Movies$: Observable<MovieGenres>;
   private URL: string = 'https://image.tmdb.org/t/p/w500';
   public recargar: number = 0;
+  public page: string = '1';
+  public totalPages: number;
   constructor(
     private route: ActivatedRoute,
     private service: PeliculasService,
-    private movieGenre: Variables2Service
+    private movieGenre: Variables2Service,
+    private variable: VariablesService
   ) {}
   ngOnInit(): void {
-    this.route.params.subscribe(
-      (response) => (this.genres = response['genre'])
-    );
-    this.route.params.subscribe(
-      (response) => (
-        (this.genreId = response['id']),
-        (this.Movies$ = this.service.getMovieGenre(response['id']))
-      )
+    // this.route.params.subscribe(
+    //   (response) => (
+    //     (this.genreId = response['id']),
+    //     (this.Movies$ = this.service.getMovieGenre(response['id']))
+    //   )
+    // );
+    combineLatest([this.variable.pageObserver, this.route.params]).subscribe(
+      ([page, params]) => {
+        this.genreId = params['id'];
+        this.genres = params['genre'];
+        this.page = page;
+        this.Movies$ = this.service.getMovieGenre(params['id'], page);
+      }
     );
   }
   getURL(post: string) {
@@ -72,5 +81,27 @@ export class MovieGenresComponent implements OnInit {
       return '#1de60b';
     }
     return '';
+  }
+  pageUp() {
+    this.variable.upPageObserver();
+    //this.variable.pageObserver.subscribe((res) => (this.page = res));
+  }
+  pageDown() {
+    this.variable.downPageObserver();
+  }
+  buttonDown() {
+    if (parseInt(this.page) < 2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  buttonUp() {
+    this.Movies$.pipe(map((res) => (this.totalPages = res.total_pages)));
+    if (parseInt(this.page) >= this.totalPages) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

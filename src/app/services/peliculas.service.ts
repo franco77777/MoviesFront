@@ -62,6 +62,12 @@ export class PeliculasService {
     return this.http.get(`${this.URL}${this.MoviesDiscover}`);
   }
 
+  getPremieres2(page: Observable<string>): Observable<MovieGenres> {
+    return this.http.get<MovieGenres>(
+      `${this.URL}${this.MoviesPremier}${page}`
+    );
+  }
+
   getPremieres(page: string): Observable<MovieGenres> {
     return this.http.get<MovieGenres>(
       `${this.URL}${this.MoviesPremier}${page}`
@@ -109,9 +115,9 @@ export class PeliculasService {
     );
   }
 
-  getMovieGenre(id: number): Observable<MovieGenres> {
+  getMovieGenre(id: number, page: string): Observable<MovieGenres> {
     return this.http.get<MovieGenres>(
-      `https://api.themoviedb.org/3/discover/movie?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES&page=1&with_genres=${id}`
+      `https://api.themoviedb.org/3/discover/movie?api_key=b2420eb5b40423ebe58589621b36134c&language=es-ES&page=${page}&with_genres=${id}`
     );
   }
   getSerieTrailer(id: string): Observable<Videos> {

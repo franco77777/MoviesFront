@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { combineLatest, map, mergeMap, Observable } from 'rxjs';
 import { MovieGenre, Serie, MovieGenres } from 'src/app/interfaces';
 import { PeliculasService } from 'src/app/services/peliculas.service';
+import { VariablesService } from 'src/app/services/variables.service';
 
 @Component({
   selector: 'app-movie-type',
@@ -11,42 +12,42 @@ import { PeliculasService } from 'src/app/services/peliculas.service';
 })
 export class MovieTypeComponent implements OnInit {
   public type$: string;
-  public list$: Observable<MovieGenre[]>;
+  public list$: Observable<MovieGenres>;
   private URL: string = 'https://image.tmdb.org/t/p/w500';
   public genres: string;
+  public page: string = '1';
+  public totalPages: number;
+
   constructor(
     private route: ActivatedRoute,
-    private service: PeliculasService
+    private service: PeliculasService,
+    private variable: VariablesService
   ) {
     this.type$ = this.route.snapshot.params['type'];
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(
-      (response) => (this.genres = response['genre'])
+    combineLatest([this.variable.pageObserver, this.route.params]).subscribe(
+      ([page, params]) => {
+        this.genres = params['genre'];
+        this.page = page;
+        if (params['type'] === 'Estrenos') {
+          this.list$ = this.service.getPremieres(page);
+        }
+        if (params['type'] === 'Ranking') {
+          this.list$ = this.service.getRated(page).pipe(map((res) => res));
+        }
+        if (params['type'] === 'Mas Vistas') {
+          this.list$ = this.service.getPopular(page).pipe(map((res) => res));
+        }
+        if (params['type'] === 'Proximamente') {
+          this.list$ = this.service.getComing(page).pipe(map((res) => res));
+        }
+      }
     );
+
     /* this.route.params.pipe(map((response) => (this.type$ = response['type']))); */
     this.route.params.subscribe((response) => (this.type$ = response['type']));
-    this.route.params.subscribe((response) => {
-      if (response['type'] === 'Estrenos') {
-        this.list$ = this.service
-          .getPremieres('1')
-          .pipe(map((res) => res.results));
-      }
-      if (response['type'] === 'Ranking') {
-        this.list$ = this.service.getRated('1').pipe(map((res) => res.results));
-      }
-      if (response['type'] === 'Mas Vistas') {
-        this.list$ = this.service
-          .getPopular('1')
-          .pipe(map((res) => res.results));
-      }
-      if (response['type'] === 'Proximamente') {
-        this.list$ = this.service
-          .getComing('1')
-          .pipe(map((res) => res.results));
-      }
-    });
   }
 
   getURL(post: string) {
@@ -83,5 +84,27 @@ export class MovieTypeComponent implements OnInit {
       return '#1de60b';
     }
     return '';
+  }
+  pageUp() {
+    this.variable.upPageObserver();
+    //this.variable.pageObserver.subscribe((res) => (this.page = res));
+  }
+  pageDown() {
+    this.variable.downPageObserver();
+  }
+  buttonDown() {
+    if (parseInt(this.page) < 2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  buttonUp() {
+    this.list$.pipe(map((res) => (this.totalPages = res.total_pages)));
+    if (parseInt(this.page) >= this.totalPages) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

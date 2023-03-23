@@ -28,6 +28,7 @@ import {
 } from '@angular/core';
 import { movieDetails, Movies, UserDatabase } from 'src/app/interfaces';
 import { JwtServiceService } from 'src/app/jwt/jwt-service.service';
+import { VariablesService } from 'src/app/services/variables.service';
 
 @Component({
   selector: 'app-navbar',
@@ -135,7 +136,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private renderer2: Renderer2,
     private jwtService: JwtServiceService,
     private cookieService: CookieService,
-    private serviceApi: DatabaseService
+    private serviceApi: DatabaseService,
+    private variable: VariablesService
   ) {}
   ngOnInit(): void {
     if (this.cookieService.get('token')) {
@@ -149,6 +151,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {}
   variable2Change(data: string) {
     this.variable2.setMovieGenre = { data: data, scroll: true };
+
+    this.variable.resetPageObserver();
+  }
+  resetPage() {
+    this.variable.resetPageObserver();
   }
 
   submit(value: string) {
@@ -160,14 +167,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.listSearch$ = this.service
       .getMoviesSearch(value)
       .pipe(map((response) => response.results));
-  }
-
-  scrollTo(element: any): void {
-    (document.getElementById(element) as HTMLElement).scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-      inline: 'nearest',
-    });
   }
 
   getURL(post: string) {

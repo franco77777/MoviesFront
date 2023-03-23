@@ -1,8 +1,9 @@
-import { Observable, map } from 'rxjs';
+import { Observable, map, combineLatest } from 'rxjs';
 import { PeliculasService } from 'src/app/services/peliculas.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Serie } from 'src/app/interfaces';
+import { Serie, Series } from 'src/app/interfaces';
+import { VariablesService } from 'src/app/services/variables.service';
 
 @Component({
   selector: 'app-series-route',
@@ -10,53 +11,56 @@ import { Serie } from 'src/app/interfaces';
   styleUrls: ['./series-route.component.css'],
 })
 export class SeriesRouteComponent implements OnInit {
-  public type$: string;
-  public list$: Observable<Serie[]>;
+  public genre: string;
+  public list$: Observable<Series>;
   private URL: string = 'https://image.tmdb.org/t/p/w500';
+  public page: string = '1';
+  public totalPages: number;
+
   constructor(
     private route: ActivatedRoute,
-    private service: PeliculasService
-  ) {
-    this.type$ = this.route.snapshot.params['type'];
-  }
+    private service: PeliculasService,
+    private variable: VariablesService
+  ) {}
 
   ngOnInit(): void {
     /* this.route.params.pipe(map((response) => (this.type$ = response['type']))); */
-    this.route.params.subscribe((response) => (this.type$ = response['type']));
-    this.route.params.subscribe((response) => {
-      if (response['type'] === 'Recientes') {
-        this.list$ = this.service
-          .getSeriesLatest('1')
-          .pipe(map((response) => response.results));
+    // this.route.params.subscribe((response) => (this.type$ = response['type']));
+    // this.route.params.subscribe((response) => {
+    //   if (response['type'] === 'Recientes') {
+    //     this.list$ = this.service
+    //       .getSeriesLatest('1')
+    //       .pipe(map((response) => response.results));
+    //   }
+    //   if (response['type'] === 'Ranking') {
+    //     this.list$ = this.service
+    //       .getSeriesRanking('1')
+    //       .pipe(map((response) => response.results));
+    //   }
+    //   if (response['type'] === 'Mas Vistas') {
+    //     this.list$ = this.service
+    //       .getSeriesPopular('1')
+    //       .pipe(map((response) => response.results));
+    //   }
+    // });
+
+    combineLatest([this.variable.pageObserver, this.route.params]).subscribe(
+      ([page, params]) => {
+        this.genre = params['type'];
+        this.page = page;
+        if (params['type'] === 'Recientes') {
+          this.list$ = this.service.getSeriesLatest(page);
+        }
+        if (params['type'] === 'Ranking') {
+          this.list$ = this.service.getSeriesRanking(page);
+        }
+        if (params['type'] === 'Mas Vistas') {
+          this.list$ = this.service.getSeriesPopular(page);
+        }
       }
-      if (response['type'] === 'Ranking') {
-        this.list$ = this.service
-          .getSeriesRanking('1')
-          .pipe(map((response) => response.results));
-      }
-      if (response['type'] === 'Mas Vistas') {
-        this.list$ = this.service
-          .getSeriesPopular('1')
-          .pipe(map((response) => response.results));
-      }
-    });
+    );
   }
 
-  /*  switch (response) {
-          case 'Recientes':
-            this.list$ = this.service
-              .getSeriesLatest('1')
-              .pipe(map((response) => response.results));
-          case 'Mas Vistas':
-            this.list$ = this.service
-              .getSeriesView('1')
-              .pipe(map((response) => response.results));
-          case 'Ranking':
-            this.list$ = this.service
-              .getSeriesPopular('1')
-              .pipe(map((response) => response.results));
-        }
- */
   getURL(post: string) {
     if (!post) return '../../../assets/images/travolta2.png';
     return `${this.URL}${post}`;
@@ -91,5 +95,28 @@ export class SeriesRouteComponent implements OnInit {
       return '#1de60b';
     }
     return '';
+  }
+
+  pageUp() {
+    this.variable.upPageObserver();
+    //this.variable.pageObserver.subscribe((res) => (this.page = res));
+  }
+  pageDown() {
+    this.variable.downPageObserver();
+  }
+  buttonDown() {
+    if (parseInt(this.page) < 2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  buttonUp() {
+    this.list$.pipe(map((res) => (this.totalPages = res.total_pages)));
+    if (parseInt(this.page) >= this.totalPages) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
