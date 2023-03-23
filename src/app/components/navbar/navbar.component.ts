@@ -219,6 +219,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   closeSesion() {
     this.cookieService.delete('token');
     this.serviceApi.setUserApi(null);
+    this.route.navigate(['/home']);
     //window.location.replace('/home');
   }
 }
