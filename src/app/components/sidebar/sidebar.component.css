@@ -31,6 +31,12 @@
   animation-name: zoom;
 }
 
+.listitafocus2 {
+  display: block;
+}
+.buscadorcito {
+}
+
 .buscadorcito::-webkit-scrollbar {
   position: relative;
   bottom: -10px;
@@ -128,8 +134,6 @@
 .fondo {
   background-color: rgb(30, 39, 71);
 }
-
-
 
 .displaySeries {
   height: 72px;
