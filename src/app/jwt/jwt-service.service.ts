@@ -12,14 +12,14 @@ export class JwtServiceService {
 
   Register(data: User): Observable<Token> {
     return this.http.post<Token>(
-      'https://moviesbackend-production.up.railway.app/api/v1/auth/register',
+      'https://moviesbackend-production-57d5.up.railway.app/api/v1/auth/register',
       data
     );
   }
 
   Login(data: User): Observable<Token> {
     return this.http.post<Token>(
-      `https://moviesbackend-production.up.railway.app/api/v1/auth/authenticate`,
+      `https://moviesbackend-production-57d5.up.railway.app/api/v1/auth/authenticate`,
       data
     );
   }
