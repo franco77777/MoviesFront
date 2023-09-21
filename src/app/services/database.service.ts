@@ -14,33 +14,33 @@ export class DatabaseService {
   }
   AddMovie(id: Number[]): Observable<boolean> {
     return this.http.post<boolean>(
-      `https://moviesbackend-production-57d5.up.railway.app/apidemo/addmovies`,
+      `https://moviesback.onrender.com/apidemo/addmovies`,
       id
     );
   }
 
   AddSerie(id: Number[]): Observable<boolean> {
     return this.http.post<boolean>(
-      `https://moviesbackend-production-57d5.up.railway.app/apidemo/addseries`,
+      `https://moviesback.onrender.com/apidemo/addseries`,
       id
     );
   }
 
   RemoveSerie(id: Number[]): Observable<boolean> {
     return this.http.put<boolean>(
-      `https://moviesbackend-production-57d5.up.railway.app/apidemo/deleteseries`,
+      `https://moviesback.onrender.com/apidemo/deleteseries`,
       id
     );
   }
   RemoveMovie(id: Number[]): Observable<boolean> {
     return this.http.put<boolean>(
-      `https://moviesbackend-production-57d5.up.railway.app/apidemo/deletemovies`,
+      `https://moviesback.onrender.com/apidemo/deletemovies`,
       id
     );
   }
   getUser(): Observable<UserDatabase> {
     return this.http.get<UserDatabase>(
-      'https://moviesbackend-production-57d5.up.railway.app/apidemo'
+      'https://moviesback.onrender.com/apidemo'
     );
   }
 }
